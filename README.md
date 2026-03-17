@@ -35,6 +35,10 @@ Increases base character run speed to 1.2x (vanilla: ~1.0).
 
 Modified boss, hero, and treasure trove loot tables with increased drop rates for rare and epic items.
 
+### max_affixes
+
+Removes RNG from item affix stat rolls. For every affix with a min/max range (e.g. "5-10 fire damage"), the min is set equal to the max so the affix always rolls its best value. Covers 332 offensive, defensive, and retaliation affixes.
+
 ### more_devotion_points
 
 Modifies all devotion shrines to grant additional devotion points, raising the effective cap to 110.
