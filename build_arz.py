@@ -149,29 +149,43 @@ def guess_entry_type(name, value):
     return TYPE_STRING
 
 
+TYPE_NAME_TO_ID = {'int': TYPE_INT, 'float': TYPE_FLOAT, 'string': TYPE_STRING, 'bool': TYPE_BOOL}
+
+
 def parse_dbr(filepath):
-    """Parse a .dbr file into a list of (name, value) tuples."""
+    """Parse a .dbr file into a list of (name, value, type_hint) tuples.
+
+    Supports two formats:
+      - name,value,type,   (4 fields, type is 'int'/'float'/'string'/'bool')
+      - name,value,        (3 fields, type is guessed)
+    """
     entries = []
     with open(filepath, 'r') as f:
         for line in f:
             line = line.strip()
             if not line:
                 continue
-            parts = line.split(',', 2)
-            if len(parts) >= 2:
+            parts = line.split(',')
+            if len(parts) >= 3:
                 name = parts[0]
-                value = parts[1] if len(parts) > 1 else ''
+                value = parts[1]
+                type_hint = parts[2].strip() if len(parts) >= 4 and parts[2].strip() in TYPE_NAME_TO_ID else None
                 if name:  # skip empty names
-                    entries.append((name, value))
+                    entries.append((name, value, type_hint))
     return entries
 
 
 def build_record_data(entries, strtable):
     """Build the binary entry data for a record (before LZ4 compression)."""
     parts = []
-    for name, value in entries:
+    for entry in entries:
+        name, value = entry[0], entry[1]
+        type_hint = entry[2] if len(entry) > 2 else None
         name_id = strtable.add(name)
-        entry_type = guess_entry_type(name, value)
+        if type_hint and type_hint in TYPE_NAME_TO_ID:
+            entry_type = TYPE_NAME_TO_ID[type_hint]
+        else:
+            entry_type = guess_entry_type(name, value)
 
         if entry_type == TYPE_STRING:
             if value and ';' in value and not any(c in value for c in ['(', ')', '^']):
@@ -257,14 +271,14 @@ def build_arz(records_dir, output_path):
 
         # Find the record type (Class field)
         rtype = ''
-        for name, value in entries:
-            if name == 'Class':
-                rtype = value
+        for entry in entries:
+            if entry[0] == 'Class':
+                rtype = entry[1]
                 break
 
         # Sort entries: templateName first, then alphabetical
-        template_entries = [(n, v) for n, v in entries if n == 'templateName']
-        other_entries = sorted([(n, v) for n, v in entries if n != 'templateName'], key=lambda x: x[0])
+        template_entries = [e for e in entries if e[0] == 'templateName']
+        other_entries = sorted([e for e in entries if e[0] != 'templateName'], key=lambda x: x[0])
         sorted_entries = template_entries + other_entries
 
         # Build and compress record data

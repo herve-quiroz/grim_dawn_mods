@@ -103,6 +103,30 @@ def decode_entries(data, strings):
     return entries
 
 
+def decode_entries_typed(data, strings):
+    """Decode binary entry data into (name, type_name, value_string) triples."""
+    entries = []
+    pos = 0
+    while pos < len(data):
+        dtype, dcount, strid = struct.unpack_from('<HHi', data, pos)
+        pos += 8
+        values = []
+        for i in range(dcount):
+            raw = struct.unpack_from('<i', data, pos)[0]
+            pos += 4
+            if dtype == 0 or dtype == 3:  # int or bool
+                values.append(str(raw))
+            elif dtype == 1:  # float
+                fval = struct.unpack('<f', struct.pack('<i', raw))[0]
+                values.append(f"{fval:g}")
+            elif dtype == 2:  # string
+                values.append(strings[raw])
+        name = strings[strid]
+        value = ';'.join(values)
+        entries.append((name, TYPE_NAMES.get(dtype, 'int'), value))
+    return entries
+
+
 def extract_arz(arz_path, output_dir):
     output_dir = Path(output_dir)
 
@@ -133,12 +157,15 @@ def extract_arz(arz_path, output_dir):
             # Decode entries
             entries = decode_entries(decompressed, strings)
 
+            # Decode entries with type info
+            typed_entries = decode_entries_typed(decompressed, strings)
+
             # Write .dbr file
             out_path = output_dir / name
             out_path.parent.mkdir(parents=True, exist_ok=True)
             with open(out_path, 'w') as out:
-                for ename, evalue in entries:
-                    out.write(f"{ename},{evalue},\n")
+                for ename, etype, evalue in typed_entries:
+                    out.write(f"{ename},{evalue},{etype},\n")
 
         print(f"\nExtracted {len(records)} records to {output_dir}")
 
