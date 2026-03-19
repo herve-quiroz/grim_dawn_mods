@@ -25,15 +25,26 @@ Custom player progression overrides:
 * 3 attribute points per level (vanilla: 1)
 * 2x XP gain (divides the XP formula by 2)
 * 6/4/2 skill points per level (vanilla: 3/2/1)
-* 110 max devotion points (vanilla: 55)
+* 1000 max devotion points (vanilla: 55)
 
-### increased_move_speed
+### faster_constellation_skill_leveling
 
-Increases base character run speed to 1.2x (vanilla: ~1.0).
+Reduces XP requirements for devotion constellation proc skills by 5x (52 skills). Constellations level up much faster through combat.
+
+### faster_faction_rep
+
+Speeds up faction reputation gain:
+
+* Lower tier thresholds: 1000 / 2000 / 5000 / 10000 (vanilla: 1500 / 5000 / 10000 / 25000)
+* Reputation gain reduction from monster kills disabled until Revered
 
 ### increased_loot_rarity
 
 Modified boss, hero, and treasure trove loot tables with increased drop rates for rare and epic items.
+
+### increased_move_speed
+
+Increases base character run speed to 1.5x (vanilla: ~1.0).
 
 ### max_affixes
 
@@ -41,4 +52,8 @@ Removes RNG from item affix stat rolls. For every affix with a min/max range (e.
 
 ### more_devotion_points
 
-Modifies all devotion shrines to grant additional devotion points, raising the effective cap to 110.
+Modifies all devotion shrines to grant 2 devotion points instead of 1.
+
+### more_iron_bits
+
+Increases gold (iron bits) drops by 10x across all money generators.
