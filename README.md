@@ -29,7 +29,7 @@ Custom player progression overrides:
 
 ### faster_constellation_skill_leveling
 
-Reduces XP requirements for devotion constellation proc skills by 5x (52 skills). Constellations level up much faster through combat.
+Reduces XP requirements for devotion constellation proc skills by 2x (52 skills). Constellations level up faster through combat.
 
 ### faster_faction_rep
 
@@ -56,4 +56,4 @@ Modifies all devotion shrines to grant 2 devotion points instead of 1.
 
 ### more_iron_bits
 
-Increases gold (iron bits) drops by 10x across all money generators.
+Increases gold (iron bits) drops by 20x across all money generators.
