@@ -18,6 +18,17 @@ This merges all subdirectories under `mods/`, checks for file conflicts, builds 
 
 ## Mod components
 
+### boosted_summons
+
+Increases the max allocatable skill points for permanent pet-scaling summon skills to halfway between the base cap and the soft cap. This reduces reliance on +skill gear RNG for summoner builds.
+
+* Summon Hellhound (Occultist): 16 -> 21
+* Summon Familiar/Raven (Occultist): 16 -> 21
+* Summon Briarthorn (Shaman): 16 -> 21
+* Summon Blight Fiend (Necromancer): 16 -> 21
+* Raise Skeletons (Necromancer): 16 -> 21
+* Undead Legion (Necromancer): 12 -> 17
+
 ### custom_playerlevels
 
 Custom player progression overrides:
@@ -48,7 +59,7 @@ Increases base character run speed to 1.5x (vanilla: ~1.0).
 
 ### max_affixes
 
-Removes RNG from item affix stat rolls. For every affix with a min/max range (e.g. "5-10 fire damage"), the min is set equal to the max so the affix always rolls its best value. Covers 332 offensive, defensive, and retaliation affixes.
+Removes RNG from item affix stat rolls. For every affix with a min/max range (e.g. "5-10 fire damage"), the min is set equal to the max so the affix always rolls its best value. Covers 1227 affixes across the base game and both expansions.
 
 ### more_devotion_points
 

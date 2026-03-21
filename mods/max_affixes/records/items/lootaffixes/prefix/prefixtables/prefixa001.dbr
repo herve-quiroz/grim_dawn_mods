@@ -1,0 +1,6 @@
+templateName,database/templates/lootrandomizertabledynamic.tpl,string,
+Class,LootRandomizerTable,string,
+randomizerLevelMax1,500,int,
+randomizerLevelMin1,500,int,
+randomizerName1,records/items/lootaffixes/prefixunique/a001.dbr,string,
+randomizerWeight1,500,int,
