@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """Merge mod subdirectories and build hqz.arz.
 
-Usage: python3 build_mod.py
+Usage: python3 build_mod.py [output.arz]
 
 Scans all subdirectories under mods/, merges their records into a single
-directory, builds hqz.arz, and copies it to the Grim Dawn mod folder.
+directory, and builds hqz.arz. If no output path is given, writes to the
+Grim Dawn mod folder.
 
 Exits with an error if any .dbr file appears in more than one subdirectory.
 """
@@ -21,10 +22,14 @@ MODS_DIR = SCRIPT_DIR / "mods"
 MERGED_DIR = Path("/tmp/gd_hqz_merged")
 BUILD_SCRIPT = SCRIPT_DIR / "build_arz.py"
 GD_MOD_DIR = Path("/mnt/c/Program Files (x86)/Steam/steamapps/common/Grim Dawn/mods/hqz/database")
-OUTPUT_ARZ = GD_MOD_DIR / "hqz.arz"
+DEFAULT_OUTPUT_ARZ = GD_MOD_DIR / "hqz.arz"
 
 
 def main():
+    output_arz = Path(sys.argv[1]) if len(sys.argv) > 1 else DEFAULT_OUTPUT_ARZ
+    output_arz = output_arz.resolve()
+    output_arz.parent.mkdir(parents=True, exist_ok=True)
+
     if not MODS_DIR.is_dir():
         print(f"ERROR: {MODS_DIR} not found", file=sys.stderr)
         sys.exit(1)
@@ -73,9 +78,9 @@ def main():
     print(f"\nMerged {total} records from {len(subdirs)} components")
 
     # Build .arz
-    print(f"Building {OUTPUT_ARZ}...")
+    print(f"Building {output_arz}...")
     result = subprocess.run(
-        [sys.executable, str(BUILD_SCRIPT), str(MERGED_DIR), str(OUTPUT_ARZ)],
+        [sys.executable, str(BUILD_SCRIPT), str(MERGED_DIR), str(output_arz)],
         capture_output=True, text=True
     )
     if result.returncode != 0:
