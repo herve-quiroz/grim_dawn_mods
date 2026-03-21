@@ -28,3 +28,13 @@ jobs:
         with:
           name: hqz-mod
           path: hqz-mod.zip
+
+      - name: Update latest release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: Latest build
+          body: Built from ${{ github.sha }}
+          files: hqz-mod.zip
+          prerelease: true
+          make_latest: true
