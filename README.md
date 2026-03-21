@@ -1,26 +1,25 @@
 # Grim Dawn mod: hqz
 
-A combined Grim Dawn mod built from independent components. Each subdirectory under `mods/` contains one aspect of the mod, and they are merged into a single `hqz.arz` at build time.
+A quality-of-life mod for Grim Dawn that speeds up progression, removes stat roll RNG, and buffs summoner builds.
 
-## Building
+## Installation
 
-```bash
-python3 build_mod.py
-```
+Download the latest `hqz-mod.zip` from the [releases page](../../releases), extract it into your Grim Dawn `mods/` folder (e.g. `C:\Program Files (x86)\Steam\steamapps\common\Grim Dawn\mods\`), and select the "hqz" mod from the game's custom game menu.
 
-This merges all subdirectories under `mods/`, checks for file conflicts, builds `hqz.arz`, and copies it to the Grim Dawn mod folder. Restart the game after building.
+## What this mod changes
 
-## Scripts
+### Character progression
 
-* `build_mod.py`: Merges all mod components and produces `hqz.arz`. Exits with an error if any `.dbr` file appears in more than one subdirectory (conflicts must be resolved manually).
-* `build_arz.py`: Low-level tool that compiles a directory of `.dbr` files into a `.arz` archive. Used internally by `build_mod.py`.
-* `extract_arz.py`: Extracts `.dbr` records from an existing `.arz` archive. Useful for importing records from other mods.
+* 3 attribute points per level (vanilla: 1)
+* 6/4/2 skill points per level (vanilla: 3/2/1)
+* 2x XP gain
+* 1000 max devotion points (vanilla: 55)
+* Devotion shrines grant 2 points instead of 1
+* Devotion constellation proc skills level 2x faster
 
-## Mod components
+### Summoner builds
 
-### boosted_summons
-
-Increases the max allocatable skill points for permanent pet-scaling summon skills to halfway between the base cap and the soft cap. This reduces reliance on +skill gear RNG for summoner builds.
+Permanent pet-scaling summon skills can be leveled 5 points higher without +skill gear:
 
 * Summon Hellhound (Occultist): 16 -> 21
 * Summon Familiar/Raven (Occultist): 16 -> 21
@@ -29,42 +28,49 @@ Increases the max allocatable skill points for permanent pet-scaling summon skil
 * Raise Skeletons (Necromancer): 16 -> 21
 * Undead Legion (Necromancer): 12 -> 17
 
-### custom_playerlevels
+### Items and loot
 
-Custom player progression overrides:
+* All affix stat rolls are maxed (min set to max for 1227 affixes across the base game and both expansions)
+* Increased drop rates for rare and epic items from bosses, heroes, and treasure troves
+* Gold (iron bits) drops increased by 20x
 
-* 3 attribute points per level (vanilla: 1)
-* 2x XP gain (divides the XP formula by 2)
-* 6/4/2 skill points per level (vanilla: 3/2/1)
-* 1000 max devotion points (vanilla: 55)
-
-### faster_constellation_skill_leveling
-
-Reduces XP requirements for devotion constellation proc skills by 2x (52 skills). Constellations level up faster through combat.
-
-### faster_faction_rep
-
-Speeds up faction reputation gain:
+### Faction reputation
 
 * Lower tier thresholds: 1000 / 2000 / 5000 / 10000 (vanilla: 1500 / 5000 / 10000 / 25000)
 * Reputation gain reduction from monster kills disabled until Revered
 
-### increased_loot_rarity
+### Movement
 
-Modified boss, hero, and treasure trove loot tables with increased drop rates for rare and epic items.
+* Base run speed increased to 1.5x
 
-### increased_move_speed
+## Development
 
-Increases base character run speed to 1.5x (vanilla: ~1.0).
+The mod is built from independent components under `mods/`. Each subdirectory contains `.dbr` override records for one aspect of the mod. No two components may contain the same `.dbr` file.
 
-### max_affixes
+### Building
 
-Removes RNG from item affix stat rolls. For every affix with a min/max range (e.g. "5-10 fire damage"), the min is set equal to the max so the affix always rolls its best value. Covers 1227 affixes across the base game and both expansions.
+```bash
+python3 build_mod.py
+```
 
-### more_devotion_points
+This merges all components, checks for file conflicts, builds `hqz.arz`, and copies it to the Grim Dawn mod folder. Restart the game after building.
 
-Modifies all devotion shrines to grant 2 devotion points instead of 1.
+### Scripts
 
-### more_iron_bits
+* `build_mod.py`: Merges all mod components and produces `hqz.arz`. Accepts an optional output path argument for CI builds.
+* `build_arz.py`: Low-level `.arz` compiler used internally by `build_mod.py`.
+* `extract_arz.py`: Extracts `.dbr` records from an existing `.arz` archive. Useful for importing records from other mods.
 
-Increases gold (iron bits) drops by 20x across all money generators.
+### Components
+
+| Component | Records | Description |
+|---|---|---|
+| `boosted_summons` | 6 | Raises max skill points for pet summon skills |
+| `custom_playerlevels` | 1 | Attribute/skill points, XP, devotion cap |
+| `faster_constellation_skill_leveling` | 52 | Reduced XP for constellation procs |
+| `faster_faction_rep` | 16 | Lower faction tier thresholds |
+| `increased_loot_rarity` | 36 | Better boss/hero/trove drop rates |
+| `increased_move_speed` | 3 | Faster base run speed |
+| `max_affixes` | 1227 | All affix min values set to max |
+| `more_devotion_points` | 60 | Shrines grant double devotion |
+| `more_iron_bits` | 11 | 20x gold drops |
