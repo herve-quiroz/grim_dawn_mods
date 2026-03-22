@@ -28,6 +28,13 @@ Permanent pet-scaling summon skills can be leveled 5 points higher without +skil
 * Raise Skeletons (Necromancer): 16 -> 21
 * Undead Legion (Necromancer): 12 -> 17
 
+Unique summons allow 2 active instead of 1:
+
+* Summon Hellhound: 2 max
+* Summon Familiar/Raven: 2 max
+* Summon Briarthorn: 2 max
+* Summon Blight Fiend: 2 max
+
 ### Items and loot
 
 * All affix stat rolls are maxed on magic (green) and rare (yellow) items (min set to max for 427 prefix/suffix affixes). Epic and legendary items have fixed stat ranges defined per item and are not affected.
@@ -71,7 +78,7 @@ This merges all components, checks for file conflicts, builds `hqz.arz`, and cop
 
 | Component | Records | Description |
 |---|---|---|
-| `boosted_summons` | 6 | Raises max skill points for pet summon skills |
+| `boosted_summons` | 6 | Raises max skill points for pet summon skills, doubles unique summon limits |
 | `custom_playerlevels` | 1 | Attribute/skill points, XP, devotion cap |
 | `faster_constellation_skill_leveling` | 52 | Reduced XP for constellation procs |
 | `faster_faction_rep` | 16 | Lower faction tier thresholds |
