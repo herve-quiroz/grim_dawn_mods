@@ -1,5 +1,11 @@
 # Grim Dawn mod development
 
+## Commit configuration
+
+* Author Name: `Claude Code`
+* Author Email: `herve.quiroz+claude@gmail.com`
+* Do NOT add a `Co-Authored-By:` line in commit messages
+
 ## Key facts about Grim Dawn modding
 
 * Grim Dawn only loads `.arz` archives, not loose `.dbr` files. The `.arz` must be named `<modname>.arz` (e.g. `hqz.arz` for the `hqz` mod folder).
