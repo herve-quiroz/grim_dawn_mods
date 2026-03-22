@@ -1,0 +1,6 @@
+templateName,database/templates/ingameui/caravanwindowpublic.tpl,string,
+InventoryDBR,records/ui/caravan/caravan_transferinventory.dbr,string,
+TransferCostEquation,(marketItemCost/2)*((playerLevel/10)+1),string,
+TransferPageCostArray,0;0;0;0;0,int,
+WindowLocationX,0,int,
+WindowLocationY,127,int,

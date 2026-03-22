@@ -30,7 +30,7 @@ Permanent pet-scaling summon skills can be leveled 5 points higher without +skil
 
 ### Items and loot
 
-* All affix stat rolls are maxed (min set to max for 1227 affixes across the base game and both expansions)
+* All affix stat rolls are maxed on magic (green) and rare (yellow) items (min set to max for 427 prefix/suffix affixes). Epic and legendary items have fixed stat ranges defined per item and are not affected.
 * Increased drop rates for rare and epic items from bosses, heroes, and treasure troves
 * Gold (iron bits) drops increased by 20x
 
@@ -38,6 +38,12 @@ Permanent pet-scaling summon skills can be leveled 5 points higher without +skil
 
 * Lower tier thresholds: 1000 / 2000 / 5000 / 10000 (vanilla: 1500 / 5000 / 10000 / 25000)
 * Reputation gain reduction from monster kills disabled until Revered
+
+### Stash and inventory
+
+* All personal stash tabs are free (vanilla: 0 / 10k / 50k / 100k / 200k iron bits)
+* All transfer stash tabs are free (vanilla: 0 / 50k / 100k / 150k / 250k iron bits)
+* Inventory bags are free (vanilla: 25k iron bits)
 
 ### Movement
 
@@ -69,8 +75,9 @@ This merges all components, checks for file conflicts, builds `hqz.arz`, and cop
 | `custom_playerlevels` | 1 | Attribute/skill points, XP, devotion cap |
 | `faster_constellation_skill_leveling` | 52 | Reduced XP for constellation procs |
 | `faster_faction_rep` | 16 | Lower faction tier thresholds |
+| `free_stash` | 3 | Free stash tabs and inventory bags |
 | `increased_loot_rarity` | 36 | Better boss/hero/trove drop rates |
 | `increased_move_speed` | 3 | Faster base run speed |
-| `max_affixes` | 1227 | All affix min values set to max |
+| `max_affixes` | 427 | All affix min values set to max (magic/rare only) |
 | `more_devotion_points` | 60 | Shrines grant double devotion |
 | `more_iron_bits` | 11 | 20x gold drops |
