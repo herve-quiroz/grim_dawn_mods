@@ -73,3 +73,49 @@ test('totalAllocated: sums allocations + mastery bars', () => {
   };
   assert.equal(totalAllocated(s), 10 + 5 + 3 + 7);
 });
+
+import { isSkillUnlocked, findMastery, findSkill } from './rules.js';
+
+const testData: SkillsData = {
+  gdVersion: 'test',
+  pointsPerLevel: vanillaPointsPerLevel(),
+  questRewardPoints: 18,
+  masteries: [
+    {
+      id: 1, name: 'A', barMaxRank: 50,
+      skills: [
+        { id: 'a.swing', name: '', description: '', icon: '', maxRank: 16, ui: {row:0,col:0}, prereqBar: 1, parent: null, parentMinRank: 0 },
+        { id: 'a.big', name: '', description: '', icon: '', maxRank: 5, ui: {row:0,col:1}, prereqBar: 3, parent: 'a.swing', parentMinRank: 2 },
+        { id: 'a.huge', name: '', description: '', icon: '', maxRank: 5, ui: {row:0,col:2}, prereqBar: 5, parent: 'a.big', parentMinRank: 1 },
+      ],
+    },
+  ],
+};
+
+test('isSkillUnlocked: base skill gated by mastery bar', () => {
+  const s: BuildState = { ...base(), masteries: [1, null], masteryBar: [0, 0] };
+  assert.equal(isSkillUnlocked(findSkill('a.swing', testData), 0, s), false);
+  const s2 = { ...s, masteryBar: [1, 0] as [number, number] };
+  assert.equal(isSkillUnlocked(findSkill('a.swing', testData), 0, s2), true);
+});
+
+test('isSkillUnlocked: modifier requires parent rank', () => {
+  const skill = findSkill('a.big', testData);
+  const s: BuildState = { ...base(), masteries: [1, null], masteryBar: [3, 0], allocations: new Map([['a.swing', 1]]) };
+  assert.equal(isSkillUnlocked(skill, 0, s), false, 'parent only rank 1, needs 2');
+  const s2 = { ...s, allocations: new Map([['a.swing', 2]]) };
+  assert.equal(isSkillUnlocked(skill, 0, s2), true);
+});
+
+test('isSkillUnlocked: modifier also checks mastery bar', () => {
+  const skill = findSkill('a.big', testData);
+  const s: BuildState = { ...base(), masteries: [1, null], masteryBar: [2, 0], allocations: new Map([['a.swing', 5]]) };
+  assert.equal(isSkillUnlocked(skill, 0, s), false, 'bar 2 < required 3');
+});
+
+test('findMastery/findSkill: helpers', () => {
+  assert.equal(findMastery(1, testData).name, 'A');
+  assert.throws(() => findMastery(99, testData));
+  assert.equal(findSkill('a.swing', testData).id, 'a.swing');
+  assert.throws(() => findSkill('nope', testData));
+});
