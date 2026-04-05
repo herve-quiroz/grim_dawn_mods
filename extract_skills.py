@@ -21,6 +21,11 @@ TEXT_ARCS = [
     GAME_ROOT / "gdx1" / "resources" / "Text_EN.arc",
     GAME_ROOT / "gdx2" / "resources" / "Text_EN.arc",
 ]
+ICON_ARCS = [
+    GAME_ROOT / "resources" / "UI.arc",
+    GAME_ROOT / "gdx1" / "resources" / "UI.arc",
+    GAME_ROOT / "gdx2" / "resources" / "UI.arc",
+]
 
 # Maps a local key -> the DBR record path.
 MASTERY_RECORDS = {
@@ -314,6 +319,112 @@ def walk_mastery_skills(
     return skills
 
 
+def extract_icons_to(tmp: Path) -> Path:
+    """Extract UI.arc archives (base + DLC) into a shared directory."""
+    base = tmp / "ui"
+    already_extracted = base.exists() and any(base.iterdir())
+    if already_extracted:
+        print(f"Reusing existing UI icons at {base}", file=sys.stderr)
+        return base
+    base.mkdir(exist_ok=True)
+    for arc in ICON_ARCS:
+        if not arc.exists():
+            continue
+        # Extract each arc into the same dir so DLC files merge in.
+        subprocess.run(
+            ["python3", str(REPO_ROOT / "extract_arc.py"), str(arc), str(base)],
+            check=True,
+        )
+    return base
+
+
+def convert_icons(
+    masteries: list[dict], ui_dir: Path, version: str
+) -> dict[str, str]:
+    """Convert .tex skill icons to PNG.
+
+    Returns a mapping from original .tex path to the PNG filename.
+    """
+    # Import tex_to_png directly to avoid subprocess overhead per icon.
+    sys.path.insert(0, str(REPO_ROOT))
+    from tex_to_png import tex_to_png
+
+    icons_dir = REPO_ROOT / "tools" / "calc" / "data" / "icons" / version
+    icons_dir.mkdir(parents=True, exist_ok=True)
+
+    # Collect all unique icon tex paths.
+    tex_paths: set[str] = set()
+    for m in masteries:
+        for s in m["skills"]:
+            icon = s.get("icon", "")
+            if icon:
+                tex_paths.add(icon)
+
+    mapping: dict[str, str] = {}
+    converted = 0
+    skipped = 0
+
+    for tex_rel in sorted(tex_paths):
+        # tex_rel looks like "ui/skills/icons/class01/skillicon_cadence1_up.tex"
+        # but extracted files are under ui_dir without the leading "ui/" sometimes,
+        # or with various path structures. Try multiple lookups.
+        png_name = Path(tex_rel).stem + ".png"
+        png_out = icons_dir / png_name
+
+        # Try to find the .tex file.
+        # The extracted path mirrors the archive path: skills/icons/classNN/file.tex
+        # The icon field in DBR may be "ui/skills/icons/..." or just the path inside the arc.
+        tex_file = None
+        candidates = [
+            ui_dir / tex_rel,
+            ui_dir / tex_rel.replace("\\", "/"),
+        ]
+        # Also try stripping leading directories.
+        parts = Path(tex_rel.replace("\\", "/")).parts
+        for i in range(len(parts)):
+            candidates.append(ui_dir / Path(*parts[i:]))
+
+        for candidate in candidates:
+            if candidate.exists():
+                tex_file = candidate
+                break
+
+        if tex_file is None:
+            print(f"  WARN: icon not found: {tex_rel}", file=sys.stderr)
+            skipped += 1
+            continue
+
+        if not png_out.exists():
+            try:
+                tex_to_png(tex_file, png_out)
+            except Exception as e:
+                print(f"  WARN: failed to convert {tex_rel}: {e}", file=sys.stderr)
+                skipped += 1
+                continue
+
+        mapping[tex_rel] = png_name
+        converted += 1
+
+    print(
+        f"Icons: {converted} converted, {skipped} skipped",
+        file=sys.stderr,
+    )
+    return mapping
+
+
+def rewrite_icon_paths(masteries: list[dict], mapping: dict[str, str]) -> None:
+    """Replace .tex icon paths with PNG filenames in-place."""
+    for m in masteries:
+        for s in m["skills"]:
+            tex = s.get("icon", "")
+            if tex and tex in mapping:
+                s["icon"] = mapping[tex]
+            elif tex:
+                # Keep it but convert to just the filename with .png extension
+                # in case conversion failed but we still want a sensible name.
+                s["icon"] = ""
+
+
 def _update_versions(version: str) -> None:
     """Update tools/calc/data/versions.json to include this version."""
     versions_path = REPO_ROOT / "tools" / "calc" / "data" / "versions.json"
@@ -385,6 +496,11 @@ def run(tmp: Path, version: str) -> int:
         "questRewardPoints": 3,
         "masteries": masteries_json,
     }
+
+    # Extract and convert skill icons.
+    ui_dir = extract_icons_to(tmp)
+    icon_mapping = convert_icons(masteries_json, ui_dir, version)
+    rewrite_icon_paths(masteries_json, icon_mapping)
 
     # Write JSON output.
     out_dir = REPO_ROOT / "tools" / "calc" / "data" / "skills"

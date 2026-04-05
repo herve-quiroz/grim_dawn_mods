@@ -46,6 +46,15 @@ def _decode_raw_bgra(dds_data: bytes) -> Image.Image:
     return img
 
 
+def _decode_raw_bgr(dds_data: bytes) -> Image.Image:
+    """Decode an uncompressed 24bpp DDS with zero masks as BGR."""
+    height = struct.unpack("<I", dds_data[12:16])[0]
+    width = struct.unpack("<I", dds_data[16:20])[0]
+    pixels = dds_data[128 : 128 + width * height * 3]
+    img = Image.frombytes("RGB", (width, height), pixels, "raw", "BGR")
+    return img
+
+
 def tex_to_png(tex_path: Path, png_path: Path) -> None:
     data = tex_path.read_bytes()
     dds_data = extract_dds(data)
@@ -60,6 +69,8 @@ def tex_to_png(tex_path: Path, png_path: Path) -> None:
         bpp = struct.unpack("<I", dds_data[88:92])[0]
         if bpp == 32 and (pf_flags & 0x40):
             img = _decode_raw_bgra(dds_data)
+        elif bpp == 24 and (pf_flags & 0x40):
+            img = _decode_raw_bgr(dds_data)
         else:
             raise
     img.save(png_path, "PNG")
