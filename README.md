@@ -28,16 +28,24 @@ Permanent pet-scaling summon skills can be leveled 5 points higher without +skil
 * Raise Skeletons (Necromancer): 16 -> 21
 * Undead Legion (Necromancer): 12 -> 17
 
-Unique summons allow 2 active instead of 1:
+Unique summons allow 2 active instead of 1, both spawned per cast:
 
-* Summon Hellhound: 2 max
-* Summon Familiar/Raven: 2 max
-* Summon Briarthorn: 2 max
-* Summon Blight Fiend: 2 max
+* Summon Hellhound: 2 max, 2 per cast
+* Summon Familiar/Raven: 2 max, 2 per cast
+* Summon Briarthorn: 2 max, 2 per cast
+* Summon Blight Fiend: 2 max, 2 per cast
+
+Pet-bonus-scaling summons from item skills added to the Necromancer tree:
+
+* Summon Stormhound at Tier 3 (10 mastery points, 1 rank)
+* Summon Revenant of Og'Napesh at Tier 5 (20 mastery points, 3 ranks)
+* Summon Chillmane at Tier 9 (50 mastery points, 2 ranks)
+* Summon Eldritch Talon at Tier 9 (50 mastery points, 1 rank)
 
 ### Items and loot
 
-* All affix stat rolls are maxed on magic (green) and rare (yellow) items (min set to max for 427 prefix/suffix affixes). Epic and legendary items have fixed stat ranges defined per item and are not affected.
+* All affix stat rolls are maxed: min set to max on 427 prefix/suffix affixes (magic/rare items), and lootRandomizerJitter set to 0 on 111 unique affixes (epic/legendary items)
+* Epic item stat randomness removed: attributeScalePercent set to 0 on 1407 epic items (vanilla: 20-30% random variance per item seed)
 * Increased drop rates for rare and epic items from bosses, heroes, and treasure troves
 * Gold (iron bits) drops increased by 20x
 
@@ -80,11 +88,13 @@ This merges all components, checks for file conflicts, builds `hqz.arz`, and cop
 |---|---|---|
 | `boosted_summons` | 6 | Raises max skill points for pet summon skills, doubles unique summon limits |
 | `custom_playerlevels` | 1 | Attribute/skill points, XP, devotion cap |
+| `extra_summons` | 10 | Extra summon skills grafted onto class trees |
 | `faster_constellation_skill_leveling` | 52 | Reduced XP for constellation procs |
 | `faster_faction_rep` | 16 | Lower faction tier thresholds |
 | `free_stash` | 3 | Free stash tabs and inventory bags |
 | `increased_loot_rarity` | 36 | Better boss/hero/trove drop rates |
 | `increased_move_speed` | 3 | Faster base run speed |
-| `max_affixes` | 427 | All affix min values set to max (magic/rare only) |
+| `max_affixes` | 538 | Affix stat rolls maxed: min=max on regular affixes, jitter=0 on unique affixes |
+| `max_epic_stats` | 1407 | Epic item stat variance removed (attributeScalePercent=0) |
 | `more_devotion_points` | 60 | Shrines grant double devotion |
 | `more_iron_bits` | 11 | 20x gold drops |
