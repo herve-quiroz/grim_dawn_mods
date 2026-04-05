@@ -1,0 +1,17 @@
+{
+  "name": "gd-build-calculator",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "serve": "python3 -m http.server 8000",
+    "dev": "concurrently -n tsc,http 'npm run watch' 'npm run serve'",
+    "test": "tsc && node --test js/**/*.test.js"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "concurrently": "^8.2.2"
+  }
+}
