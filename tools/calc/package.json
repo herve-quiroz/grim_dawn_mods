@@ -11,7 +11,8 @@
     "test": "tsc && node --test js/**/*.test.js"
   },
   "devDependencies": {
-    "typescript": "^5.4.0",
-    "concurrently": "^8.2.2"
+    "@types/node": "^25.5.2",
+    "concurrently": "^8.2.2",
+    "typescript": "^5.4.0"
   }
 }
