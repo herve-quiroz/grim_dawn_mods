@@ -37,11 +37,22 @@ async function boot() {
     const searchIndex = buildSearchIndex(data);
     populateMasteryDropdowns(refs, data, state);
     refs.versionLabel.textContent = `GD ${data.gdVersion}`;
-    const setState = (next) => {
+    const setState = (next, pushHistory = true) => {
         state = next;
-        syncUrl(state, data);
+        syncUrl(state, data, pushHistory);
         render();
     };
+    window.addEventListener('popstate', () => {
+        const h = window.location.hash.slice(1);
+        try {
+            state = h ? decodeState(h, data) : emptyBuildState(versionId);
+        }
+        catch (e) {
+            console.warn('popstate decode failed', e);
+            state = emptyBuildState(versionId);
+        }
+        render();
+    });
     const render = () => {
         syncInputs(refs, state);
         const budget = computeBudget(state, data);
@@ -74,11 +85,11 @@ async function boot() {
     refs.masteryB.addEventListener('change', () => handleMasteryChange(1, refs, state, data, setState));
     refs.level.addEventListener('input', () => {
         const v = refs.level.value.trim();
-        setState({ ...state, level: v === '' ? null : parseInt(v, 10) });
+        setState({ ...state, level: v === '' ? null : parseInt(v, 10) }, false);
     });
     refs.points.addEventListener('input', () => {
         const v = refs.points.value.trim();
-        setState({ ...state, customPoints: v === '' ? null : parseInt(v, 10) });
+        setState({ ...state, customPoints: v === '' ? null : parseInt(v, 10) }, false);
     });
     refs.questRewards.addEventListener('change', () => {
         setState({ ...state, questRewards: refs.questRewards.checked });
@@ -87,7 +98,12 @@ async function boot() {
         applySearchHighlight(refs, searchIndex);
     });
     refs.reset.addEventListener('click', () => {
-        setState({ ...state, masteryBar: [0, 0], allocations: new Map() });
+        setState({
+            ...state,
+            masteries: [null, null],
+            masteryBar: [0, 0],
+            allocations: new Map(),
+        });
     });
     refs.share.addEventListener('click', () => handleShare(refs));
     render();
@@ -150,7 +166,7 @@ function syncInputs(refs, state) {
     refs.points.value = state.customPoints === null ? '' : String(state.customPoints);
     refs.questRewards.checked = state.questRewards;
 }
-function handleMasteryChange(slot, refs, state, data, setState) {
+async function handleMasteryChange(slot, refs, state, data, setState) {
     const sel = slot === 0 ? refs.masteryA : refs.masteryB;
     const raw = sel.value;
     const newId = raw === '' ? null : parseInt(raw, 10);
@@ -159,9 +175,12 @@ function handleMasteryChange(slot, refs, state, data, setState) {
         Array.from(state.allocations.keys()).some(k => {
             return findMastery(oldId, data).skills.some(s => s.id === k);
         }));
-    if (hadPoints && !window.confirm('Changing mastery will refund all its points. Continue?')) {
-        sel.value = oldId === null ? '' : String(oldId);
-        return;
+    if (hadPoints) {
+        const ok = await confirmDialog('Changing mastery will refund all its points. Continue?');
+        if (!ok) {
+            sel.value = oldId === null ? '' : String(oldId);
+            return;
+        }
     }
     const allocations = new Map(state.allocations);
     if (oldId !== null) {
@@ -175,10 +194,36 @@ function handleMasteryChange(slot, refs, state, data, setState) {
     masteryBar[slot] = 0;
     setState({ ...state, masteries, allocations, masteryBar });
 }
-function syncUrl(state, data) {
+function confirmDialog(message) {
+    return new Promise(resolve => {
+        const el = document.getElementById('confirm-modal');
+        const msgEl = document.getElementById('confirm-modal-message');
+        const okBtn = document.getElementById('confirm-modal-ok');
+        if (!el || !msgEl || !okBtn) {
+            resolve(window.confirm(message));
+            return;
+        }
+        msgEl.textContent = message;
+        const modal = new bootstrap.Modal(el);
+        let confirmed = false;
+        const onOk = () => { confirmed = true; modal.hide(); };
+        const onHidden = () => {
+            okBtn.removeEventListener('click', onOk);
+            el.removeEventListener('hidden.bs.modal', onHidden);
+            resolve(confirmed);
+        };
+        okBtn.addEventListener('click', onOk);
+        el.addEventListener('hidden.bs.modal', onHidden);
+        modal.show();
+    });
+}
+function syncUrl(state, data, pushHistory) {
     const encoded = encodeState(state, data);
     const newUrl = window.location.pathname + window.location.search + '#' + encoded;
-    window.history.replaceState(null, '', newUrl);
+    if (pushHistory)
+        window.history.pushState(null, '', newUrl);
+    else
+        window.history.replaceState(null, '', newUrl);
 }
 function handleShare(refs) {
     const url = window.location.href;

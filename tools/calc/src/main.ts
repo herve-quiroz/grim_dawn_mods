@@ -5,6 +5,10 @@ import { computeBudget, totalAllocated, applyDelta, findMastery } from './rules.
 import { buildSearchIndex, matchQuery } from './search.js';
 import { renderMasteryPanel } from './render.js';
 
+declare const bootstrap: {
+  Modal: new (el: Element) => { show(): void; hide(): void };
+};
+
 interface AppRefs {
   masteryA: HTMLSelectElement;
   masteryB: HTMLSelectElement;
@@ -60,11 +64,22 @@ async function boot(): Promise<void> {
   populateMasteryDropdowns(refs, data, state);
   refs.versionLabel.textContent = `GD ${data.gdVersion}`;
 
-  const setState = (next: BuildState) => {
+  const setState = (next: BuildState, pushHistory = true) => {
     state = next;
-    syncUrl(state, data);
+    syncUrl(state, data, pushHistory);
     render();
   };
+
+  window.addEventListener('popstate', () => {
+    const h = window.location.hash.slice(1);
+    try {
+      state = h ? decodeState(h, data) : emptyBuildState(versionId);
+    } catch (e) {
+      console.warn('popstate decode failed', e);
+      state = emptyBuildState(versionId);
+    }
+    render();
+  });
 
   const render = () => {
     syncInputs(refs, state);
@@ -99,11 +114,11 @@ async function boot(): Promise<void> {
   refs.masteryB.addEventListener('change', () => handleMasteryChange(1, refs, state, data, setState));
   refs.level.addEventListener('input', () => {
     const v = refs.level.value.trim();
-    setState({ ...state, level: v === '' ? null : parseInt(v, 10) });
+    setState({ ...state, level: v === '' ? null : parseInt(v, 10) }, false);
   });
   refs.points.addEventListener('input', () => {
     const v = refs.points.value.trim();
-    setState({ ...state, customPoints: v === '' ? null : parseInt(v, 10) });
+    setState({ ...state, customPoints: v === '' ? null : parseInt(v, 10) }, false);
   });
   refs.questRewards.addEventListener('change', () => {
     setState({ ...state, questRewards: refs.questRewards.checked });
@@ -112,7 +127,12 @@ async function boot(): Promise<void> {
     applySearchHighlight(refs, searchIndex);
   });
   refs.reset.addEventListener('click', () => {
-    setState({ ...state, masteryBar: [0, 0], allocations: new Map() });
+    setState({
+      ...state,
+      masteries: [null, null],
+      masteryBar: [0, 0],
+      allocations: new Map(),
+    });
   });
   refs.share.addEventListener('click', () => handleShare(refs));
 
@@ -179,13 +199,13 @@ function syncInputs(refs: AppRefs, state: BuildState): void {
   refs.questRewards.checked = state.questRewards;
 }
 
-function handleMasteryChange(
+async function handleMasteryChange(
   slot: 0 | 1,
   refs: AppRefs,
   state: BuildState,
   data: SkillsData,
   setState: (s: BuildState) => void,
-): void {
+): Promise<void> {
   const sel = slot === 0 ? refs.masteryA : refs.masteryB;
   const raw = sel.value;
   const newId: number | null = raw === '' ? null : parseInt(raw, 10);
@@ -198,9 +218,12 @@ function handleMasteryChange(
     })
   );
 
-  if (hadPoints && !window.confirm('Changing mastery will refund all its points. Continue?')) {
-    sel.value = oldId === null ? '' : String(oldId);
-    return;
+  if (hadPoints) {
+    const ok = await confirmDialog('Changing mastery will refund all its points. Continue?');
+    if (!ok) {
+      sel.value = oldId === null ? '' : String(oldId);
+      return;
+    }
   }
 
   const allocations = new Map(state.allocations);
@@ -215,10 +238,35 @@ function handleMasteryChange(
   setState({ ...state, masteries, allocations, masteryBar });
 }
 
-function syncUrl(state: BuildState, data: SkillsData): void {
+function confirmDialog(message: string): Promise<boolean> {
+  return new Promise(resolve => {
+    const el = document.getElementById('confirm-modal');
+    const msgEl = document.getElementById('confirm-modal-message');
+    const okBtn = document.getElementById('confirm-modal-ok');
+    if (!el || !msgEl || !okBtn) {
+      resolve(window.confirm(message));
+      return;
+    }
+    msgEl.textContent = message;
+    const modal = new bootstrap.Modal(el);
+    let confirmed = false;
+    const onOk = () => { confirmed = true; modal.hide(); };
+    const onHidden = () => {
+      okBtn.removeEventListener('click', onOk);
+      el.removeEventListener('hidden.bs.modal', onHidden);
+      resolve(confirmed);
+    };
+    okBtn.addEventListener('click', onOk);
+    el.addEventListener('hidden.bs.modal', onHidden);
+    modal.show();
+  });
+}
+
+function syncUrl(state: BuildState, data: SkillsData, pushHistory: boolean): void {
   const encoded = encodeState(state, data);
   const newUrl = window.location.pathname + window.location.search + '#' + encoded;
-  window.history.replaceState(null, '', newUrl);
+  if (pushHistory) window.history.pushState(null, '', newUrl);
+  else window.history.replaceState(null, '', newUrl);
 }
 
 function handleShare(refs: AppRefs): void {
