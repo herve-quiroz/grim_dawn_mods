@@ -28,13 +28,6 @@ Permanent pet-scaling summon skills can be leveled 5 points higher without +skil
 * Raise Skeletons (Necromancer): 16 -> 21
 * Undead Legion (Necromancer): 12 -> 17
 
-Unique summons allow 2 active instead of 1, both spawned per cast:
-
-* Summon Hellhound: 2 max, 2 per cast
-* Summon Familiar/Raven: 2 max, 2 per cast
-* Summon Briarthorn: 2 max, 2 per cast
-* Summon Blight Fiend: 2 max, 2 per cast
-
 Pet-bonus-scaling summons from item skills added to the Necromancer tree:
 
 * Summon Stormhound at Tier 3 (10 mastery points, 1 rank)
