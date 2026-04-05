@@ -1,5 +1,5 @@
 import { isSkillUnlocked } from './rules.js';
-export function renderMasteryPanel(container, slot, mastery, state, over, cb) {
+export function renderMasteryPanel(container, slot, mastery, state, over, cb, versionName) {
     container.innerHTML = '';
     if (mastery === null) {
         const empty = document.createElement('div');
@@ -24,11 +24,11 @@ export function renderMasteryPanel(container, slot, mastery, state, over, cb) {
     const grid = document.createElement('div');
     grid.className = 'd-flex flex-column gap-2';
     for (const skill of mastery.skills) {
-        grid.appendChild(renderSkillRow(skill, slot, state, over, cb));
+        grid.appendChild(renderSkillRow(skill, slot, state, over, cb, versionName));
     }
     container.appendChild(grid);
 }
-function renderSkillRow(skill, slot, state, over, cb) {
+function renderSkillRow(skill, slot, state, over, cb, versionName) {
     const row = document.createElement('div');
     row.className = 'd-flex align-items-center gap-2 skill-row';
     row.dataset.skillId = skill.id;
@@ -38,6 +38,13 @@ function renderSkillRow(skill, slot, state, over, cb) {
     const unlocked = isSkillUnlocked(skill, slot, state);
     if (!unlocked)
         row.classList.add('opacity-50');
+    const icon = document.createElement('img');
+    icon.className = 'skill-icon';
+    icon.width = 32;
+    icon.height = 32;
+    icon.alt = '';
+    if (skill.icon && versionName)
+        icon.src = `data/icons/${versionName}/${skill.icon}`;
     const name = document.createElement('span');
     name.className = 'flex-grow-1';
     name.textContent = skill.name;
@@ -52,7 +59,7 @@ function renderSkillRow(skill, slot, state, over, cb) {
     const minusDisabled = rank <= 0;
     const plus = mkBtn('+', () => cb.onSkillDelta(skill.id, slot, 1), plusDisabled);
     const minus = mkBtn('-', () => cb.onSkillDelta(skill.id, slot, -1), minusDisabled);
-    row.append(name, count, plus, minus);
+    row.append(icon, name, count, plus, minus);
     return row;
 }
 function lockReason(skill, slot, state) {

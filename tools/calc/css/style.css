@@ -1,3 +1,4 @@
 body { background: #f8f9fa; }
 .skill-row.search-miss { opacity: 0.25; }
 #budget-label.over { background: var(--bs-danger) !important; }
+.skill-icon { flex-shrink: 0; border-radius: 4px; background: #eee; }

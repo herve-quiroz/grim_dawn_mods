@@ -13,6 +13,7 @@ export function renderMasteryPanel(
   state: BuildState,
   over: boolean,
   cb: RenderCallbacks,
+  versionName?: string,
 ): void {
   container.innerHTML = '';
   if (mastery === null) {
@@ -40,7 +41,7 @@ export function renderMasteryPanel(
   const grid = document.createElement('div');
   grid.className = 'd-flex flex-column gap-2';
   for (const skill of mastery.skills) {
-    grid.appendChild(renderSkillRow(skill, slot, state, over, cb));
+    grid.appendChild(renderSkillRow(skill, slot, state, over, cb, versionName));
   }
   container.appendChild(grid);
 }
@@ -51,6 +52,7 @@ function renderSkillRow(
   state: BuildState,
   over: boolean,
   cb: RenderCallbacks,
+  versionName?: string,
 ): HTMLElement {
   const row = document.createElement('div');
   row.className = 'd-flex align-items-center gap-2 skill-row';
@@ -60,6 +62,13 @@ function renderSkillRow(
   const rank = state.allocations.get(skill.id) ?? 0;
   const unlocked = isSkillUnlocked(skill, slot, state);
   if (!unlocked) row.classList.add('opacity-50');
+
+  const icon = document.createElement('img');
+  icon.className = 'skill-icon';
+  icon.width = 32;
+  icon.height = 32;
+  icon.alt = '';
+  if (skill.icon && versionName) icon.src = `data/icons/${versionName}/${skill.icon}`;
 
   const name = document.createElement('span');
   name.className = 'flex-grow-1';
@@ -78,7 +87,7 @@ function renderSkillRow(
   const plus = mkBtn('+', () => cb.onSkillDelta(skill.id, slot, 1), plusDisabled);
   const minus = mkBtn('-', () => cb.onSkillDelta(skill.id, slot, -1), minusDisabled);
 
-  row.append(name, count, plus, minus);
+  row.append(icon, name, count, plus, minus);
   return row;
 }
 

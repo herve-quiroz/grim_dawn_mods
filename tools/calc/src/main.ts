@@ -104,8 +104,8 @@ async function boot(): Promise<void> {
         setState(r.state);
       },
     };
-    renderMasteryPanel(refs.panelA, 0, mA, state, over, cb);
-    renderMasteryPanel(refs.panelB, 1, mB, state, over, cb);
+    renderMasteryPanel(refs.panelA, 0, mA, state, over, cb, versionName);
+    renderMasteryPanel(refs.panelB, 1, mB, state, over, cb, versionName);
 
     applySearchHighlight(refs, searchIndex);
   };
