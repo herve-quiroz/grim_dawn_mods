@@ -296,10 +296,12 @@ function applySearchHighlight(refs: AppRefs, index: ReturnType<typeof buildSearc
   rows.forEach(row => {
     const id = row.dataset.skillId;
     if (!active || !id) {
-      row.classList.remove('search-miss');
+      row.classList.remove('search-miss', 'search-hit');
       return;
     }
-    row.classList.toggle('search-miss', !matches.has(id));
+    const isMatch = matches.has(id);
+    row.classList.toggle('search-miss', !isMatch);
+    row.classList.toggle('search-hit', isMatch);
   });
   refs.searchCount.textContent = active ? `${matches.size} matches` : '';
 }
