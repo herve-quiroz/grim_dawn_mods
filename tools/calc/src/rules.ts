@@ -43,7 +43,8 @@ export function isSkillUnlocked(
   slot: 0 | 1,
   state: BuildState,
 ): boolean {
-  if (state.masteryBar[slot] < skill.prereqBar) return false;
+  const minBar = Math.max(1, skill.prereqBar);
+  if (state.masteryBar[slot] < minBar) return false;
   if (skill.parent !== null) {
     const parentRank = state.allocations.get(skill.parent) ?? 0;
     if (parentRank < skill.parentMinRank) return false;
@@ -130,7 +131,7 @@ function cascadeRefunds(state: BuildState, data: SkillsData): DeltaResult {
       const skill = findSkill(skillId, data);
       const slot = skillSlot(skillId, state, data);
       if (slot === null) continue;
-      const barOk = state.masteryBar[slot] >= skill.prereqBar;
+      const barOk = state.masteryBar[slot] >= Math.max(1, skill.prereqBar);
       const parentOk =
         skill.parent === null ||
         (allocations.get(skill.parent) ?? 0) >= skill.parentMinRank;

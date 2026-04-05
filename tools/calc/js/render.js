@@ -63,8 +63,9 @@ function renderSkillRow(skill, slot, state, over, cb, versionName) {
     return row;
 }
 function lockReason(skill, slot, state) {
-    if (state.masteryBar[slot] < skill.prereqBar) {
-        return `needs bar ${skill.prereqBar}`;
+    const minBar = Math.max(1, skill.prereqBar);
+    if (state.masteryBar[slot] < minBar) {
+        return `needs bar ${minBar}`;
     }
     if (skill.parent !== null) {
         const pr = state.allocations.get(skill.parent) ?? 0;
