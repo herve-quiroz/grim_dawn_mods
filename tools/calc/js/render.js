@@ -1,5 +1,7 @@
 import { isSkillUnlocked } from './rules.js';
 export function renderMasteryPanel(container, slot, mastery, state, over, cb, versionName) {
+    // remove any open popovers before re-rendering (they're appended to body)
+    document.querySelectorAll('.popover').forEach(el => el.remove());
     container.innerHTML = '';
     if (mastery === null) {
         const empty = document.createElement('div');
@@ -27,6 +29,10 @@ export function renderMasteryPanel(container, slot, mastery, state, over, cb, ve
         grid.appendChild(renderSkillRow(skill, slot, state, over, cb, versionName));
     }
     container.appendChild(grid);
+    // initialize Bootstrap popovers on newly rendered skill names
+    container.querySelectorAll('[data-bs-toggle="popover"]').forEach(el => {
+        new bootstrap.Popover(el, { container: 'body', html: false });
+    });
 }
 function renderSkillRow(skill, slot, state, over, cb, versionName) {
     const row = document.createElement('div');
@@ -48,7 +54,14 @@ function renderSkillRow(skill, slot, state, over, cb, versionName) {
     const name = document.createElement('span');
     name.className = 'flex-grow-1';
     name.textContent = skill.name;
-    name.title = skill.description;
+    if (skill.description) {
+        name.setAttribute('data-bs-toggle', 'popover');
+        name.setAttribute('data-bs-trigger', 'hover focus');
+        name.setAttribute('data-bs-placement', 'top');
+        name.setAttribute('data-bs-title', skill.name);
+        name.setAttribute('data-bs-content', skill.description);
+        name.style.cursor = 'help';
+    }
     const count = document.createElement('span');
     count.className = 'badge bg-secondary';
     count.textContent = `${rank}/${skill.maxRank}`;
