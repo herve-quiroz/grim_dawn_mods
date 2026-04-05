@@ -1,0 +1,36 @@
+export function buildSearchIndex(data) {
+    const out = [];
+    for (const m of data.masteries) {
+        for (const s of m.skills) {
+            out.push({
+                skillId: s.id,
+                text: (s.name + ' ' + s.description).toLowerCase(),
+            });
+        }
+    }
+    return out;
+}
+/**
+ * Given a query, return the set of matching skill ids. An empty query returns
+ * an empty set, which callers interpret as "no filter active".
+ */
+export function matchQuery(query, index) {
+    const q = query.trim().toLowerCase();
+    if (q === '')
+        return new Set();
+    const terms = q.split(/\s+/);
+    const out = new Set();
+    for (const entry of index) {
+        let all = true;
+        for (const t of terms) {
+            if (!entry.text.includes(t)) {
+                all = false;
+                break;
+            }
+        }
+        if (all)
+            out.add(entry.skillId);
+    }
+    return out;
+}
+//# sourceMappingURL=search.js.map
