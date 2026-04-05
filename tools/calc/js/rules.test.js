@@ -104,4 +104,69 @@ test('findMastery/findSkill: helpers', () => {
     assert.equal(findSkill('a.swing', testData).id, 'a.swing');
     assert.throws(() => findSkill('nope', testData));
 });
+import { applyDelta } from './rules.js';
+test('applyDelta: simple + increments rank', () => {
+    const s = { ...base(), masteries: [1, null], masteryBar: [1, 0] };
+    const r = applyDelta(s, { kind: 'skill', skillId: 'a.swing', slot: 0 }, +1, testData);
+    assert.equal(r.state.allocations.get('a.swing'), 1);
+    assert.deepEqual(r.refunds, []);
+});
+test('applyDelta: - decrements, no cascade if no dependents', () => {
+    const s = {
+        ...base(), masteries: [1, null], masteryBar: [1, 0],
+        allocations: new Map([['a.swing', 3]]),
+    };
+    const r = applyDelta(s, { kind: 'skill', skillId: 'a.swing', slot: 0 }, -1, testData);
+    assert.equal(r.state.allocations.get('a.swing'), 2);
+    assert.deepEqual(r.refunds, []);
+});
+test('applyDelta: - cascades refund when dependent requirement broken', () => {
+    const s = {
+        ...base(), masteries: [1, null], masteryBar: [5, 0],
+        allocations: new Map([['a.swing', 2], ['a.big', 3]]),
+    };
+    const r = applyDelta(s, { kind: 'skill', skillId: 'a.swing', slot: 0 }, -1, testData);
+    // a.swing drops to 1, a.big needs parent rank 2, so a.big refunds entirely.
+    assert.equal(r.state.allocations.get('a.swing'), 1);
+    assert.equal(r.state.allocations.has('a.big'), false);
+    assert.deepEqual(r.refunds, [{ skillId: 'a.big', refunded: 3 }]);
+});
+test('applyDelta: cascade propagates through chain', () => {
+    const s = {
+        ...base(), masteries: [1, null], masteryBar: [5, 0],
+        allocations: new Map([['a.swing', 2], ['a.big', 1], ['a.huge', 2]]),
+    };
+    const r = applyDelta(s, { kind: 'skill', skillId: 'a.swing', slot: 0 }, -1, testData);
+    // a.swing:2→1, breaks a.big (needs 2). a.big refunds. That breaks a.huge
+    // (needs a.big rank 1). a.huge refunds.
+    assert.equal(r.state.allocations.has('a.big'), false);
+    assert.equal(r.state.allocations.has('a.huge'), false);
+    assert.equal(r.refunds.length, 2);
+});
+test('applyDelta: lowering mastery bar cascades skills', () => {
+    const s = {
+        ...base(), masteries: [1, null], masteryBar: [5, 0],
+        allocations: new Map([['a.swing', 2], ['a.big', 3]]),
+    };
+    const r = applyDelta(s, { kind: 'bar', slot: 0 }, -3, testData);
+    // bar 5→2. a.big requires bar 3 — refunds.
+    assert.equal(r.state.masteryBar[0], 2);
+    assert.equal(r.state.allocations.has('a.big'), false);
+    assert.equal(r.state.allocations.get('a.swing'), 2);
+    assert.equal(r.refunds.length, 1);
+    assert.equal(r.refunds[0].skillId, 'a.big');
+});
+test('applyDelta: + fails when already at max', () => {
+    const s = {
+        ...base(), masteries: [1, null], masteryBar: [1, 0],
+        allocations: new Map([['a.swing', 16]]),
+    };
+    const r = applyDelta(s, { kind: 'skill', skillId: 'a.swing', slot: 0 }, +1, testData);
+    assert.equal(r.state, s, 'returns unchanged state');
+});
+test('applyDelta: - fails when already at 0', () => {
+    const s = { ...base(), masteries: [1, null], masteryBar: [1, 0] };
+    const r = applyDelta(s, { kind: 'skill', skillId: 'a.swing', slot: 0 }, -1, testData);
+    assert.equal(r.state, s, 'returns unchanged state');
+});
 //# sourceMappingURL=rules.test.js.map
