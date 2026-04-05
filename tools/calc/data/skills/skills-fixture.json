@@ -1,6 +1,6 @@
 {
   "gdVersion": "fixture",
-  "pointsPerLevel": [0, 3, 3, 3, 3],
+  "pointsPerLevel": [0, 0, 3, 3, 3, 3],
   "questRewardPoints": 2,
   "masteries": [
     {
