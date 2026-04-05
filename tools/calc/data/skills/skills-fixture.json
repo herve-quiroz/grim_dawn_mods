@@ -1,0 +1,76 @@
+{
+  "gdVersion": "fixture",
+  "pointsPerLevel": [0, 3, 3, 3, 3],
+  "questRewardPoints": 2,
+  "masteries": [
+    {
+      "id": 1,
+      "name": "TestMasteryA",
+      "barMaxRank": 10,
+      "skills": [
+        {
+          "id": "a.swing",
+          "name": "Swing",
+          "description": "A basic physical attack",
+          "icon": "a_swing.png",
+          "maxRank": 10,
+          "ui": {"row": 0, "col": 0},
+          "prereqBar": 1,
+          "parent": null,
+          "parentMinRank": 0
+        },
+        {
+          "id": "a.bigswing",
+          "name": "Big Swing",
+          "description": "Modifier: adds cold damage",
+          "icon": "a_bigswing.png",
+          "maxRank": 5,
+          "ui": {"row": 0, "col": 1},
+          "prereqBar": 3,
+          "parent": "a.swing",
+          "parentMinRank": 1
+        },
+        {
+          "id": "a.shout",
+          "name": "War Cry",
+          "description": "A battle shout with fire damage",
+          "icon": "a_shout.png",
+          "maxRank": 8,
+          "ui": {"row": 1, "col": 0},
+          "prereqBar": 5,
+          "parent": null,
+          "parentMinRank": 0
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "TestMasteryB",
+      "barMaxRank": 10,
+      "skills": [
+        {
+          "id": "b.bolt",
+          "name": "Cold Bolt",
+          "description": "A projectile dealing cold damage",
+          "icon": "b_bolt.png",
+          "maxRank": 10,
+          "ui": {"row": 0, "col": 0},
+          "prereqBar": 1,
+          "parent": null,
+          "parentMinRank": 0
+        },
+        {
+          "id": "b.shield",
+          "name": "Ice Shield",
+          "description": "Defensive barrier",
+          "icon": "b_shield.png",
+          "maxRank": 5,
+          "ui": {"row": 1, "col": 0},
+          "prereqBar": 3,
+          "parent": null,
+          "parentMinRank": 0
+        }
+      ]
+    }
+  ]
+}
