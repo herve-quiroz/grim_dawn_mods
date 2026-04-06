@@ -108,6 +108,13 @@ body { background: #f8f9fa; padding-bottom: 60px; }
   line-height: 1;
 }
 
+.skill-cell.locked .skill-icon,
+.skill-cell.locked .skill-border,
+.skill-cell.locked .skill-rank,
+.skill-cell.locked .skill-controls {
+  opacity: 0.4;
+}
+
 .skill-cell.search-miss {
   opacity: 0.25;
 }

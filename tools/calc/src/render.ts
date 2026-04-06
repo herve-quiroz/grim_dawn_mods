@@ -277,7 +277,7 @@ function renderSkillCell(
   controls.appendChild(mkBtn('+', () => cb.onSkillDelta(skill.id, slot, 1), plusDisabled));
   controls.appendChild(mkBtn('-', () => cb.onSkillDelta(skill.id, slot, -1), minusDisabled));
 
-  if (!unlocked) cell.classList.add('opacity-50');
+  if (!unlocked) cell.classList.add('locked');
 
   cell.append(border, icon, rankLabel, controls);
   return cell;
