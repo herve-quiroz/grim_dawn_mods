@@ -26,18 +26,13 @@ body { background: #f8f9fa; }
 }
 
 .skill-grid {
-  position: relative;
+  display: grid;
   width: 100%;
+  margin-bottom: 8px;
 }
 
-.skill-tier-col {
-  position: absolute;
-  top: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-  transform: translateX(-50%);
+.skill-grid .skill-cell {
+  justify-self: center;
 }
 
 .skill-cell {

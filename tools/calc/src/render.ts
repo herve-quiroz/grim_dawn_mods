@@ -50,23 +50,27 @@ export function renderMasteryPanel(
   const alignedZone = document.createElement('div');
   alignedZone.className = 'skill-aligned-zone';
 
-  // Skill grid (above the bar)
-  const maxStack = Math.max(...Array.from(byPrereq.values()).map(v => v.length));
+  // Skill grid — 2D CSS grid using ui.row for Y and prereqBar tier for X
+  const maxRow = Math.max(...mastery.skills.map(s => s.ui.row));
   const grid = document.createElement('div');
   grid.className = 'skill-grid';
-  grid.style.height = `${maxStack * 56 + 4}px`;
+  grid.style.gridTemplateColumns = `repeat(${tierCount}, 1fr)`;
+  grid.style.gridTemplateRows = `repeat(${maxRow}, 56px)`;
 
-  for (const tier of tiers) {
-    const skills = byPrereq.get(tier)!;
-    const col = document.createElement('div');
-    col.className = 'skill-tier-col';
-    col.style.left = `${tierPos.get(tier)!}%`;
+  // Build tier index lookup: prereqBar → column number (1-based for CSS grid)
+  const tierIndex = new Map<number, number>();
+  for (let i = 0; i < tiers.length; i++) tierIndex.set(tiers[i], i + 1);
 
-    for (const skill of skills) {
-      const cell = renderSkillCell(skill, slot, state, over, cb, versionName, data);
-      col.appendChild(cell);
-    }
-    grid.appendChild(col);
+  const seenIds = new Set<string>();
+  for (const skill of mastery.skills) {
+    if (seenIds.has(skill.id)) continue; // skip duplicate entries
+    seenIds.add(skill.id);
+    const pb = Math.max(1, skill.prereqBar);
+    const col = tierIndex.get(pb) ?? 1;
+    const cell = renderSkillCell(skill, slot, state, over, cb, versionName, data);
+    cell.style.gridColumn = String(col);
+    cell.style.gridRow = String(skill.ui.row);
+    grid.appendChild(cell);
   }
   alignedZone.appendChild(grid);
 
