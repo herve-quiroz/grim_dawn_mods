@@ -47,9 +47,10 @@ body { background: #f8f9fa; padding-bottom: 60px; }
 }
 
 .skill-lines line {
-  stroke: #666;
-  stroke-width: 2;
+  stroke: #999;
+  stroke-width: 1.5;
   stroke-dasharray: 4 3;
+  stroke-opacity: 0.4;
 }
 
 .skill-grid .skill-cell {
