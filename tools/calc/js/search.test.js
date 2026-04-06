@@ -5,9 +5,9 @@ const data = {
     gdVersion: 't', pointsPerLevel: [], questRewardPoints: 0,
     masteries: [
         { id: 1, name: 'A', barMaxRank: 10, skills: [
-                { id: 'a.fire', name: 'Fire Strike', description: 'A burning attack that deals fire damage', icon: '', maxRank: 10, ui: { row: 0, col: 0 }, prereqBar: 1, parent: null, parentMinRank: 0, stats: [{ label: 'Fire Damage', values: [10, 20] }] },
-                { id: 'a.cold', name: 'Cold Bolt', description: 'Freezes the enemy with cold damage', icon: '', maxRank: 10, ui: { row: 0, col: 1 }, prereqBar: 1, parent: null, parentMinRank: 0, stats: [] },
-                { id: 'a.shout', name: 'War Cry', description: 'A defensive shout', icon: '', maxRank: 5, ui: { row: 1, col: 0 }, prereqBar: 3, parent: null, parentMinRank: 0, stats: [{ label: 'Physical Resistance', values: [5, 10] }] },
+                { id: 'a.fire', name: 'Fire Strike', description: 'A burning attack that deals fire damage', icon: '', maxRank: 10, ui: { row: 0, col: 0 }, prereqBar: 1, parent: null, parentMinRank: 0, exclusive: false, stats: [{ label: 'Fire Damage', values: [10, 20] }] },
+                { id: 'a.cold', name: 'Cold Bolt', description: 'Freezes the enemy with cold damage', icon: '', maxRank: 10, ui: { row: 0, col: 1 }, prereqBar: 1, parent: null, parentMinRank: 0, exclusive: false, stats: [] },
+                { id: 'a.shout', name: 'War Cry', description: 'A defensive shout', icon: '', maxRank: 5, ui: { row: 1, col: 0 }, prereqBar: 3, parent: null, parentMinRank: 0, exclusive: false, stats: [{ label: 'Physical Resistance', values: [5, 10] }] },
             ] },
     ],
 };

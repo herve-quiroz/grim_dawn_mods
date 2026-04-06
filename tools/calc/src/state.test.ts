@@ -12,14 +12,14 @@ const fixture: SkillsData = {
     {
       id: 1, name: 'A', barMaxRank: 10,
       skills: [
-        { id: 'a.one', name: 'One', description: '', icon: '', maxRank: 10, ui: {row:0,col:0}, prereqBar: 1, parent: null, parentMinRank: 0, stats: [] },
-        { id: 'a.two', name: 'Two', description: '', icon: '', maxRank: 5, ui: {row:0,col:1}, prereqBar: 3, parent: 'a.one', parentMinRank: 1, stats: [] },
+        { id: 'a.one', name: 'One', description: '', icon: '', maxRank: 10, ui: {row:0,col:0}, prereqBar: 1, parent: null, parentMinRank: 0, exclusive: false, stats: [] },
+        { id: 'a.two', name: 'Two', description: '', icon: '', maxRank: 5, ui: {row:0,col:1}, prereqBar: 3, parent: 'a.one', parentMinRank: 1, exclusive: false, stats: [] },
       ],
     },
     {
       id: 2, name: 'B', barMaxRank: 10,
       skills: [
-        { id: 'b.one', name: 'One', description: '', icon: '', maxRank: 10, ui: {row:0,col:0}, prereqBar: 1, parent: null, parentMinRank: 0, stats: [] },
+        { id: 'b.one', name: 'One', description: '', icon: '', maxRank: 10, ui: {row:0,col:0}, prereqBar: 1, parent: null, parentMinRank: 0, exclusive: false, stats: [] },
       ],
     },
   ],

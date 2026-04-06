@@ -1,5 +1,5 @@
-import type { BuildState, Mastery, Skill } from './types.js';
-import { isSkillUnlocked } from './rules.js';
+import type { BuildState, Mastery, Skill, SkillsData } from './types.js';
+import { isSkillUnlocked, findMastery } from './rules.js';
 
 declare const bootstrap: {
   Popover: new (el: Element, opts: Record<string, unknown>) => void;
@@ -18,6 +18,7 @@ export function renderMasteryPanel(
   over: boolean,
   cb: RenderCallbacks,
   versionName?: string,
+  data?: SkillsData,
 ): void {
   // remove any open popovers before re-rendering (they're appended to body)
   document.querySelectorAll('.popover').forEach(el => el.remove());
@@ -47,7 +48,7 @@ export function renderMasteryPanel(
   const grid = document.createElement('div');
   grid.className = 'd-flex flex-column gap-2';
   for (const skill of mastery.skills) {
-    grid.appendChild(renderSkillRow(skill, slot, state, over, cb, versionName));
+    grid.appendChild(renderSkillRow(skill, slot, state, over, cb, versionName, data));
   }
   container.appendChild(grid);
 
@@ -87,6 +88,7 @@ function renderSkillRow(
   over: boolean,
   cb: RenderCallbacks,
   versionName?: string,
+  data?: SkillsData,
 ): HTMLElement {
   const row = document.createElement('div');
   row.className = 'd-flex align-items-center gap-2 skill-row';
@@ -94,7 +96,7 @@ function renderSkillRow(
   if (skill.parent !== null) row.classList.add('ms-4');
 
   const rank = state.allocations.get(skill.id) ?? 0;
-  const unlocked = isSkillUnlocked(skill, slot, state);
+  const unlocked = isSkillUnlocked(skill, slot, state, data);
   if (!unlocked) row.classList.add('opacity-50');
 
   const icon = document.createElement('img');
@@ -122,7 +124,7 @@ function renderSkillRow(
   count.className = 'badge bg-secondary';
   count.textContent = `${rank}/${skill.maxRank}`;
 
-  const reason = !unlocked ? lockReason(skill, slot, state) : '';
+  const reason = !unlocked ? lockReason(skill, slot, state, data) : '';
   if (reason) name.textContent = `${skill.name} (${reason})`;
 
   const plusDisabled = !unlocked || rank >= skill.maxRank || over;
@@ -134,7 +136,7 @@ function renderSkillRow(
   return row;
 }
 
-function lockReason(skill: Skill, slot: 0 | 1, state: BuildState): string {
+function lockReason(skill: Skill, slot: 0 | 1, state: BuildState, data?: SkillsData): string {
   const minBar = Math.max(1, skill.prereqBar);
   if (state.masteryBar[slot] < minBar) {
     return `needs bar ${minBar}`;
@@ -142,6 +144,18 @@ function lockReason(skill: Skill, slot: 0 | 1, state: BuildState): string {
   if (skill.parent !== null) {
     const pr = state.allocations.get(skill.parent) ?? 0;
     if (pr < skill.parentMinRank) return `needs parent rank ${skill.parentMinRank}`;
+  }
+  if (skill.exclusive && data) {
+    for (const m of [0, 1] as const) {
+      const mid = state.masteries[m];
+      if (mid === null) continue;
+      const mastery = findMastery(mid, data);
+      for (const s of mastery.skills) {
+        if (s.exclusive && s.id !== skill.id && (state.allocations.get(s.id) ?? 0) > 0) {
+          return 'another exclusive skill is active';
+        }
+      }
+    }
   }
   return '';
 }

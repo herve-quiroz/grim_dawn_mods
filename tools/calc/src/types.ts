@@ -18,6 +18,7 @@ export interface Skill {
   prereqBar: number;
   parent: string | null;
   parentMinRank: number;
+  exclusive: boolean;
   stats: SkillStat[];
 }
 

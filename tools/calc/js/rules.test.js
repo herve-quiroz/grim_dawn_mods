@@ -73,9 +73,9 @@ const testData = {
         {
             id: 1, name: 'A', barMaxRank: 50,
             skills: [
-                { id: 'a.swing', name: '', description: '', icon: '', maxRank: 16, ui: { row: 0, col: 0 }, prereqBar: 1, parent: null, parentMinRank: 0, stats: [] },
-                { id: 'a.big', name: '', description: '', icon: '', maxRank: 5, ui: { row: 0, col: 1 }, prereqBar: 3, parent: 'a.swing', parentMinRank: 2, stats: [] },
-                { id: 'a.huge', name: '', description: '', icon: '', maxRank: 5, ui: { row: 0, col: 2 }, prereqBar: 5, parent: 'a.big', parentMinRank: 1, stats: [] },
+                { id: 'a.swing', name: '', description: '', icon: '', maxRank: 16, ui: { row: 0, col: 0 }, prereqBar: 1, parent: null, parentMinRank: 0, exclusive: false, stats: [] },
+                { id: 'a.big', name: '', description: '', icon: '', maxRank: 5, ui: { row: 0, col: 1 }, prereqBar: 3, parent: 'a.swing', parentMinRank: 2, exclusive: false, stats: [] },
+                { id: 'a.huge', name: '', description: '', icon: '', maxRank: 5, ui: { row: 0, col: 2 }, prereqBar: 5, parent: 'a.big', parentMinRank: 1, exclusive: false, stats: [] },
             ],
         },
     ],
@@ -168,5 +168,69 @@ test('applyDelta: - fails when already at 0', () => {
     const s = { ...base(), masteries: [1, null], masteryBar: [1, 0] };
     const r = applyDelta(s, { kind: 'skill', skillId: 'a.swing', slot: 0 }, -1, testData);
     assert.equal(r.state, s, 'returns unchanged state');
+});
+// ---- Exclusive skill tests ----
+const exclusiveData = {
+    gdVersion: 'test',
+    pointsPerLevel: vanillaPointsPerLevel(),
+    questRewardPoints: 18,
+    masteries: [
+        {
+            id: 1, name: 'A', barMaxRank: 50,
+            skills: [
+                { id: 'a.normal', name: '', description: '', icon: '', maxRank: 10, ui: { row: 0, col: 0 }, prereqBar: 1, parent: null, parentMinRank: 0, exclusive: false, stats: [] },
+                { id: 'a.excl1', name: '', description: '', icon: '', maxRank: 10, ui: { row: 0, col: 1 }, prereqBar: 50, parent: null, parentMinRank: 0, exclusive: true, stats: [] },
+            ],
+        },
+        {
+            id: 2, name: 'B', barMaxRank: 50,
+            skills: [
+                { id: 'b.normal', name: '', description: '', icon: '', maxRank: 10, ui: { row: 0, col: 0 }, prereqBar: 1, parent: null, parentMinRank: 0, exclusive: false, stats: [] },
+                { id: 'b.excl1', name: '', description: '', icon: '', maxRank: 10, ui: { row: 0, col: 1 }, prereqBar: 50, parent: null, parentMinRank: 0, exclusive: true, stats: [] },
+            ],
+        },
+    ],
+};
+test('isSkillUnlocked: exclusive skill allowed when no other exclusive active', () => {
+    const s = { ...base(), masteries: [1, 2], masteryBar: [50, 50] };
+    const skill = findSkill('a.excl1', exclusiveData);
+    assert.equal(isSkillUnlocked(skill, 0, s, exclusiveData), true);
+});
+test('isSkillUnlocked: exclusive skill blocked when another exclusive is active', () => {
+    const s = {
+        ...base(), masteries: [1, 2], masteryBar: [50, 50],
+        allocations: new Map([['a.excl1', 3]]),
+    };
+    const skill = findSkill('b.excl1', exclusiveData);
+    assert.equal(isSkillUnlocked(skill, 1, s, exclusiveData), false);
+});
+test('isSkillUnlocked: exclusive skill not blocked by non-exclusive skills', () => {
+    const s = {
+        ...base(), masteries: [1, 2], masteryBar: [50, 50],
+        allocations: new Map([['a.normal', 5], ['b.normal', 5]]),
+    };
+    const skill = findSkill('a.excl1', exclusiveData);
+    assert.equal(isSkillUnlocked(skill, 0, s, exclusiveData), true);
+});
+test('isSkillUnlocked: non-exclusive skill not blocked by exclusive constraint', () => {
+    const s = {
+        ...base(), masteries: [1, 2], masteryBar: [50, 50],
+        allocations: new Map([['a.excl1', 5]]),
+    };
+    const skill = findSkill('b.normal', exclusiveData);
+    assert.equal(isSkillUnlocked(skill, 1, s, exclusiveData), true);
+});
+test('applyDelta: exclusive skill +1 blocked when another exclusive active', () => {
+    const s = {
+        ...base(), masteries: [1, 2], masteryBar: [50, 50],
+        allocations: new Map([['a.excl1', 3]]),
+    };
+    const r = applyDelta(s, { kind: 'skill', skillId: 'b.excl1', slot: 1 }, +1, exclusiveData);
+    assert.equal(r.state, s, 'returns unchanged state');
+});
+test('applyDelta: exclusive skill +1 allowed when no other exclusive active', () => {
+    const s = { ...base(), masteries: [1, 2], masteryBar: [50, 50] };
+    const r = applyDelta(s, { kind: 'skill', skillId: 'a.excl1', slot: 0 }, +1, exclusiveData);
+    assert.equal(r.state.allocations.get('a.excl1'), 1);
 });
 //# sourceMappingURL=rules.test.js.map

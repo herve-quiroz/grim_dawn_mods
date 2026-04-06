@@ -35,19 +35,32 @@ export function findSkill(id: string, data: SkillsData): Skill {
 
 /**
  * Return true when the user can allocate at least rank 1 in this skill:
- * mastery bar is high enough, and (for modifiers) the parent skill has the
- * required rank.
+ * mastery bar is high enough, (for modifiers) the parent skill has the
+ * required rank, and (for exclusive skills) no other exclusive skill is active.
  */
 export function isSkillUnlocked(
   skill: Skill,
   slot: 0 | 1,
   state: BuildState,
+  data?: SkillsData,
 ): boolean {
   const minBar = Math.max(1, skill.prereqBar);
   if (state.masteryBar[slot] < minBar) return false;
   if (skill.parent !== null) {
     const parentRank = state.allocations.get(skill.parent) ?? 0;
     if (parentRank < skill.parentMinRank) return false;
+  }
+  if (skill.exclusive && data) {
+    for (const m of [0, 1] as const) {
+      const mid = state.masteries[m];
+      if (mid === null) continue;
+      const mastery = findMastery(mid, data);
+      for (const s of mastery.skills) {
+        if (s.exclusive && s.id !== skill.id && (state.allocations.get(s.id) ?? 0) > 0) {
+          return false;
+        }
+      }
+    }
   }
   return true;
 }
@@ -85,7 +98,7 @@ export function applyDelta(
     const current = state.allocations.get(target.skillId) ?? 0;
     const next = current + delta;
     if (next < 0 || next > skill.maxRank) return { state, refunds: [] };
-    if (delta > 0 && !isSkillUnlocked(skill, target.slot, state)) {
+    if (delta > 0 && !isSkillUnlocked(skill, target.slot, state, data)) {
       return { state, refunds: [] };
     }
     const allocations = new Map(state.allocations);

@@ -684,6 +684,9 @@ def walk_mastery_skills(
         # Extract per-rank stat values.
         skill_stats = extract_skill_stats(data)
 
+        # Exclusive skill flag (tier-9 skills that are mutually exclusive).
+        exclusive = data.get("exclusiveSkill", "0") == "1"
+
         skills.append({
             "id": skill_id,
             "name": name,
@@ -694,6 +697,7 @@ def walk_mastery_skills(
             "prereqBar": prereq_bar,
             "parent": parent_id,
             "parentMinRank": parent_min_rank,
+            "exclusive": exclusive,
             "stats": skill_stats,
         })
 
