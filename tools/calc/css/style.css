@@ -30,6 +30,21 @@ body { background: #f8f9fa; padding-bottom: 60px; }
   width: 100%;
   margin-bottom: 8px;
   row-gap: 4px;
+  position: relative;
+}
+
+.skill-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.skill-lines line {
+  stroke: #666;
+  stroke-width: 2;
+  stroke-dasharray: 4 3;
 }
 
 .skill-grid .skill-cell {

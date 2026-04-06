@@ -62,17 +62,55 @@ export function renderMasteryPanel(
   const tierIndex = new Map<number, number>();
   for (let i = 0; i < tiers.length; i++) tierIndex.set(tiers[i], i + 1);
 
+  // Track cell positions for drawing dependency lines
+  const cellPositions = new Map<string, { col: number; row: number }>();
   const seenIds = new Set<string>();
   for (const skill of mastery.skills) {
-    if (seenIds.has(skill.id)) continue; // skip duplicate entries
+    if (seenIds.has(skill.id)) continue;
     seenIds.add(skill.id);
     const pb = Math.max(1, skill.prereqBar);
     const col = tierIndex.get(pb) ?? 1;
+    const gridRow = maxRow + 1 - skill.ui.row;
     const cell = renderSkillCell(skill, slot, state, over, cb, versionName, data);
     cell.style.gridColumn = String(col);
-    cell.style.gridRow = String(maxRow + 1 - skill.ui.row);
+    cell.style.gridRow = String(gridRow);
     grid.appendChild(cell);
+    cellPositions.set(skill.id, { col, row: gridRow });
   }
+
+  // SVG overlay for dependency lines
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.classList.add('skill-lines');
+  svg.setAttribute('width', '100%');
+  svg.setAttribute('height', '100%');
+
+  const dedupedSkills = mastery.skills.filter(s => {
+    if (!cellPositions.has(s.id)) return false;
+    return !Array.from(cellPositions.keys()).some(
+      id => id === s.id && mastery.skills.indexOf(s) !== mastery.skills.findIndex(sk => sk.id === id)
+    );
+  });
+  for (const skill of dedupedSkills) {
+    if (!skill.parent) continue;
+    const from = cellPositions.get(skill.parent);
+    const to = cellPositions.get(skill.id);
+    if (!from || !to) continue;
+
+    // Convert grid col/row to percentage positions (center of each cell)
+    const x1 = ((from.col - 0.5) / tierCount) * 100;
+    const y1 = ((from.row - 0.5) / maxRow) * 100;
+    const x2 = ((to.col - 0.5) / tierCount) * 100;
+    const y2 = ((to.row - 0.5) / maxRow) * 100;
+
+    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    line.setAttribute('x1', `${x1}%`);
+    line.setAttribute('y1', `${y1}%`);
+    line.setAttribute('x2', `${x2}%`);
+    line.setAttribute('y2', `${y2}%`);
+    svg.appendChild(line);
+  }
+  grid.appendChild(svg);
+
   alignedZone.appendChild(grid);
 
   // Mastery bar at the bottom (like in-game)
