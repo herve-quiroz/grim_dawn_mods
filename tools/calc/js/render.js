@@ -27,16 +27,30 @@ export function renderMasteryPanel(container, slot, mastery, state, over, cb, ve
     const barPlus = mkBtn('+', () => cb.onBarDelta(slot, 1), state.masteryBar[slot] >= mastery.barMaxRank || over);
     barSection.append(barMinus, barLabel, barOuter, barPlus);
     container.appendChild(barSection);
-    // skill grid
-    const maxRow = Math.max(...mastery.skills.map(s => s.ui.row));
+    // skill grid — group by prereqBar, position columns proportionally along the bar
+    const barMax = mastery.barMaxRank;
+    const byPrereq = new Map();
+    for (const skill of mastery.skills) {
+        const pb = Math.max(1, skill.prereqBar);
+        const list = byPrereq.get(pb) ?? [];
+        list.push(skill);
+        byPrereq.set(pb, list);
+    }
+    const tiers = Array.from(byPrereq.keys()).sort((a, b) => a - b);
+    const maxStack = Math.max(...Array.from(byPrereq.values()).map(v => v.length));
     const grid = document.createElement('div');
     grid.className = 'skill-grid';
-    grid.style.gridTemplateRows = `repeat(${maxRow}, 56px)`;
-    for (const skill of mastery.skills) {
-        const cell = renderSkillCell(skill, slot, state, over, cb, versionName, data);
-        cell.style.gridRow = String(skill.ui.row);
-        cell.style.gridColumn = String(skill.ui.col);
-        grid.appendChild(cell);
+    grid.style.height = `${maxStack * 56 + 4}px`;
+    for (const tier of tiers) {
+        const skills = byPrereq.get(tier);
+        const col = document.createElement('div');
+        col.className = 'skill-tier-col';
+        col.style.left = `${(tier / barMax) * 100}%`;
+        for (const skill of skills) {
+            const cell = renderSkillCell(skill, slot, state, over, cb, versionName, data);
+            col.appendChild(cell);
+        }
+        grid.appendChild(col);
     }
     container.appendChild(grid);
     // initialize Bootstrap popovers on newly rendered skill icons

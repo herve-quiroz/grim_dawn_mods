@@ -2,14 +2,23 @@ body { background: #f8f9fa; }
 #budget-label.over { background: var(--bs-danger) !important; }
 
 .mastery-bar-section {
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 
 .skill-grid {
-  display: grid;
-  grid-template-columns: repeat(9, 48px);
-  gap: 2px;
   position: relative;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.skill-tier-col {
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  transform: translateX(-50%);
 }
 
 .skill-cell {
@@ -46,7 +55,7 @@ body { background: #f8f9fa; }
   font-size: 10px;
   text-align: center;
   margin-top: 6px;
-  color: #ccc;
+  color: #999;
 }
 
 .skill-cell .skill-rank.active {
