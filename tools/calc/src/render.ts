@@ -46,17 +46,7 @@ export function renderMasteryPanel(
   const alignedZone = document.createElement('div');
   alignedZone.className = 'skill-aligned-zone flex-grow-1';
 
-  const barOuter = document.createElement('div');
-  barOuter.className = 'progress';
-  barOuter.style.height = '14px';
-  const barInner = document.createElement('div');
-  barInner.className = 'progress-bar';
-  barInner.style.width = `${(state.masteryBar[slot] / mastery.barMaxRank) * 100}%`;
-  barOuter.appendChild(barInner);
-  alignedZone.appendChild(barOuter);
-
-  // skill grid — group by prereqBar, position columns proportionally along the bar
-  const barMax = mastery.barMaxRank;
+  // Build tier mapping: equal-spaced positions for each prereqBar level
   const byPrereq = new Map<number, Skill[]>();
   for (const skill of mastery.skills) {
     const pb = Math.max(1, skill.prereqBar);
@@ -65,8 +55,24 @@ export function renderMasteryPanel(
     byPrereq.set(pb, list);
   }
   const tiers = Array.from(byPrereq.keys()).sort((a, b) => a - b);
-  const maxStack = Math.max(...Array.from(byPrereq.values()).map(v => v.length));
+  const tierCount = tiers.length;
+  const tierPos = new Map<number, number>(); // prereqBar → percent position
+  for (let i = 0; i < tierCount; i++) {
+    tierPos.set(tiers[i], tierCount > 1 ? (i / (tierCount - 1)) * 100 : 50);
+  }
 
+  // Progress bar with non-linear fill matching tier spacing
+  const barOuter = document.createElement('div');
+  barOuter.className = 'progress';
+  barOuter.style.height = '14px';
+  const barInner = document.createElement('div');
+  barInner.className = 'progress-bar';
+  barInner.style.width = `${tierBarPercent(state.masteryBar[slot], tiers, tierPos)}%`;
+  barOuter.appendChild(barInner);
+  alignedZone.appendChild(barOuter);
+
+  // Skill grid
+  const maxStack = Math.max(...Array.from(byPrereq.values()).map(v => v.length));
   const grid = document.createElement('div');
   grid.className = 'skill-grid';
   grid.style.height = `${maxStack * 56 + 4}px`;
@@ -75,7 +81,7 @@ export function renderMasteryPanel(
     const skills = byPrereq.get(tier)!;
     const col = document.createElement('div');
     col.className = 'skill-tier-col';
-    col.style.left = `${(tier / barMax) * 100}%`;
+    col.style.left = `${tierPos.get(tier)!}%`;
 
     for (const skill of skills) {
       const cell = renderSkillCell(skill, slot, state, over, cb, versionName, data);
@@ -92,6 +98,35 @@ export function renderMasteryPanel(
   container.querySelectorAll('[data-bs-toggle="popover"]').forEach(el => {
     new bootstrap.Popover(el, { container: 'body', html: true });
   });
+}
+
+/**
+ * Map a mastery bar value to a display percentage using equal-spaced tiers.
+ * Interpolates linearly between tier breakpoints.
+ */
+function tierBarPercent(
+  barValue: number,
+  tiers: number[],
+  tierPos: Map<number, number>,
+): number {
+  if (barValue <= 0) return 0;
+  // Find which two tiers the bar value falls between
+  for (let i = 0; i < tiers.length; i++) {
+    if (barValue <= tiers[i]) {
+      if (i === 0) {
+        // Below or at first tier
+        return (barValue / tiers[0]) * tierPos.get(tiers[0])!;
+      }
+      const lo = tiers[i - 1];
+      const hi = tiers[i];
+      const loPos = tierPos.get(lo)!;
+      const hiPos = tierPos.get(hi)!;
+      const frac = (barValue - lo) / (hi - lo);
+      return loPos + frac * (hiPos - loPos);
+    }
+  }
+  // Beyond last tier
+  return 100;
 }
 
 function formatStatValue(val: number): string {
