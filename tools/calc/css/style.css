@@ -116,7 +116,7 @@ body { background: #f8f9fa; padding-bottom: 60px; }
 .skill-cell.locked .skill-border,
 .skill-cell.locked .skill-rank,
 .skill-cell.locked .skill-controls {
-  filter: grayscale(0.6) brightness(0.9);
+  filter: grayscale(0.5);
 }
 
 .skill-cell.search-miss {
