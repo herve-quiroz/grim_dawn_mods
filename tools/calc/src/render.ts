@@ -71,12 +71,19 @@ export function renderMasteryPanel(
   alignedZone.appendChild(grid);
 
   // Mastery bar at the bottom (like in-game)
-  const barRow = document.createElement('div');
-  barRow.className = 'mastery-bar-row d-flex align-items-center gap-2';
+  // Progress bar (full width of aligned zone, matching skill grid)
+  const barOuter = document.createElement('div');
+  barOuter.className = 'progress mt-2';
+  barOuter.style.height = '14px';
+  const barInner = document.createElement('div');
+  barInner.className = 'progress-bar';
+  barInner.style.width = `${tierBarPercent(state.masteryBar[slot], tiers, tierPos)}%`;
+  barOuter.appendChild(barInner);
+  alignedZone.appendChild(barOuter);
 
-  // Mastery rank widget: rank + +/- stacked like a skill cell
+  // Mastery rank widget: rank + +/- below the bar, centered
   const barWidget = document.createElement('div');
-  barWidget.className = 'mastery-bar-widget text-center';
+  barWidget.className = 'mastery-bar-widget text-center mt-1';
   const barRank = document.createElement('div');
   barRank.className = state.masteryBar[slot] > 0 ? 'skill-rank active' : 'skill-rank';
   barRank.textContent = `${state.masteryBar[slot]}/${mastery.barMaxRank}`;
@@ -86,17 +93,6 @@ export function renderMasteryPanel(
   barBtns.appendChild(mkBtn('-', () => cb.onBarDelta(slot, -1), state.masteryBar[slot] <= 0));
   barWidget.append(barRank, barBtns);
 
-  const barOuter = document.createElement('div');
-  barOuter.className = 'progress flex-grow-1';
-  barOuter.style.height = '14px';
-  const barInner = document.createElement('div');
-  barInner.className = 'progress-bar';
-  barInner.style.width = `${tierBarPercent(state.masteryBar[slot], tiers, tierPos)}%`;
-  barOuter.appendChild(barInner);
-
-  barRow.append(barWidget, barOuter);
-  alignedZone.appendChild(barRow);
-
   // Panel title
   const title = document.createElement('h6');
   title.className = 'mb-2';
@@ -104,6 +100,7 @@ export function renderMasteryPanel(
   container.appendChild(title);
 
   container.appendChild(alignedZone);
+  container.appendChild(barWidget);
 
   // initialize Bootstrap popovers on newly rendered skill icons
   container.querySelectorAll('[data-bs-toggle="popover"]').forEach(el => {
