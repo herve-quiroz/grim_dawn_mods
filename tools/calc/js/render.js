@@ -1,4 +1,5 @@
 import { isSkillUnlocked } from './rules.js';
+const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 export function renderMasteryPanel(container, slot, mastery, state, over, cb, versionName, data) {
     // remove any open popovers before re-rendering (they're appended to body)
     document.querySelectorAll('.popover').forEach(el => el.remove());
@@ -301,23 +302,40 @@ function renderSkillCell(skill, slot, state, over, cb, versionName, data) {
     if (hasContent) {
         const tooltipContent = skillTooltipContent(skill, rank);
         cell.setAttribute('data-bs-toggle', 'popover');
-        cell.setAttribute('data-bs-trigger', 'hover');
+        cell.setAttribute('data-bs-trigger', isTouch ? 'click' : 'hover');
         cell.setAttribute('data-bs-placement', 'top');
         cell.setAttribute('data-bs-title', skill.name);
         cell.setAttribute('data-bs-content', tooltipContent);
-        cell.style.cursor = 'help';
+        cell.style.cursor = isTouch ? 'help' : 'pointer';
+    }
+    // Desktop: left-click adds a point, right-click removes a point
+    if (!isTouch) {
+        cell.addEventListener('click', (e) => {
+            if (e.target.closest('.skill-controls'))
+                return;
+            e.preventDefault();
+            if (unlocked && rank < skill.maxRank && !over)
+                cb.onSkillDelta(skill.id, slot, 1);
+        });
+        cell.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            if (rank > 0)
+                cb.onSkillDelta(skill.id, slot, -1);
+        });
     }
     // rank label
     const rankLabel = document.createElement('div');
     rankLabel.className = rank > 0 ? 'skill-rank active' : 'skill-rank';
     rankLabel.textContent = `${rank}/${skill.maxRank}`;
-    // +/- controls (shown on hover via CSS)
+    // +/- controls (mobile only)
     const controls = document.createElement('div');
     controls.className = 'skill-controls';
-    const plusDisabled = !unlocked || rank >= skill.maxRank || over;
-    const minusDisabled = rank <= 0;
-    controls.appendChild(mkBtn('+', () => cb.onSkillDelta(skill.id, slot, 1), plusDisabled));
-    controls.appendChild(mkBtn('-', () => cb.onSkillDelta(skill.id, slot, -1), minusDisabled));
+    if (isTouch) {
+        const plusDisabled = !unlocked || rank >= skill.maxRank || over;
+        const minusDisabled = rank <= 0;
+        controls.appendChild(mkBtn('+', () => cb.onSkillDelta(skill.id, slot, 1), plusDisabled));
+        controls.appendChild(mkBtn('-', () => cb.onSkillDelta(skill.id, slot, -1), minusDisabled));
+    }
     if (!unlocked)
         cell.classList.add('locked');
     cell.append(border, icon, rankLabel, controls);
