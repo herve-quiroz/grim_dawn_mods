@@ -5,10 +5,13 @@ body { background: #f8f9fa; }
   margin-bottom: 4px;
 }
 
+.skill-aligned-zone {
+  padding: 0 24px;
+}
+
 .skill-grid {
   position: relative;
   width: 100%;
-  overflow-x: auto;
 }
 
 .skill-tier-col {

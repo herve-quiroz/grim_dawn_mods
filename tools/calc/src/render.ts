@@ -31,27 +31,29 @@ export function renderMasteryPanel(
     return;
   }
 
-  // mastery bar — Bootstrap progress bar
-  const barSection = document.createElement('div');
-  barSection.className = 'mastery-bar-section d-flex align-items-center gap-2';
+  // mastery bar controls (outside the aligned zone)
+  const barControls = document.createElement('div');
+  barControls.className = 'mastery-bar-section d-flex align-items-center gap-2';
 
   const barMinus = mkBtn('-', () => cb.onBarDelta(slot, -1), state.masteryBar[slot] <= 0);
   const barLabel = document.createElement('span');
-  barLabel.className = 'small fw-bold';
-  barLabel.textContent = `${state.masteryBar[slot]}/${mastery.barMaxRank}`;
+  barLabel.className = 'small fw-bold text-nowrap';
+  barLabel.textContent = `${mastery.name} ${state.masteryBar[slot]}/${mastery.barMaxRank}`;
+
+  const barPlus = mkBtn('+', () => cb.onBarDelta(slot, 1), state.masteryBar[slot] >= mastery.barMaxRank || over);
+
+  // aligned zone: progress bar + skill grid share the same horizontal reference
+  const alignedZone = document.createElement('div');
+  alignedZone.className = 'skill-aligned-zone flex-grow-1';
 
   const barOuter = document.createElement('div');
-  barOuter.className = 'progress flex-grow-1';
+  barOuter.className = 'progress';
   barOuter.style.height = '14px';
   const barInner = document.createElement('div');
   barInner.className = 'progress-bar';
   barInner.style.width = `${(state.masteryBar[slot] / mastery.barMaxRank) * 100}%`;
   barOuter.appendChild(barInner);
-
-  const barPlus = mkBtn('+', () => cb.onBarDelta(slot, 1), state.masteryBar[slot] >= mastery.barMaxRank || over);
-
-  barSection.append(barMinus, barLabel, barOuter, barPlus);
-  container.appendChild(barSection);
+  alignedZone.appendChild(barOuter);
 
   // skill grid — group by prereqBar, position columns proportionally along the bar
   const barMax = mastery.barMaxRank;
@@ -81,7 +83,10 @@ export function renderMasteryPanel(
     }
     grid.appendChild(col);
   }
-  container.appendChild(grid);
+  alignedZone.appendChild(grid);
+
+  barControls.append(barMinus, barLabel, alignedZone, barPlus);
+  container.appendChild(barControls);
 
   // initialize Bootstrap popovers on newly rendered skill icons
   container.querySelectorAll('[data-bs-toggle="popover"]').forEach(el => {
@@ -153,16 +158,16 @@ function renderSkillCell(
   icon.alt = skill.name;
   if (skill.icon && versionName) icon.src = `data/icons/${versionName}/${skill.icon}`;
 
-  // popover on the icon
+  // popover on the cell (triggers on icon, buttons, rank label)
   const hasContent = skill.description || (skill.stats && skill.stats.length > 0);
   if (hasContent) {
     const tooltipContent = skillTooltipContent(skill, rank);
-    icon.setAttribute('data-bs-toggle', 'popover');
-    icon.setAttribute('data-bs-trigger', 'hover focus');
-    icon.setAttribute('data-bs-placement', 'top');
-    icon.setAttribute('data-bs-title', skill.name);
-    icon.setAttribute('data-bs-content', tooltipContent);
-    icon.style.cursor = 'help';
+    cell.setAttribute('data-bs-toggle', 'popover');
+    cell.setAttribute('data-bs-trigger', 'hover focus');
+    cell.setAttribute('data-bs-placement', 'top');
+    cell.setAttribute('data-bs-title', skill.name);
+    cell.setAttribute('data-bs-content', tooltipContent);
+    cell.style.cursor = 'help';
   }
 
   // rank label
