@@ -95,7 +95,7 @@ async function boot(): Promise<void> {
         if (r.refunds.length) showRefundToast(refs, r.refunds, data);
         setState(r.state);
       },
-      onBarDelta: (slot: 0 | 1, delta: 1 | -1) => {
+      onBarDelta: (slot: 0 | 1, delta: number) => {
         const r = applyDelta(state, { kind: 'bar', slot }, delta, data);
         if (r.refunds.length) showRefundToast(refs, r.refunds, data);
         setState(r.state);

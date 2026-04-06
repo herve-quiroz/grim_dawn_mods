@@ -117,10 +117,28 @@ export function renderMasteryPanel(container, slot, mastery, state, over, cb, ve
     const barOuter = document.createElement('div');
     barOuter.className = 'progress mt-2';
     barOuter.style.height = '14px';
+    barOuter.style.cursor = 'pointer';
     const barInner = document.createElement('div');
     barInner.className = 'progress-bar';
     barInner.style.width = `${tierBarPercent(state.masteryBar[slot], tiers, tierPos)}%`;
     barOuter.appendChild(barInner);
+    barOuter.addEventListener('click', (e) => {
+        const rect = barOuter.getBoundingClientRect();
+        const pct = ((e.clientX - rect.left) / rect.width) * 100;
+        // Find the nearest tier to the clicked position
+        let closest = tiers[0];
+        let closestDist = Infinity;
+        for (const t of tiers) {
+            const dist = Math.abs(tierPos.get(t) - pct);
+            if (dist < closestDist) {
+                closestDist = dist;
+                closest = t;
+            }
+        }
+        const delta = closest - state.masteryBar[slot];
+        if (delta !== 0)
+            cb.onBarDelta(slot, delta);
+    });
     alignedZone.appendChild(barOuter);
     // Mastery rank widget: rank + +/- below the bar, centered
     const barWidget = document.createElement('div');
