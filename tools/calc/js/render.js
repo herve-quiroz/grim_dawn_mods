@@ -47,7 +47,7 @@ export function renderMasteryPanel(container, slot, mastery, state, over, cb, ve
         const col = tierIndex.get(pb) ?? 1;
         const cell = renderSkillCell(skill, slot, state, over, cb, versionName, data);
         cell.style.gridColumn = String(col);
-        cell.style.gridRow = String(skill.ui.row);
+        cell.style.gridRow = String(maxRow + 1 - skill.ui.row);
         grid.appendChild(cell);
     }
     alignedZone.appendChild(grid);
