@@ -84,8 +84,12 @@ export function renderMasteryPanel(container, slot, mastery, state, over, cb, ve
         line.setAttribute('y2', `${y2}%`);
         svg.appendChild(line);
     }
-    grid.insertBefore(svg, grid.firstChild);
-    alignedZone.appendChild(grid);
+    // Wrap grid + SVG in a positioned container so SVG sits behind the grid
+    const gridWrapper = document.createElement('div');
+    gridWrapper.className = 'skill-grid-wrapper';
+    gridWrapper.appendChild(svg);
+    gridWrapper.appendChild(grid);
+    alignedZone.appendChild(gridWrapper);
     // Mastery bar at the bottom (like in-game)
     // Progress bar (full width of aligned zone, matching skill grid)
     const barOuter = document.createElement('div');
