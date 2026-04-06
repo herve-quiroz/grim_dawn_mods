@@ -20,9 +20,10 @@ export function renderMasteryPanel(container, slot, mastery, state, over, cb, ve
     }
     const tiers = Array.from(byPrereq.keys()).sort((a, b) => a - b);
     const tierCount = tiers.length;
+    // Map each tier to the center of its CSS grid column: (i + 0.5) / N * 100%
     const tierPos = new Map(); // prereqBar → percent position
     for (let i = 0; i < tierCount; i++) {
-        tierPos.set(tiers[i], tierCount > 1 ? (i / (tierCount - 1)) * 100 : 50);
+        tierPos.set(tiers[i], ((i + 0.5) / tierCount) * 100);
     }
     // Aligned zone: skill grid + progress bar share the same horizontal reference
     const alignedZone = document.createElement('div');
@@ -105,8 +106,15 @@ function tierBarPercent(barValue, tiers, tierPos) {
             return loPos + frac * (hiPos - loPos);
         }
     }
-    // Beyond last tier
-    return 100;
+    // Beyond last tier — interpolate from last tier position to 100%
+    const lastTier = tiers[tiers.length - 1];
+    const lastPos = tierPos.get(lastTier);
+    // barMaxRank is the absolute max (typically 50)
+    const barMax = lastTier; // last tier IS the max
+    if (barValue >= barMax)
+        return 100;
+    const frac = (barValue - lastTier) / (barMax - lastTier);
+    return lastPos + frac * (100 - lastPos);
 }
 function formatStatValue(val) {
     return val % 1 === 0 ? String(val) : val.toFixed(1);
