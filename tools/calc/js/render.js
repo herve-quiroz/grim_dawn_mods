@@ -3,13 +3,35 @@ export function renderMasteryPanel(container, slot, mastery, state, over, cb, ve
     // remove any open popovers before re-rendering (they're appended to body)
     document.querySelectorAll('.popover').forEach(el => el.remove());
     container.innerHTML = '';
-    if (mastery === null) {
-        const empty = document.createElement('div');
-        empty.className = 'text-muted fst-italic p-3';
-        empty.textContent = 'No mastery selected';
-        container.appendChild(empty);
-        return;
+    // Mastery dropdown (always rendered, even when no mastery selected)
+    const otherSlot = slot === 0 ? 1 : 0;
+    const otherMasteryId = state.masteries[otherSlot];
+    const select = document.createElement('select');
+    select.className = 'form-select form-select-sm mb-2';
+    select.style.maxWidth = '200px';
+    const noneOpt = document.createElement('option');
+    noneOpt.value = '';
+    noneOpt.textContent = '— none —';
+    select.appendChild(noneOpt);
+    if (data) {
+        for (const m of data.masteries) {
+            if (m.id === otherMasteryId)
+                continue;
+            const opt = document.createElement('option');
+            opt.value = String(m.id);
+            opt.textContent = m.name;
+            if (mastery && m.id === mastery.id)
+                opt.selected = true;
+            select.appendChild(opt);
+        }
     }
+    select.addEventListener('change', () => {
+        const raw = select.value;
+        cb.onMasteryChange(slot, raw === '' ? null : parseInt(raw, 10));
+    });
+    container.appendChild(select);
+    if (mastery === null)
+        return;
     // Build tier mapping: equal-spaced positions for each prereqBar level
     const byPrereq = new Map();
     for (const skill of mastery.skills) {
@@ -111,16 +133,18 @@ export function renderMasteryPanel(container, slot, mastery, state, over, cb, ve
     barBtns.appendChild(mkBtn('+', () => cb.onBarDelta(slot, 1), state.masteryBar[slot] >= mastery.barMaxRank || over));
     barBtns.appendChild(mkBtn('-', () => cb.onBarDelta(slot, -1), state.masteryBar[slot] <= 0));
     barWidget.append(barRank, barBtns);
-    // Panel title
-    const title = document.createElement('h6');
-    title.className = 'mb-2';
-    title.textContent = mastery.name;
-    container.appendChild(title);
     container.appendChild(alignedZone);
     container.appendChild(barWidget);
     // initialize Bootstrap popovers on newly rendered skill icons
     container.querySelectorAll('[data-bs-toggle="popover"]').forEach(el => {
-        new bootstrap.Popover(el, { container: 'body', html: true });
+        new bootstrap.Popover(el, {
+            container: 'body',
+            html: true,
+            allowList: {
+                ...bootstrap.Popover.Default.allowList,
+                span: ['class'],
+            },
+        });
     });
 }
 /**
@@ -157,23 +181,67 @@ function tierBarPercent(barValue, tiers, tierPos) {
     const frac = (barValue - lastTier) / (barMax - lastTier);
     return lastPos + frac * (100 - lastPos);
 }
+/** Convert GD color codes (^o = gold, ^w = white) to HTML spans. */
+function formatColorCodes(text) {
+    let result = '';
+    let inGold = false;
+    for (let i = 0; i < text.length; i++) {
+        if (text[i] === '^' && i + 1 < text.length) {
+            const code = text[i + 1];
+            if (code === 'o') {
+                if (!inGold) {
+                    result += '<span class="gd-gold">';
+                    inGold = true;
+                }
+                i++;
+                continue;
+            }
+            if (code === 'w') {
+                if (inGold) {
+                    result += '</span>';
+                    inGold = false;
+                }
+                i++;
+                continue;
+            }
+        }
+        result += text[i];
+    }
+    if (inGold)
+        result += '</span>';
+    return result;
+}
 function formatStatValue(val) {
     return val % 1 === 0 ? String(val) : val.toFixed(1);
+}
+function renderStatBlock(skill, levelIdx) {
+    let html = '';
+    for (const stat of skill.stats) {
+        const idx = Math.min(levelIdx, stat.values.length - 1);
+        const val = stat.values[idx];
+        html += `<div class="small">${stat.label}: ${formatStatValue(val)}</div>`;
+    }
+    return html;
 }
 function skillTooltipContent(skill, rank) {
     let html = '<div class="skill-tooltip">';
     if (skill.description)
-        html += `<div class="mb-2">${skill.description}</div>`;
+        html += `<div class="mb-2">${formatColorCodes(skill.description)}</div>`;
     if (skill.stats && skill.stats.length > 0) {
-        const displayRank = rank > 0 ? rank : 1;
-        const rankLabel = rank > 0 ? `Rank ${rank}/${skill.maxRank}` : 'Rank 1';
-        const textClass = rank > 0 ? 'text-info' : 'text-muted';
-        html += `<div class="${textClass} small"><strong>${rankLabel}:</strong></div>`;
-        for (const stat of skill.stats) {
-            const idx = Math.min(displayRank - 1, stat.values.length - 1);
-            const val = stat.values[idx];
-            const formatted = formatStatValue(val);
-            html += `<div class="small">${stat.label}: ${formatted}</div>`;
+        if (rank > 0) {
+            // Current level
+            html += `<div class="text-info small"><strong>Current Level: ${rank}</strong></div>`;
+            html += renderStatBlock(skill, rank - 1);
+            // Next level (if not maxed)
+            if (rank < skill.maxRank) {
+                html += `<div class="text-warning small mt-1"><strong>Next Level: ${rank + 1}</strong></div>`;
+                html += renderStatBlock(skill, rank);
+            }
+        }
+        else {
+            // No points allocated — show level 1 preview
+            html += `<div class="text-muted small"><strong>Next Level: 1</strong></div>`;
+            html += renderStatBlock(skill, 0);
         }
     }
     html += '</div>';
@@ -215,7 +283,7 @@ function renderSkillCell(skill, slot, state, over, cb, versionName, data) {
     if (hasContent) {
         const tooltipContent = skillTooltipContent(skill, rank);
         cell.setAttribute('data-bs-toggle', 'popover');
-        cell.setAttribute('data-bs-trigger', 'hover focus');
+        cell.setAttribute('data-bs-trigger', 'hover');
         cell.setAttribute('data-bs-placement', 'top');
         cell.setAttribute('data-bs-title', skill.name);
         cell.setAttribute('data-bs-content', tooltipContent);

@@ -1,4 +1,5 @@
-body { background: #f8f9fa; padding-bottom: 60px; }
+body, .popover { padding-bottom: 60px; font-family: 'Linux Biolinum', sans-serif; }
+.popover { padding-bottom: 0; }
 #budget-label.over { background: var(--bs-danger) !important; }
 
 .skill-aligned-zone {
@@ -47,7 +48,7 @@ body { background: #f8f9fa; padding-bottom: 60px; }
 }
 
 .skill-lines line {
-  stroke: #666;
+  stroke: #888;
   stroke-width: 2;
   stroke-dasharray: 4 3;
 }
@@ -110,18 +111,21 @@ body { background: #f8f9fa; padding-bottom: 60px; }
   font-size: 10px;
   padding: 0;
   line-height: 1;
+  background: var(--bs-body-bg);
 }
 
 .skill-cell.locked .skill-icon,
 .skill-cell.locked .skill-border,
 .skill-cell.locked .skill-rank,
 .skill-cell.locked .skill-controls {
-  filter: grayscale(0.5);
+  filter: grayscale(0.05);
 }
 
 .skill-cell.search-miss {
   opacity: 0.25;
 }
+
+.gd-gold { color: #daa520; }
 
 .skill-cell.search-hit .skill-icon {
   outline: 2px solid #dc3545;

@@ -35,7 +35,6 @@ async function boot() {
     }
     const refs = collectRefs();
     const searchIndex = buildSearchIndex(data);
-    populateMasteryDropdowns(refs, data, state);
     refs.versionLabel.textContent = `GD ${data.gdVersion}`;
     const setState = (next, pushHistory = true) => {
         state = next;
@@ -58,7 +57,7 @@ async function boot() {
         const budget = computeBudget(state, data);
         const total = totalAllocated(state);
         const over = total > budget;
-        refs.budget.textContent = `${total} / ${budget}`;
+        refs.budget.textContent = `Points available: ${budget - total} / ${budget}`;
         refs.budget.classList.toggle('over', over);
         refs.overBanner.classList.toggle('d-none', !over);
         const mA = state.masteries[0] === null ? null : findMastery(state.masteries[0], data);
@@ -76,13 +75,14 @@ async function boot() {
                     showRefundToast(refs, r.refunds, data);
                 setState(r.state);
             },
+            onMasteryChange: (slot, newId) => {
+                handleMasteryChange(slot, newId, state, data, setState);
+            },
         };
         renderMasteryPanel(refs.panelA, 0, mA, state, over, cb, versionName, data);
         renderMasteryPanel(refs.panelB, 1, mB, state, over, cb, versionName, data);
         applySearchHighlight(refs, searchIndex);
     };
-    refs.masteryA.addEventListener('change', () => handleMasteryChange(0, refs, state, data, setState));
-    refs.masteryB.addEventListener('change', () => handleMasteryChange(1, refs, state, data, setState));
     refs.level.addEventListener('input', () => {
         const v = refs.level.value.trim();
         setState({ ...state, level: v === '' ? null : parseInt(v, 10) }, false);
@@ -124,8 +124,6 @@ function collectRefs() {
         return e;
     };
     return {
-        masteryA: byId('mastery-a'),
-        masteryB: byId('mastery-b'),
         level: byId('level'),
         points: byId('points'),
         questRewards: byId('quest-rewards'),
@@ -141,35 +139,12 @@ function collectRefs() {
         toastContainer: byId('toast-container'),
     };
 }
-function populateMasteryDropdowns(refs, data, state) {
-    for (const sel of [refs.masteryA, refs.masteryB]) {
-        sel.innerHTML = '<option value="">— none —</option>';
-        for (const m of data.masteries) {
-            const opt = document.createElement('option');
-            opt.value = String(m.id);
-            opt.textContent = m.name;
-            sel.appendChild(opt);
-        }
-    }
-    syncInputs(refs, state);
-}
 function syncInputs(refs, state) {
-    refs.masteryA.value = state.masteries[0] === null ? '' : String(state.masteries[0]);
-    refs.masteryB.value = state.masteries[1] === null ? '' : String(state.masteries[1]);
-    for (const sel of [refs.masteryA, refs.masteryB]) {
-        const other = sel === refs.masteryA ? state.masteries[1] : state.masteries[0];
-        for (const opt of Array.from(sel.options)) {
-            opt.hidden = opt.value !== '' && other !== null && parseInt(opt.value, 10) === other;
-        }
-    }
     refs.level.value = state.level === null ? '' : String(state.level);
     refs.points.value = state.customPoints === null ? '' : String(state.customPoints);
     refs.questRewards.checked = state.questRewards;
 }
-async function handleMasteryChange(slot, refs, state, data, setState) {
-    const sel = slot === 0 ? refs.masteryA : refs.masteryB;
-    const raw = sel.value;
-    const newId = raw === '' ? null : parseInt(raw, 10);
+async function handleMasteryChange(slot, newId, state, data, setState) {
     const oldId = state.masteries[slot];
     const hadPoints = oldId !== null && (state.masteryBar[slot] > 0 ||
         Array.from(state.allocations.keys()).some(k => {
@@ -178,7 +153,7 @@ async function handleMasteryChange(slot, refs, state, data, setState) {
     if (hadPoints) {
         const ok = await confirmDialog('Changing mastery will refund all its points. Continue?');
         if (!ok) {
-            sel.value = oldId === null ? '' : String(oldId);
+            setState(state); // re-render to reset dropdown to old value
             return;
         }
     }
