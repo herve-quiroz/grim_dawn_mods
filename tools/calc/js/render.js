@@ -33,7 +33,7 @@ export function renderMasteryPanel(container, slot, mastery, state, over, cb, ve
     const grid = document.createElement('div');
     grid.className = 'skill-grid';
     grid.style.gridTemplateColumns = `repeat(${tierCount}, 1fr)`;
-    grid.style.gridTemplateRows = `repeat(${maxRow}, 56px)`;
+    grid.style.gridTemplateRows = `repeat(${maxRow}, 80px)`;
     // Build tier index lookup: prereqBar → column number (1-based for CSS grid)
     const tierIndex = new Map();
     for (let i = 0; i < tiers.length; i++)
