@@ -110,7 +110,7 @@ export function renderMasteryPanel(
     line.setAttribute('y2', `${y2}%`);
     svg.appendChild(line);
   }
-  grid.appendChild(svg);
+  grid.insertBefore(svg, grid.firstChild);
 
   alignedZone.appendChild(grid);
 
