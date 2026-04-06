@@ -182,13 +182,16 @@ function renderSkillCell(skill, slot, state, over, cb, versionName, data) {
     cell.append(border, icon, rankLabel, controls);
     return cell;
 }
-function mkBtn(label, handler, disabled) {
+function mkBtn(label, handler, inactive) {
     const b = document.createElement('button');
     b.type = 'button';
-    b.className = 'btn btn-sm btn-outline-primary';
+    b.className = inactive ? 'btn btn-sm btn-outline-secondary' : 'btn btn-sm btn-outline-primary';
     b.textContent = label;
-    b.disabled = disabled;
-    b.addEventListener('click', handler);
+    b.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (!inactive)
+            handler();
+    });
     return b;
 }
 //# sourceMappingURL=render.js.map

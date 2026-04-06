@@ -232,12 +232,14 @@ function renderSkillCell(
   return cell;
 }
 
-function mkBtn(label: string, handler: () => void, disabled: boolean): HTMLButtonElement {
+function mkBtn(label: string, handler: () => void, inactive: boolean): HTMLButtonElement {
   const b = document.createElement('button');
   b.type = 'button';
-  b.className = 'btn btn-sm btn-outline-primary';
+  b.className = inactive ? 'btn btn-sm btn-outline-secondary' : 'btn btn-sm btn-outline-primary';
   b.textContent = label;
-  b.disabled = disabled;
-  b.addEventListener('click', handler);
+  b.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (!inactive) handler();
+  });
   return b;
 }
