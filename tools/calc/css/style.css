@@ -1,4 +1,4 @@
-body { background: #f8f9fa; }
+body { background: #f8f9fa; padding-bottom: 60px; }
 #budget-label.over { background: var(--bs-danger) !important; }
 
 .skill-aligned-zone {
