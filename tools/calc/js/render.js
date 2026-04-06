@@ -71,11 +71,12 @@ export function renderMasteryPanel(container, slot, mastery, state, over, cb, ve
         const to = cellPositions.get(skill.id);
         if (!from || !to)
             continue;
-        // Convert grid col/row to percentage positions (center of each cell)
+        // Convert grid col/row to percentage positions
+        // X: center of column, Y: icon center (~25% from top of cell)
         const x1 = ((from.col - 0.5) / tierCount) * 100;
-        const y1 = ((from.row - 0.5) / maxRow) * 100;
+        const y1 = ((from.row - 0.75) / maxRow) * 100;
         const x2 = ((to.col - 0.5) / tierCount) * 100;
-        const y2 = ((to.row - 0.5) / maxRow) * 100;
+        const y2 = ((to.row - 0.75) / maxRow) * 100;
         const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
         line.setAttribute('x1', `${x1}%`);
         line.setAttribute('y1', `${y1}%`);
