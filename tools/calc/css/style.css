@@ -1,12 +1,28 @@
 body { background: #f8f9fa; }
 #budget-label.over { background: var(--bs-danger) !important; }
 
-.mastery-bar-section {
-  margin-bottom: 4px;
-}
-
 .skill-aligned-zone {
   padding: 0 24px;
+}
+
+.mastery-bar-row {
+  margin-top: 8px;
+}
+
+.mastery-bar-widget {
+  flex-shrink: 0;
+  min-width: 48px;
+  text-align: center;
+}
+
+.mastery-bar-widget .skill-rank {
+  font-size: 10px;
+  color: #999;
+}
+
+.mastery-bar-widget .skill-rank.active {
+  color: #ffc107;
+  font-weight: bold;
 }
 
 .skill-grid {

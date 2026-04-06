@@ -31,21 +31,6 @@ export function renderMasteryPanel(
     return;
   }
 
-  // mastery bar controls (outside the aligned zone)
-  const barControls = document.createElement('div');
-  barControls.className = 'mastery-bar-section d-flex align-items-center gap-2';
-
-  const barMinus = mkBtn('-', () => cb.onBarDelta(slot, -1), state.masteryBar[slot] <= 0);
-  const barLabel = document.createElement('span');
-  barLabel.className = 'small fw-bold text-nowrap';
-  barLabel.textContent = `${mastery.name} ${state.masteryBar[slot]}/${mastery.barMaxRank}`;
-
-  const barPlus = mkBtn('+', () => cb.onBarDelta(slot, 1), state.masteryBar[slot] >= mastery.barMaxRank || over);
-
-  // aligned zone: progress bar + skill grid share the same horizontal reference
-  const alignedZone = document.createElement('div');
-  alignedZone.className = 'skill-aligned-zone flex-grow-1';
-
   // Build tier mapping: equal-spaced positions for each prereqBar level
   const byPrereq = new Map<number, Skill[]>();
   for (const skill of mastery.skills) {
@@ -61,17 +46,11 @@ export function renderMasteryPanel(
     tierPos.set(tiers[i], tierCount > 1 ? (i / (tierCount - 1)) * 100 : 50);
   }
 
-  // Progress bar with non-linear fill matching tier spacing
-  const barOuter = document.createElement('div');
-  barOuter.className = 'progress';
-  barOuter.style.height = '14px';
-  const barInner = document.createElement('div');
-  barInner.className = 'progress-bar';
-  barInner.style.width = `${tierBarPercent(state.masteryBar[slot], tiers, tierPos)}%`;
-  barOuter.appendChild(barInner);
-  alignedZone.appendChild(barOuter);
+  // Aligned zone: skill grid + progress bar share the same horizontal reference
+  const alignedZone = document.createElement('div');
+  alignedZone.className = 'skill-aligned-zone';
 
-  // Skill grid
+  // Skill grid (above the bar)
   const maxStack = Math.max(...Array.from(byPrereq.values()).map(v => v.length));
   const grid = document.createElement('div');
   grid.className = 'skill-grid';
@@ -91,8 +70,40 @@ export function renderMasteryPanel(
   }
   alignedZone.appendChild(grid);
 
-  barControls.append(barMinus, barLabel, alignedZone, barPlus);
-  container.appendChild(barControls);
+  // Mastery bar at the bottom (like in-game)
+  const barRow = document.createElement('div');
+  barRow.className = 'mastery-bar-row d-flex align-items-center gap-2';
+
+  // Mastery rank widget: rank + +/- stacked like a skill cell
+  const barWidget = document.createElement('div');
+  barWidget.className = 'mastery-bar-widget text-center';
+  const barRank = document.createElement('div');
+  barRank.className = state.masteryBar[slot] > 0 ? 'skill-rank active' : 'skill-rank';
+  barRank.textContent = `${state.masteryBar[slot]}/${mastery.barMaxRank}`;
+  const barBtns = document.createElement('div');
+  barBtns.className = 'd-flex gap-1 justify-content-center';
+  barBtns.appendChild(mkBtn('+', () => cb.onBarDelta(slot, 1), state.masteryBar[slot] >= mastery.barMaxRank || over));
+  barBtns.appendChild(mkBtn('-', () => cb.onBarDelta(slot, -1), state.masteryBar[slot] <= 0));
+  barWidget.append(barRank, barBtns);
+
+  const barOuter = document.createElement('div');
+  barOuter.className = 'progress flex-grow-1';
+  barOuter.style.height = '14px';
+  const barInner = document.createElement('div');
+  barInner.className = 'progress-bar';
+  barInner.style.width = `${tierBarPercent(state.masteryBar[slot], tiers, tierPos)}%`;
+  barOuter.appendChild(barInner);
+
+  barRow.append(barWidget, barOuter);
+  alignedZone.appendChild(barRow);
+
+  // Panel title
+  const title = document.createElement('h6');
+  title.className = 'mb-2';
+  title.textContent = mastery.name;
+  container.appendChild(title);
+
+  container.appendChild(alignedZone);
 
   // initialize Bootstrap popovers on newly rendered skill icons
   container.querySelectorAll('[data-bs-toggle="popover"]').forEach(el => {
