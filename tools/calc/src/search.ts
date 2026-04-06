@@ -11,9 +11,10 @@ export function buildSearchIndex(data: SkillsData): SearchIndex {
   const out: SearchIndex = [];
   for (const m of data.masteries) {
     for (const s of m.skills) {
+      const statText = (s.stats || []).map(st => st.label).join(' ');
       out.push({
         skillId: s.id,
-        text: (s.name + ' ' + s.description).toLowerCase(),
+        text: (s.name + ' ' + s.description + ' ' + statText).toLowerCase(),
       });
     }
   }

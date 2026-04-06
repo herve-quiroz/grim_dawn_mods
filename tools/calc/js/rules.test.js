@@ -73,9 +73,9 @@ const testData = {
         {
             id: 1, name: 'A', barMaxRank: 50,
             skills: [
-                { id: 'a.swing', name: '', description: '', icon: '', maxRank: 16, ui: { row: 0, col: 0 }, prereqBar: 1, parent: null, parentMinRank: 0 },
-                { id: 'a.big', name: '', description: '', icon: '', maxRank: 5, ui: { row: 0, col: 1 }, prereqBar: 3, parent: 'a.swing', parentMinRank: 2 },
-                { id: 'a.huge', name: '', description: '', icon: '', maxRank: 5, ui: { row: 0, col: 2 }, prereqBar: 5, parent: 'a.big', parentMinRank: 1 },
+                { id: 'a.swing', name: '', description: '', icon: '', maxRank: 16, ui: { row: 0, col: 0 }, prereqBar: 1, parent: null, parentMinRank: 0, stats: [] },
+                { id: 'a.big', name: '', description: '', icon: '', maxRank: 5, ui: { row: 0, col: 1 }, prereqBar: 3, parent: 'a.swing', parentMinRank: 2, stats: [] },
+                { id: 'a.huge', name: '', description: '', icon: '', maxRank: 5, ui: { row: 0, col: 2 }, prereqBar: 5, parent: 'a.big', parentMinRank: 1, stats: [] },
             ],
         },
     ],

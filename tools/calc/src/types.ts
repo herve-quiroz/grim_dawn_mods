@@ -3,6 +3,11 @@ export interface SkillUiPos {
   col: number;
 }
 
+export interface SkillStat {
+  label: string;
+  values: number[];
+}
+
 export interface Skill {
   id: string;
   name: string;
@@ -13,6 +18,7 @@ export interface Skill {
   prereqBar: number;
   parent: string | null;
   parentMinRank: number;
+  stats: SkillStat[];
 }
 
 export interface Mastery {

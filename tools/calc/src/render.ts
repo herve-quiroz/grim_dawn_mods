@@ -53,8 +53,31 @@ export function renderMasteryPanel(
 
   // initialize Bootstrap popovers on newly rendered skill names
   container.querySelectorAll('[data-bs-toggle="popover"]').forEach(el => {
-    new bootstrap.Popover(el, { container: 'body', html: false });
+    new bootstrap.Popover(el, { container: 'body', html: true });
   });
+}
+
+function formatStatValue(val: number): string {
+  return val % 1 === 0 ? String(val) : val.toFixed(1);
+}
+
+function skillTooltipContent(skill: Skill, rank: number): string {
+  let html = '<div class="skill-tooltip">';
+  if (skill.description) html += `<div class="mb-2">${skill.description}</div>`;
+  if (skill.stats && skill.stats.length > 0) {
+    const displayRank = rank > 0 ? rank : 1;
+    const rankLabel = rank > 0 ? `Rank ${rank}/${skill.maxRank}` : 'Rank 1';
+    const textClass = rank > 0 ? 'text-info' : 'text-muted';
+    html += `<div class="${textClass} small"><strong>${rankLabel}:</strong></div>`;
+    for (const stat of skill.stats) {
+      const idx = Math.min(displayRank - 1, stat.values.length - 1);
+      const val = stat.values[idx];
+      const formatted = formatStatValue(val);
+      html += `<div class="small">${stat.label}: ${formatted}</div>`;
+    }
+  }
+  html += '</div>';
+  return html;
 }
 
 function renderSkillRow(
@@ -84,12 +107,14 @@ function renderSkillRow(
   const name = document.createElement('span');
   name.className = 'flex-grow-1';
   name.textContent = skill.name;
-  if (skill.description) {
+  const hasContent = skill.description || (skill.stats && skill.stats.length > 0);
+  if (hasContent) {
+    const tooltipContent = skillTooltipContent(skill, rank);
     name.setAttribute('data-bs-toggle', 'popover');
     name.setAttribute('data-bs-trigger', 'hover focus');
     name.setAttribute('data-bs-placement', 'top');
     name.setAttribute('data-bs-title', skill.name);
-    name.setAttribute('data-bs-content', skill.description);
+    name.setAttribute('data-bs-content', tooltipContent);
     name.style.cursor = 'help';
   }
 

@@ -10,14 +10,14 @@ const fixture = {
         {
             id: 1, name: 'A', barMaxRank: 10,
             skills: [
-                { id: 'a.one', name: 'One', description: '', icon: '', maxRank: 10, ui: { row: 0, col: 0 }, prereqBar: 1, parent: null, parentMinRank: 0 },
-                { id: 'a.two', name: 'Two', description: '', icon: '', maxRank: 5, ui: { row: 0, col: 1 }, prereqBar: 3, parent: 'a.one', parentMinRank: 1 },
+                { id: 'a.one', name: 'One', description: '', icon: '', maxRank: 10, ui: { row: 0, col: 0 }, prereqBar: 1, parent: null, parentMinRank: 0, stats: [] },
+                { id: 'a.two', name: 'Two', description: '', icon: '', maxRank: 5, ui: { row: 0, col: 1 }, prereqBar: 3, parent: 'a.one', parentMinRank: 1, stats: [] },
             ],
         },
         {
             id: 2, name: 'B', barMaxRank: 10,
             skills: [
-                { id: 'b.one', name: 'One', description: '', icon: '', maxRank: 10, ui: { row: 0, col: 0 }, prereqBar: 1, parent: null, parentMinRank: 0 },
+                { id: 'b.one', name: 'One', description: '', icon: '', maxRank: 10, ui: { row: 0, col: 0 }, prereqBar: 1, parent: null, parentMinRank: 0, stats: [] },
             ],
         },
     ],

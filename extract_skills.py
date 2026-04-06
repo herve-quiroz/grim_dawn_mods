@@ -230,6 +230,383 @@ def _get_display_data(arz_dir: Path, skill_path: str) -> dict[str, str]:
     return data
 
 
+def _parse_values(raw: str) -> list[float]:
+    """Parse a semicolon-separated value string into a list of floats."""
+    parts = raw.split(";")
+    result: list[float] = []
+    for p in parts:
+        p = p.strip()
+        if not p:
+            continue
+        try:
+            result.append(float(p))
+        except ValueError:
+            pass
+    return result
+
+
+def _is_all_zero(vals: list[float]) -> bool:
+    return all(v == 0 for v in vals)
+
+
+def extract_skill_stats(dbr_data: dict[str, str]) -> list[dict]:
+    """Extract non-zero stat fields from a skill DBR and return labelled stats.
+
+    Returns a list of {"label": str, "values": list[float]} sorted by label.
+    """
+    # Parse all numeric fields up front.
+    parsed: dict[str, list[float]] = {}
+    for key, raw in dbr_data.items():
+        # Skip known non-stat fields.
+        if raw in ("", "0"):
+            continue
+        # Only consider fields that look numeric (float/int type in DBR).
+        vals = _parse_values(raw)
+        if vals and not _is_all_zero(vals):
+            parsed[key] = vals
+
+    stats: list[dict] = []
+
+    def add(label: str, values: list[float]) -> None:
+        # Round very close integers (e.g. 24.0 -> 24).
+        cleaned = []
+        for v in values:
+            if abs(v - round(v)) < 1e-9:
+                cleaned.append(int(round(v)))
+            else:
+                cleaned.append(round(v, 4))
+        stats.append({"label": label, "values": cleaned})
+
+    def get(key: str) -> list[float] | None:
+        return parsed.get(key)
+
+    # ---- Direct damage (offensive min/max pairs) ----
+    damage_types = {
+        "Physical": "Physical Damage",
+        "Fire": "Fire Damage",
+        "Cold": "Cold Damage",
+        "Lightning": "Lightning Damage",
+        "Aether": "Aether Damage",
+        "Chaos": "Chaos Damage",
+        "Pierce": "Pierce Damage",
+        "Elemental": "Elemental Damage",
+        "Life": "Life Damage",
+        "Poison": "Poison Damage",
+    }
+    for suffix, label in damage_types.items():
+        min_key = f"offensive{suffix}Min"
+        max_key = f"offensive{suffix}Max"
+        min_vals = get(min_key)
+        max_vals = get(max_key)
+        if min_vals and max_vals:
+            # Combine into "X-Y Type Damage" using min values as display
+            # (we store both min and max as separate value arrays)
+            add(f"{label} Min", min_vals)
+            add(f"{label} Max", max_vals)
+        elif min_vals:
+            add(label, min_vals)
+        elif max_vals:
+            add(f"{label} Max", max_vals)
+
+    # ---- Damage modifiers (offensive % modifiers) ----
+    modifier_types = {
+        "Physical": "Physical Damage",
+        "Fire": "Fire Damage",
+        "Cold": "Cold Damage",
+        "Lightning": "Lightning Damage",
+        "Aether": "Aether Damage",
+        "Chaos": "Chaos Damage",
+        "Pierce": "Pierce Damage",
+        "Elemental": "Elemental Damage",
+        "Life": "Life Damage",
+        "Poison": "Poison Damage",
+    }
+    for suffix, label in modifier_types.items():
+        key = f"offensive{suffix}Modifier"
+        vals = get(key)
+        if vals:
+            add(f"+% {label}", vals)
+
+    # ---- DoT / Slow damage ----
+    dot_types = {
+        "Bleeding": "Bleeding Damage",
+        "Poison": "Poison Damage",
+        "Physical": "Internal Trauma",
+        "Cold": "Frostburn Damage",
+        "Fire": "Burn Damage",
+        "Lightning": "Electrocute Damage",
+        "Life": "Life Decay",
+    }
+    for suffix, label in dot_types.items():
+        min_key = f"offensiveSlow{suffix}Min"
+        dur_key = f"offensiveSlow{suffix}DurationMin"
+        mod_key = f"offensiveSlow{suffix}Modifier"
+        dur_mod_key = f"offensiveSlow{suffix}DurationModifier"
+        chance_key = f"offensiveSlow{suffix}Chance"
+        min_vals = get(min_key)
+        dur_vals = get(dur_key)
+        mod_vals = get(mod_key)
+        dur_mod_vals = get(dur_mod_key)
+        chance_vals = get(chance_key)
+        if min_vals:
+            add(f"{label}", min_vals)
+        if dur_vals:
+            add(f"{label} Duration", dur_vals)
+        if mod_vals:
+            add(f"+% {label}", mod_vals)
+        if dur_mod_vals:
+            add(f"+% {label} Duration", dur_mod_vals)
+        if chance_vals:
+            add(f"{label} Chance", chance_vals)
+
+    # Life/Mana leech (DoT variant)
+    for leech_type, label in [("LifeLeach", "Life Leech"), ("ManaLeach", "Mana Leech")]:
+        min_key = f"offensiveSlow{leech_type}Min"
+        dur_key = f"offensiveSlow{leech_type}DurationMin"
+        min_vals = get(min_key)
+        dur_vals = get(dur_key)
+        if min_vals:
+            add(f"{label}", min_vals)
+        if dur_vals:
+            add(f"{label} Duration", dur_vals)
+
+    # Direct life leech
+    ll_vals = get("offensiveLifeLeechMin")
+    if ll_vals:
+        add("Life Leech", ll_vals)
+
+    # ---- Slow debuffs (attack speed, run speed, total speed) ----
+    slow_debuffs = {
+        "AttackSpeed": "Reduced Attack Speed",
+        "RunSpeed": "Reduced Movement Speed",
+        "TotalSpeed": "Reduced Total Speed",
+        "OffensiveAbility": "Reduced Offensive Ability",
+        "DefensiveAbility": "Reduced Defensive Ability",
+        "OffensiveReduction": "Reduced Offensive Ability",
+        "DefensiveReduction": "Reduced Defensive Ability",
+    }
+    for suffix, label in slow_debuffs.items():
+        min_key = f"offensiveSlow{suffix}Min"
+        dur_key = f"offensiveSlow{suffix}DurationMin"
+        min_vals = get(min_key)
+        dur_vals = get(dur_key)
+        if min_vals:
+            add(label, min_vals)
+        if dur_vals:
+            add(f"{label} Duration", dur_vals)
+
+    # ---- CC effects (stun, freeze, confusion, fear, knockdown, etc.) ----
+    cc_types = {
+        "Stun": "Stun",
+        "Freeze": "Freeze",
+        "Confusion": "Confusion",
+        "Fear": "Fear",
+        "Knockdown": "Knockdown",
+        "Convert": "Conversion",
+        "Disruption": "Skill Disruption",
+        "Taunt": "Taunt",
+        "Petrify": "Petrify",
+    }
+    for suffix, label in cc_types.items():
+        chance_key = f"offensive{suffix}Chance"
+        min_key = f"offensive{suffix}Min"
+        max_key = f"offensive{suffix}Max"
+        mod_key = f"offensive{suffix}Modifier"
+        chance_vals = get(chance_key)
+        min_vals = get(min_key)
+        max_vals = get(max_key)
+        mod_vals = get(mod_key)
+        if chance_vals:
+            add(f"{label} Chance", chance_vals)
+        if min_vals:
+            add(f"{label} Duration", min_vals)
+        if max_vals:
+            add(f"{label} Duration Max", max_vals)
+        if mod_vals:
+            add(f"+% {label} Duration", mod_vals)
+
+    # ---- Resistance reduction ----
+    rr_fields = {
+        "offensivePhysicalResistanceReductionAbsoluteMin": "Physical Resistance Reduction",
+        "offensivePhysicalResistanceReductionAbsoluteDurationMin": "Physical RR Duration",
+        "offensiveTotalResistanceReductionAbsoluteMin": "Total Resistance Reduction",
+        "offensiveTotalResistanceReductionAbsoluteDurationMin": "Total RR Duration",
+        "offensiveTotalDamageReductionPercentMin": "Total Damage Reduction",
+        "offensiveTotalDamageReductionPercentDurationMin": "Total Damage Reduction Duration",
+    }
+    for key, label in rr_fields.items():
+        vals = get(key)
+        if vals:
+            add(label, vals)
+
+    # ---- Percent current life ----
+    pclm = get("offensivePercentCurrentLifeMin")
+    if pclm:
+        add("% Current Life", pclm)
+
+    # ---- Global chance ----
+    gc = get("offensiveGlobalChance")
+    if gc:
+        add("Chance to be Used", gc)
+
+    # ---- Total damage modifier ----
+    tdm = get("offensiveTotalDamageModifier")
+    if tdm:
+        add("+% Total Damage", tdm)
+
+    # Crit damage modifier
+    cdm = get("offensiveCritDamageModifier")
+    if cdm:
+        add("+% Crit Damage", cdm)
+
+    # Offensive damage mult modifier (% weapon damage bonus in some contexts)
+    odmm = get("offensiveDamageMultModifier")
+    if odmm:
+        add("+% Damage", odmm)
+
+    # ---- Weapon damage % ----
+    wdp = get("weaponDamagePct")
+    if wdp:
+        add("% Weapon Damage", wdp)
+
+    # ---- Defensive stats ----
+    defense_types = {
+        "defensivePhysical": "+% Physical Resistance",
+        "defensiveFire": "+% Fire Resistance",
+        "defensiveCold": "+% Cold Resistance",
+        "defensiveLightning": "+% Lightning Resistance",
+        "defensiveAether": "+% Aether Resistance",
+        "defensiveChaos": "+% Chaos Resistance",
+        "defensivePierce": "+% Pierce Resistance",
+        "defensivePoison": "+% Poison & Acid Resistance",
+        "defensiveBleeding": "+% Bleeding Resistance",
+        "defensiveElementalResistance": "+% Elemental Resistance",
+        "defensiveLife": "+ Health",
+        "defensiveLifeDuration": "Health Duration",
+        "defensiveProtection": "+ Armor",
+        "defensiveProtectionModifier": "+% Armor",
+        "defensiveAbsorptionModifier": "+% Armor Absorption",
+        "defensiveBlockModifier": "+% Block Chance",
+        "defensiveBlockAmountModifier": "+% Block Amount",
+        "defensivePercentCurrentLife": "+% Health Restored",
+        "defensivePercentReflectionResistance": "+% Reflected Damage Reduction",
+        "defensiveAllMaxResist": "+% Max All Resistances",
+    }
+    for key, label in defense_types.items():
+        vals = get(key)
+        if vals:
+            add(label, vals)
+
+    # Defensive duration reductions
+    def_dur_types = {
+        "defensivePhysicalDuration": "+% Physical Duration Reduction",
+        "defensiveFireDuration": "+% Burn Duration Reduction",
+        "defensiveColdDuration": "+% Frostburn Duration Reduction",
+        "defensiveLightningDuration": "+% Electrocute Duration Reduction",
+        "defensivePoisonDuration": "+% Poison Duration Reduction",
+        "defensiveBleedingDuration": "+% Bleeding Duration Reduction",
+        "defensiveConfusion": "+% Confusion Resistance",
+        "defensiveFear": "+% Fear Resistance",
+        "defensiveFreeze": "+% Freeze Resistance",
+        "defensiveKnockdown": "+% Knockdown Resistance",
+        "defensiveConvert": "+% Conversion Resistance",
+        "defensivePetrify": "+% Petrify Resistance",
+    }
+    for key, label in def_dur_types.items():
+        vals = get(key)
+        if vals:
+            add(label, vals)
+
+    # ---- Character stats ----
+    char_stats = {
+        "characterLife": "+ Health",
+        "characterLifeModifier": "+% Health",
+        "characterLifeRegen": "+ Health Regen per Second",
+        "characterLifeRegenModifier": "+% Health Regen",
+        "characterMana": "+ Energy",
+        "characterManaRegen": "+ Energy Regen per Second",
+        "characterManaLimitReserve": "Energy Reserved",
+        "characterOffensiveAbility": "+ Offensive Ability",
+        "characterOffensiveAbilityModifier": "+% Offensive Ability",
+        "characterDefensiveAbility": "+ Defensive Ability",
+        "characterDefensiveAbilityModifier": "+% Defensive Ability",
+        "characterStrength": "+ Physique",
+        "characterStrengthModifier": "+% Physique",
+        "characterDexterity": "+ Cunning",
+        "characterIntelligence": "+ Spirit",
+        "characterConstitutionModifier": "+% Constitution",
+        "characterAttackSpeed": "+ Attack Speed",
+        "characterAttackSpeedModifier": "+% Attack Speed",
+        "characterSpellCastSpeed": "+ Casting Speed",
+        "characterSpellCastSpeedModifier": "+% Casting Speed",
+        "characterRunSpeed": "+ Movement Speed",
+        "characterRunSpeedModifier": "+% Movement Speed",
+        "characterTotalSpeedModifier": "+% Total Speed",
+        "characterHealIncreasePercent": "+% Healing Increase",
+        "characterArmorStrengthReqReduction": "Reduced Armor Requirement",
+        "characterDefensiveBlockRecoveryReduction": "Reduced Block Recovery",
+    }
+    for key, label in char_stats.items():
+        vals = get(key)
+        if vals:
+            add(label, vals)
+
+    # ---- Skill meta ----
+    skill_meta = {
+        "skillManaCost": "Energy Cost",
+        "skillCooldownTime": "Skill Recharge",
+        "skillActiveDuration": "Duration",
+        "skillTargetNumber": "Target Maximum",
+        "skillTargetRadius": "Meter Radius",
+        "skillProjectileNumber": "Projectiles",
+        "skillLifePercent": "% Health Cost",
+        "skillChargeDuration": "Charge Duration",
+        "skillChargeLevel": "Charge Levels",
+    }
+    for key, label in skill_meta.items():
+        vals = get(key)
+        if vals:
+            add(label, vals)
+
+    # ---- Retaliation damage ----
+    ret_types = {
+        "Physical": "Physical Retaliation",
+        "Fire": "Fire Retaliation",
+        "Cold": "Cold Retaliation",
+        "Lightning": "Lightning Retaliation",
+        "Aether": "Aether Retaliation",
+        "Chaos": "Chaos Retaliation",
+        "Pierce": "Pierce Retaliation",
+        "Elemental": "Elemental Retaliation",
+    }
+    for suffix, label in ret_types.items():
+        min_key = f"retaliation{suffix}Min"
+        max_key = f"retaliation{suffix}Max"
+        min_vals = get(min_key)
+        max_vals = get(max_key)
+        if min_vals:
+            add(label, min_vals)
+        if max_vals:
+            add(f"{label} Max", max_vals)
+
+    # Retaliation modifiers
+    ret_mod_fields = {
+        "retaliationDamagePct": "% Retaliation Damage",
+        "retaliationTotalDamageModifier": "+% Retaliation Damage",
+        "retaliationDamageMultModifier": "+% Retaliation Damage Mult",
+        "retaliationStunChance": "Retaliation Stun Chance",
+        "retaliationStunMin": "Retaliation Stun Duration",
+    }
+    for key, label in ret_mod_fields.items():
+        vals = get(key)
+        if vals:
+            add(label, vals)
+
+    # Sort by label for consistent ordering.
+    stats.sort(key=lambda s: s["label"])
+    return stats
+
+
 def walk_mastery_skills(
     arz_dir: Path, class_num: str, mastery_id: int, tags: dict[str, str]
 ) -> list[dict]:
@@ -304,6 +681,9 @@ def walk_mastery_skills(
             parent_id = f"{class_prefix}.{parent_filename}"
             parent_min_rank = 1
 
+        # Extract per-rank stat values.
+        skill_stats = extract_skill_stats(data)
+
         skills.append({
             "id": skill_id,
             "name": name,
@@ -314,6 +694,7 @@ def walk_mastery_skills(
             "prereqBar": prereq_bar,
             "parent": parent_id,
             "parentMinRank": parent_min_rank,
+            "stats": skill_stats,
         })
 
     return skills
