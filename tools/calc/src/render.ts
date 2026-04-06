@@ -123,6 +123,7 @@ function tierBarPercent(
   tierPos: Map<number, number>,
 ): number {
   if (barValue <= 0) return 0;
+  if (barValue >= tiers[tiers.length - 1]) return 100;
   // Find which two tiers the bar value falls between
   for (let i = 0; i < tiers.length; i++) {
     if (barValue <= tiers[i]) {
