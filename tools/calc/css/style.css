@@ -1,5 +1,86 @@
 body { background: #f8f9fa; }
-.skill-row.search-miss { opacity: 0.25; }
-.skill-row.search-hit .skill-icon { outline: 2px solid #dc3545; outline-offset: 1px; }
 #budget-label.over { background: var(--bs-danger) !important; }
-.skill-icon { flex-shrink: 0; border-radius: 4px; background: #eee; }
+
+.mastery-bar-section {
+  margin-bottom: 8px;
+}
+
+.skill-grid {
+  display: grid;
+  grid-template-columns: repeat(9, 48px);
+  gap: 2px;
+  position: relative;
+}
+
+.skill-cell {
+  position: relative;
+  width: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.skill-cell .skill-border {
+  position: absolute;
+  top: 0;
+  left: 4px;
+  width: 40px;
+  height: 40px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.skill-cell .skill-icon {
+  width: 32px;
+  height: 32px;
+  position: relative;
+  top: 4px;
+  z-index: 1;
+  cursor: pointer;
+  border-radius: 0;
+  background: transparent;
+  flex-shrink: 0;
+}
+
+.skill-cell .skill-rank {
+  font-size: 10px;
+  text-align: center;
+  margin-top: 6px;
+  color: #ccc;
+}
+
+.skill-cell .skill-rank.active {
+  color: #ffc107;
+  font-weight: bold;
+}
+
+.skill-cell .skill-controls {
+  display: none;
+  position: absolute;
+  bottom: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  gap: 2px;
+}
+
+.skill-cell:hover .skill-controls {
+  display: flex;
+}
+
+.skill-cell .skill-controls button {
+  width: 18px;
+  height: 18px;
+  font-size: 10px;
+  padding: 0;
+  line-height: 1;
+}
+
+.skill-cell.search-miss {
+  opacity: 0.25;
+}
+
+.skill-cell.search-hit .skill-icon {
+  outline: 2px solid #dc3545;
+  outline-offset: 1px;
+}

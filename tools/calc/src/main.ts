@@ -292,16 +292,16 @@ function applySearchHighlight(refs: AppRefs, index: ReturnType<typeof buildSearc
   const q = refs.search.value;
   const matches = matchQuery(q, index);
   const active = q.trim() !== '';
-  const rows = document.querySelectorAll<HTMLElement>('.skill-row');
-  rows.forEach(row => {
-    const id = row.dataset.skillId;
+  const cells = document.querySelectorAll<HTMLElement>('.skill-cell');
+  cells.forEach(cell => {
+    const id = cell.dataset.skillId;
     if (!active || !id) {
-      row.classList.remove('search-miss', 'search-hit');
+      cell.classList.remove('search-miss', 'search-hit');
       return;
     }
     const isMatch = matches.has(id);
-    row.classList.toggle('search-miss', !isMatch);
-    row.classList.toggle('search-hit', isMatch);
+    cell.classList.toggle('search-miss', !isMatch);
+    cell.classList.toggle('search-hit', isMatch);
   });
   refs.searchCount.textContent = active ? `${matches.size} matches` : '';
 }

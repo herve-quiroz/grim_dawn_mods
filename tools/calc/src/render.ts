@@ -1,5 +1,5 @@
 import type { BuildState, Mastery, Skill, SkillsData } from './types.js';
-import { isSkillUnlocked, findMastery } from './rules.js';
+import { isSkillUnlocked } from './rules.js';
 
 declare const bootstrap: {
   Popover: new (el: Element, opts: Record<string, unknown>) => void;
@@ -31,28 +31,43 @@ export function renderMasteryPanel(
     return;
   }
 
-  // mastery bar row
-  const barRow = document.createElement('div');
-  barRow.className = 'd-flex align-items-center gap-2 mb-3';
-  const barLabel = document.createElement('strong');
-  barLabel.textContent = `${mastery.name} bar`;
-  const barCount = document.createElement('span');
-  barCount.className = 'badge bg-secondary';
-  barCount.textContent = `${state.masteryBar[slot]}/${mastery.barMaxRank}`;
-  const barPlus = mkBtn('+', () => cb.onBarDelta(slot, 1), state.masteryBar[slot] >= mastery.barMaxRank || over);
-  const barMinus = mkBtn('-', () => cb.onBarDelta(slot, -1), state.masteryBar[slot] <= 0);
-  barRow.append(barLabel, barCount, barPlus, barMinus);
-  container.appendChild(barRow);
+  // mastery bar — Bootstrap progress bar
+  const barSection = document.createElement('div');
+  barSection.className = 'mastery-bar-section d-flex align-items-center gap-2';
 
-  // skills
+  const barMinus = mkBtn('-', () => cb.onBarDelta(slot, -1), state.masteryBar[slot] <= 0);
+  const barLabel = document.createElement('span');
+  barLabel.className = 'small fw-bold';
+  barLabel.textContent = `${state.masteryBar[slot]}/${mastery.barMaxRank}`;
+
+  const barOuter = document.createElement('div');
+  barOuter.className = 'progress flex-grow-1';
+  barOuter.style.height = '14px';
+  const barInner = document.createElement('div');
+  barInner.className = 'progress-bar';
+  barInner.style.width = `${(state.masteryBar[slot] / mastery.barMaxRank) * 100}%`;
+  barOuter.appendChild(barInner);
+
+  const barPlus = mkBtn('+', () => cb.onBarDelta(slot, 1), state.masteryBar[slot] >= mastery.barMaxRank || over);
+
+  barSection.append(barMinus, barLabel, barOuter, barPlus);
+  container.appendChild(barSection);
+
+  // skill grid
+  const maxRow = Math.max(...mastery.skills.map(s => s.ui.row));
   const grid = document.createElement('div');
-  grid.className = 'd-flex flex-column gap-2';
+  grid.className = 'skill-grid';
+  grid.style.gridTemplateRows = `repeat(${maxRow}, 56px)`;
+
   for (const skill of mastery.skills) {
-    grid.appendChild(renderSkillRow(skill, slot, state, over, cb, versionName, data));
+    const cell = renderSkillCell(skill, slot, state, over, cb, versionName, data);
+    cell.style.gridRow = String(skill.ui.row);
+    cell.style.gridColumn = String(skill.ui.col);
+    grid.appendChild(cell);
   }
   container.appendChild(grid);
 
-  // initialize Bootstrap popovers on newly rendered skill names
+  // initialize Bootstrap popovers on newly rendered skill icons
   container.querySelectorAll('[data-bs-toggle="popover"]').forEach(el => {
     new bootstrap.Popover(el, { container: 'body', html: true });
   });
@@ -81,7 +96,7 @@ function skillTooltipContent(skill: Skill, rank: number): string {
   return html;
 }
 
-function renderSkillRow(
+function renderSkillCell(
   skill: Skill,
   slot: 0 | 1,
   state: BuildState,
@@ -90,74 +105,67 @@ function renderSkillRow(
   versionName?: string,
   data?: SkillsData,
 ): HTMLElement {
-  const row = document.createElement('div');
-  row.className = 'd-flex align-items-center gap-2 skill-row';
-  row.dataset.skillId = skill.id;
-  if (skill.parent !== null) row.classList.add('ms-4');
+  const cell = document.createElement('div');
+  cell.className = 'skill-cell';
+  cell.dataset.skillId = skill.id;
 
   const rank = state.allocations.get(skill.id) ?? 0;
   const unlocked = isSkillUnlocked(skill, slot, state, data);
-  if (!unlocked) row.classList.add('opacity-50');
+  const isModifier = skill.parent !== null;
 
+  // choose border texture
+  let borderFile: string;
+  if (!unlocked) {
+    borderFile = isModifier ? 'skills_buttonborderroundgrayout01.png' : 'skills_buttonbordergrayout01.png';
+  } else if (rank > 0) {
+    borderFile = isModifier ? 'skills_buttonborderroundgold01.png' : 'skills_buttonbordergold01.png';
+  } else {
+    borderFile = isModifier ? 'skills_buttonborderround01.png' : 'skills_buttonborder01.png';
+  }
+
+  // border image
+  const border = document.createElement('img');
+  border.className = 'skill-border';
+  border.src = `data/ui/${borderFile}`;
+  border.alt = '';
+
+  // skill icon
   const icon = document.createElement('img');
   icon.className = 'skill-icon';
   icon.width = 32;
   icon.height = 32;
-  icon.alt = '';
+  icon.alt = skill.name;
   if (skill.icon && versionName) icon.src = `data/icons/${versionName}/${skill.icon}`;
 
-  const name = document.createElement('span');
-  name.className = 'flex-grow-1';
-  name.textContent = skill.name;
+  // popover on the icon
   const hasContent = skill.description || (skill.stats && skill.stats.length > 0);
   if (hasContent) {
     const tooltipContent = skillTooltipContent(skill, rank);
-    name.setAttribute('data-bs-toggle', 'popover');
-    name.setAttribute('data-bs-trigger', 'hover focus');
-    name.setAttribute('data-bs-placement', 'top');
-    name.setAttribute('data-bs-title', skill.name);
-    name.setAttribute('data-bs-content', tooltipContent);
-    name.style.cursor = 'help';
+    icon.setAttribute('data-bs-toggle', 'popover');
+    icon.setAttribute('data-bs-trigger', 'hover focus');
+    icon.setAttribute('data-bs-placement', 'top');
+    icon.setAttribute('data-bs-title', skill.name);
+    icon.setAttribute('data-bs-content', tooltipContent);
+    icon.style.cursor = 'help';
   }
 
-  const count = document.createElement('span');
-  count.className = 'badge bg-secondary';
-  count.textContent = `${rank}/${skill.maxRank}`;
+  // rank label
+  const rankLabel = document.createElement('div');
+  rankLabel.className = rank > 0 ? 'skill-rank active' : 'skill-rank';
+  rankLabel.textContent = `${rank}/${skill.maxRank}`;
 
-  const reason = !unlocked ? lockReason(skill, slot, state, data) : '';
-  if (reason) name.textContent = `${skill.name} (${reason})`;
-
+  // +/- controls (shown on hover via CSS)
+  const controls = document.createElement('div');
+  controls.className = 'skill-controls';
   const plusDisabled = !unlocked || rank >= skill.maxRank || over;
   const minusDisabled = rank <= 0;
-  const plus = mkBtn('+', () => cb.onSkillDelta(skill.id, slot, 1), plusDisabled);
-  const minus = mkBtn('-', () => cb.onSkillDelta(skill.id, slot, -1), minusDisabled);
+  controls.appendChild(mkBtn('+', () => cb.onSkillDelta(skill.id, slot, 1), plusDisabled));
+  controls.appendChild(mkBtn('-', () => cb.onSkillDelta(skill.id, slot, -1), minusDisabled));
 
-  row.append(icon, name, count, plus, minus);
-  return row;
-}
+  if (!unlocked) cell.classList.add('opacity-50');
 
-function lockReason(skill: Skill, slot: 0 | 1, state: BuildState, data?: SkillsData): string {
-  const minBar = Math.max(1, skill.prereqBar);
-  if (state.masteryBar[slot] < minBar) {
-    return `needs bar ${minBar}`;
-  }
-  if (skill.parent !== null) {
-    const pr = state.allocations.get(skill.parent) ?? 0;
-    if (pr < skill.parentMinRank) return `needs parent rank ${skill.parentMinRank}`;
-  }
-  if (skill.exclusive && data) {
-    for (const m of [0, 1] as const) {
-      const mid = state.masteries[m];
-      if (mid === null) continue;
-      const mastery = findMastery(mid, data);
-      for (const s of mastery.skills) {
-        if (s.exclusive && s.id !== skill.id && (state.allocations.get(s.id) ?? 0) > 0) {
-          return 'another exclusive skill is active';
-        }
-      }
-    }
-  }
-  return '';
+  cell.append(border, icon, rankLabel, controls);
+  return cell;
 }
 
 function mkBtn(label: string, handler: () => void, disabled: boolean): HTMLButtonElement {
