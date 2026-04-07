@@ -9,6 +9,8 @@ import { emptyDevotionState } from './devotion-types.js';
 import { encodeDevotionState, decodeDevotionState } from './state.js';
 import { totalDevotionSpent, applyNodeDelta, toggleConstellationAll, wouldBreakAffinities } from './devotion-rules.js';
 import { renderDevotionPanel, renderAffinityBar } from './devotion-render.js';
+import { collectBonuses, categorizeBonuses } from './bonuses.js';
+import { renderBonusesPanel } from './bonuses-render.js';
 
 declare const bootstrap: {
   Modal: new (el: Element) => { show(): void; hide(): void };
@@ -32,6 +34,7 @@ interface AppRefs {
   devotionBudget: HTMLElement;
   affinityBar: HTMLElement;
   devotionCap: HTMLInputElement;
+  bonusesPanel: HTMLElement;
 }
 
 async function boot(): Promise<void> {
@@ -181,6 +184,11 @@ async function boot(): Promise<void> {
       renderDevotionPanel(refs.devotionPanel, devState, devotionData, devCb, affinityFilter);
     }
 
+    // Bonuses panel
+    const bonuses = collectBonuses(state, data, devState, devotionData);
+    const categories = categorizeBonuses(bonuses);
+    renderBonusesPanel(refs.bonusesPanel, categories, bonuses.size);
+
     // Sync devotion cap input
     refs.devotionCap.value = devState.devotionCap === 55 ? '' : String(devState.devotionCap);
 
@@ -250,6 +258,7 @@ function collectRefs(): AppRefs {
     devotionBudget: byId('devotion-budget'),
     affinityBar: byId('affinity-bar'),
     devotionCap: byId<HTMLInputElement>('devotion-cap'),
+    bonusesPanel: byId('bonuses-panel'),
   };
 }
 

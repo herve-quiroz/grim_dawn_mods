@@ -329,3 +329,81 @@ body, .popover { padding-bottom: 60px; font-family: 'Linux Biolinum', sans-serif
   border: 1.5px solid transparent;
   transition: background 0.1s, border-color 0.1s;
 }
+
+/* === Combined bonuses panel === */
+
+.bonuses-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 16px;
+  cursor: pointer;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid #333;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  user-select: none;
+}
+
+.bonuses-header:hover {
+  background: rgba(255,255,255,0.06);
+}
+
+.bonuses-header-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #e0e0e0;
+}
+
+.bonuses-header-count {
+  font-size: 11px;
+  color: #888;
+}
+
+.bonuses-body {
+  padding: 8px 16px 12px;
+  border: 1px solid #333;
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+  margin-top: -14px;
+  margin-bottom: 8px;
+  background: rgba(255,255,255,0.02);
+}
+
+.bonuses-header.expanded {
+  border-radius: 6px 6px 0 0;
+  margin-bottom: 0;
+}
+
+.bonuses-category-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 6px 0 2px 0;
+  border-bottom: 1px solid #2a2a2a;
+  margin-bottom: 4px;
+  grid-column: 1 / -1;
+}
+
+.bonuses-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px 24px;
+  font-size: 12px;
+  color: #ccc;
+}
+
+@media (max-width: 992px) {
+  .bonuses-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 576px) {
+  .bonuses-grid { grid-template-columns: 1fr; }
+}
+
+.bonuses-stat-value {
+  color: #7cb7ff;
+  font-weight: 600;
+}
