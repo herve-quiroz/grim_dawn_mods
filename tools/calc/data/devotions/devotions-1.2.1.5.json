@@ -1,0 +1,6963 @@
+{
+  "gdVersion": "1.2.1.5",
+  "affinities": [
+    "Ascendant",
+    "Chaos",
+    "Eldritch",
+    "Order",
+    "Primordial"
+  ],
+  "constellations": [
+    {
+      "id": "akeron_s_scorpion",
+      "name": "Akeron's Scorpion",
+      "tier": 1,
+      "requires": [
+        {
+          "affinity": 2,
+          "amount": 1
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 2,
+          "amount": 5
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "12"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Physique",
+              "value": "15"
+            },
+            {
+              "label": "+% Acid Damage",
+              "value": "15"
+            },
+            {
+              "label": "+% Poison Damage",
+              "value": "30"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "18"
+            },
+            {
+              "label": "+% Acid Damage",
+              "value": "24"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+% Poison Damage",
+              "value": "50"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 3,
+          "stats": [],
+          "skill": {
+            "name": "Scorpion Sting",
+            "description": "Spines coated with deadly toxin erupt around you."
+          }
+        }
+      ]
+    },
+    {
+      "id": "anvil",
+      "name": "Anvil",
+      "tier": 1,
+      "requires": [
+        {
+          "affinity": 0,
+          "amount": 1
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 0,
+          "amount": 5
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Physique",
+              "value": "20"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "15"
+            },
+            {
+              "label": "+ Offensive Ability",
+              "value": "10"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 4,
+          "stats": [],
+          "skill": {
+            "name": "Targo's Hammer",
+            "description": "Targo's celestial hammer orbits around you, striking down nearby foes."
+          }
+        }
+      ]
+    },
+    {
+      "id": "assassin_s_blade",
+      "name": "Assassin's Blade",
+      "tier": 1,
+      "requires": [
+        {
+          "affinity": 3,
+          "amount": 1
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 0,
+          "amount": 3
+        },
+        {
+          "affinity": 3,
+          "amount": 2
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+% Physical Damage",
+              "value": "15"
+            },
+            {
+              "label": "+% Pierce Damage",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "12"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+% Physical Damage",
+              "value": "24"
+            },
+            {
+              "label": "+% Pierce Damage",
+              "value": "24"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "18"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 4,
+          "stats": [],
+          "skill": {
+            "name": "",
+            "description": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "bat",
+      "name": "Bat",
+      "tier": 1,
+      "requires": [
+        {
+          "affinity": 2,
+          "amount": 1
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 1,
+          "amount": 2
+        },
+        {
+          "affinity": 2,
+          "amount": 3
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+% Bleeding Damage",
+              "value": "15"
+            },
+            {
+              "label": "+% Vitality Damage",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "15"
+            },
+            {
+              "label": "+% Vitality Decay",
+              "value": "30"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+% Bleeding Damage",
+              "value": "50"
+            },
+            {
+              "label": "+% Vitality Damage",
+              "value": "24"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "10"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 4,
+          "stats": [],
+          "skill": {
+            "name": "Twin Fangs",
+            "description": "Vampiric fangs assault your foes and sap them of vitality."
+          }
+        }
+      ]
+    },
+    {
+      "id": "bull",
+      "name": "Bull",
+      "tier": 1,
+      "requires": [
+        {
+          "affinity": 4,
+          "amount": 1
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 3,
+          "amount": 2
+        },
+        {
+          "affinity": 4,
+          "amount": 3
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "8"
+            },
+            {
+              "label": "+ Physique",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Physique",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "10"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 3,
+          "stats": [],
+          "skill": {
+            "name": "Bull Rush",
+            "description": "Strike nearby foes in a rush of physical force, like a charging bull."
+          }
+        }
+      ]
+    },
+    {
+      "id": "crane",
+      "name": "Crane",
+      "tier": 1,
+      "requires": [
+        {
+          "affinity": 3,
+          "amount": 1
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 3,
+          "amount": 5
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Physique",
+              "value": "15"
+            },
+            {
+              "label": "+ Spirit",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+% Poison & Acid Resistance",
+              "value": "12"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+% Vitality Resistance",
+              "value": "12"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 4,
+          "stats": [
+            {
+              "label": "+% Bleeding Resistance",
+              "value": "16"
+            }
+          ],
+          "skill": null
+        }
+      ]
+    },
+    {
+      "id": "dryad",
+      "name": "Dryad",
+      "tier": 1,
+      "requires": [
+        {
+          "affinity": 3,
+          "amount": 1
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 3,
+          "amount": 3
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Energy",
+              "value": "200"
+            },
+            {
+              "label": "+ Physique",
+              "value": "15"
+            },
+            {
+              "label": "+% Poison & Acid Resistance",
+              "value": "10"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Energy Regeneration",
+              "value": "1"
+            },
+            {
+              "label": "+ Health",
+              "value": "80"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 4,
+          "stats": [],
+          "skill": {
+            "name": "Dryad's Blessing",
+            "description": "The dryad's blessing cleanses your wounds and wards you against poison."
+          }
+        }
+      ]
+    },
+    {
+      "id": "eel",
+      "name": "Eel",
+      "tier": 1,
+      "requires": [
+        {
+          "affinity": 4,
+          "amount": 1
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 4,
+          "amount": 5
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "12"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "20"
+            },
+            {
+              "label": "+% Pierce Resistance",
+              "value": "10"
+            }
+          ],
+          "skill": null
+        }
+      ]
+    },
+    {
+      "id": "empty_throne",
+      "name": "Empty Throne",
+      "tier": 1,
+      "requires": [
+        {
+          "affinity": 0,
+          "amount": 1
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 0,
+          "amount": 5
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "12"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "20"
+            },
+            {
+              "label": "+% Pierce Resistance",
+              "value": "8"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+% Aether Resistance",
+              "value": "10"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+% Chaos Resistance",
+              "value": "10"
+            }
+          ],
+          "skill": null
+        }
+      ]
+    },
+    {
+      "id": "eye_of_dreeg",
+      "name": "Eye of the Guardian",
+      "tier": 1,
+      "requires": [
+        {
+          "affinity": 2,
+          "amount": 1
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 2,
+          "amount": 3
+        },
+        {
+          "affinity": 0,
+          "amount": 3
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+% Acid Damage",
+              "value": "15"
+            },
+            {
+              "label": "+% Poison Damage",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "16"
+            },
+            {
+              "label": "+ Offensive Ability",
+              "value": "16"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+% Chaos Damage",
+              "value": "20"
+            },
+            {
+              "label": "+% Poison Damage",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+ Energy Regeneration",
+              "value": "1"
+            },
+            {
+              "label": "+% Poison Damage",
+              "value": "30"
+            },
+            {
+              "label": "+% Vitality Resistance",
+              "value": "8"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 4,
+          "stats": [],
+          "skill": {
+            "name": "Guardian's Gaze",
+            "description": "A peerless eye of the Great Guardian circles around you."
+          }
+        }
+      ]
+    },
+    {
+      "id": "falcon",
+      "name": "Falcon",
+      "tier": 1,
+      "requires": [
+        {
+          "affinity": 0,
+          "amount": 1
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 2,
+          "amount": 3
+        },
+        {
+          "affinity": 0,
+          "amount": 3
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+% Bleeding Damage",
+              "value": "15"
+            },
+            {
+              "label": "+% Physical Damage",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Health",
+              "value": "60"
+            },
+            {
+              "label": "+ Offensive Ability",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Cunning",
+              "value": "20"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+% Bleeding Damage",
+              "value": "50"
+            },
+            {
+              "label": "+% Physical Damage",
+              "value": "24"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 4,
+          "stats": [],
+          "skill": {
+            "name": "Falcon Swoop",
+            "description": "A cast of celestial falcons swoops down upon your foes."
+          }
+        }
+      ]
+    },
+    {
+      "id": "fiend",
+      "name": "Fiend",
+      "tier": 1,
+      "requires": [
+        {
+          "affinity": 1,
+          "amount": 1
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 2,
+          "amount": 3
+        },
+        {
+          "affinity": 1,
+          "amount": 2
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+% Chaos Damage",
+              "value": "15"
+            },
+            {
+              "label": "+% Fire Damage",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Spirit",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+% Chaos Resistance",
+              "value": "8"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+% Chaos Damage",
+              "value": "24"
+            },
+            {
+              "label": "+% Fire Damage",
+              "value": "24"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 4,
+          "stats": [],
+          "skill": {
+            "name": "Flame Torrent",
+            "description": "Devilish flames swirl around you, incinerating all they touch."
+          }
+        }
+      ]
+    },
+    {
+      "id": "fox",
+      "name": "Fox",
+      "tier": 1,
+      "requires": [
+        {
+          "affinity": 2,
+          "amount": 1
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 2,
+          "amount": 5
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Cunning",
+              "value": "15"
+            },
+            {
+              "label": "+ Spirit",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+% Bleeding Damage",
+              "value": "30"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Cunning",
+              "value": "25"
+            },
+            {
+              "label": "+% Bleeding Resistance",
+              "value": "8"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+ Health Regeneration",
+              "value": "10"
+            },
+            {
+              "label": "+% Bleeding Damage",
+              "value": "60"
+            }
+          ],
+          "skill": null
+        }
+      ]
+    },
+    {
+      "id": "gallows",
+      "name": "Gallows",
+      "tier": 1,
+      "requires": [
+        {
+          "affinity": 4,
+          "amount": 1
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 4,
+          "amount": 5
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+% Chaos Damage",
+              "value": "15"
+            },
+            {
+              "label": "+% Vitality Damage",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+% Bleeding Resistance",
+              "value": "10"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+% Vitality Resistance",
+              "value": "10"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+% Chaos Damage",
+              "value": "24"
+            },
+            {
+              "label": "+% Vitality Damage",
+              "value": "24"
+            }
+          ],
+          "skill": null
+        }
+      ]
+    },
+    {
+      "id": "ghoul",
+      "name": "Ghoul",
+      "tier": 1,
+      "requires": [
+        {
+          "affinity": 1,
+          "amount": 1
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 1,
+          "amount": 3
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "8"
+            },
+            {
+              "label": "+ Physique",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Health Regeneration",
+              "value": "16"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "15"
+            },
+            {
+              "label": "+ Physique",
+              "value": "15"
+            },
+            {
+              "label": "+ Spirit",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 2,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 4,
+          "stats": [],
+          "skill": {
+            "name": "Ghoulish Hunger",
+            "description": "When cornered, you are thrown into a ghoulish fervor, desperate for a morsel of flesh."
+          }
+        }
+      ]
+    },
+    {
+      "id": "hammer",
+      "name": "Hammer",
+      "tier": 1,
+      "requires": [
+        {
+          "affinity": 0,
+          "amount": 1
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 0,
+          "amount": 4
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+% Physical Damage",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+% Physical Damage",
+              "value": "24"
+            }
+          ],
+          "skill": null
+        }
+      ]
+    },
+    {
+      "id": "harpy",
+      "name": "Harpy",
+      "tier": 1,
+      "requires": [
+        {
+          "affinity": 0,
+          "amount": 1
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 0,
+          "amount": 5
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+% Cold Damage",
+              "value": "15"
+            },
+            {
+              "label": "+% Pierce Damage",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Cunning",
+              "value": "15"
+            },
+            {
+              "label": "+ Energy Regeneration",
+              "value": "1"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "24"
+            },
+            {
+              "label": "+% Bleeding Resistance",
+              "value": "10"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+% Cold Damage",
+              "value": "24"
+            },
+            {
+              "label": "+% Crit Damage",
+              "value": "8"
+            },
+            {
+              "label": "+% Pierce Damage",
+              "value": "24"
+            }
+          ],
+          "skill": null
+        }
+      ]
+    },
+    {
+      "id": "hawk",
+      "name": "Hawk",
+      "tier": 1,
+      "requires": [
+        {
+          "affinity": 2,
+          "amount": 1
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 2,
+          "amount": 3
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+% Crit Damage",
+              "value": "8"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [],
+          "skill": null
+        }
+      ]
+    },
+    {
+      "id": "hound",
+      "name": "Hound",
+      "tier": 1,
+      "requires": [
+        {
+          "affinity": 4,
+          "amount": 1
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 4,
+          "amount": 4
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Physique",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Physique",
+              "value": "20"
+            }
+          ],
+          "skill": null
+        }
+      ]
+    },
+    {
+      "id": "imp",
+      "name": "Imp",
+      "tier": 1,
+      "requires": [
+        {
+          "affinity": 4,
+          "amount": 1
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 4,
+          "amount": 3
+        },
+        {
+          "affinity": 2,
+          "amount": 3
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+% Aether Damage",
+              "value": "15"
+            },
+            {
+              "label": "+% Fire Damage",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "10"
+            },
+            {
+              "label": "+ Spirit",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Physique",
+              "value": "15"
+            },
+            {
+              "label": "+% Aether Resistance",
+              "value": "8"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+% Aether Damage",
+              "value": "24"
+            },
+            {
+              "label": "+% Fire Damage",
+              "value": "24"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 4,
+          "stats": [],
+          "skill": {
+            "name": "Aetherfire",
+            "description": "A small burst of aetherfire erupts at your target's feet."
+          }
+        }
+      ]
+    },
+    {
+      "id": "jackal",
+      "name": "Jackal",
+      "tier": 1,
+      "requires": [
+        {
+          "affinity": 1,
+          "amount": 1
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 1,
+          "amount": 3
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "12"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [],
+          "skill": null
+        }
+      ]
+    },
+    {
+      "id": "lion",
+      "name": "Lion",
+      "tier": 1,
+      "requires": [
+        {
+          "affinity": 3,
+          "amount": 1
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 3,
+          "amount": 3
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "8"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Spirit",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [],
+          "skill": null
+        }
+      ]
+    },
+    {
+      "id": "lizard",
+      "name": "Lizard",
+      "tier": 1,
+      "requires": [
+        {
+          "affinity": 4,
+          "amount": 1
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 4,
+          "amount": 4
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Health Regeneration",
+              "value": "8"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Health",
+              "value": "50"
+            },
+            {
+              "label": "+ Health Regeneration",
+              "value": "16"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Health",
+              "value": "50"
+            }
+          ],
+          "skill": null
+        }
+      ]
+    },
+    {
+      "id": "owl",
+      "name": "Owl",
+      "tier": 1,
+      "requires": [
+        {
+          "affinity": 0,
+          "amount": 1
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 0,
+          "amount": 5
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Cunning",
+              "value": "15"
+            },
+            {
+              "label": "+ Spirit",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+% Bleeding Damage",
+              "value": "50"
+            },
+            {
+              "label": "+% Burn Damage",
+              "value": "50"
+            },
+            {
+              "label": "+% Electrocute Damage",
+              "value": "50"
+            },
+            {
+              "label": "+% Frostburn Damage",
+              "value": "50"
+            },
+            {
+              "label": "+% Poison Damage",
+              "value": "50"
+            },
+            {
+              "label": "+% Vitality Decay",
+              "value": "50"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        }
+      ]
+    },
+    {
+      "id": "panther",
+      "name": "Panther",
+      "tier": 1,
+      "requires": [
+        {
+          "affinity": 3,
+          "amount": 1
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 4,
+          "amount": 3
+        },
+        {
+          "affinity": 3,
+          "amount": 2
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "12"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Cunning",
+              "value": "15"
+            },
+            {
+              "label": "+ Spirit",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "20"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "25"
+            },
+            {
+              "label": "+% Crit Damage",
+              "value": "6"
+            }
+          ],
+          "skill": null
+        }
+      ]
+    },
+    {
+      "id": "rat",
+      "name": "Rat",
+      "tier": 1,
+      "requires": [
+        {
+          "affinity": 1,
+          "amount": 1
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 2,
+          "amount": 3
+        },
+        {
+          "affinity": 1,
+          "amount": 2
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Cunning",
+              "value": "15"
+            },
+            {
+              "label": "+ Spirit",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+% Poison Damage",
+              "value": "30"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Cunning",
+              "value": "20"
+            },
+            {
+              "label": "+ Spirit",
+              "value": "20"
+            },
+            {
+              "label": "+% Poison & Acid Resistance",
+              "value": "10"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+% Poison Damage",
+              "value": "60"
+            }
+          ],
+          "skill": null
+        }
+      ]
+    },
+    {
+      "id": "raven",
+      "name": "Raven",
+      "tier": 1,
+      "requires": [
+        {
+          "affinity": 2,
+          "amount": 1
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 2,
+          "amount": 5
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Spirit",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Energy Regeneration",
+              "value": "1.5"
+            },
+            {
+              "label": "+ Offensive Ability",
+              "value": "10"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        }
+      ]
+    },
+    {
+      "id": "sailor_s_guide",
+      "name": "Sailor's Guide",
+      "tier": 1,
+      "requires": [
+        {
+          "affinity": 4,
+          "amount": 1
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 4,
+          "amount": 5
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "8"
+            },
+            {
+              "label": "+ Physique",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Physique",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 2,
+          "stats": [],
+          "skill": null
+        }
+      ]
+    },
+    {
+      "id": "candle",
+      "name": "Scholar's Light",
+      "tier": 1,
+      "requires": [
+        {
+          "affinity": 2,
+          "amount": 1
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 2,
+          "amount": 4
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+% Elemental Damage",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "15"
+            },
+            {
+              "label": "+ Physique",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Energy Regeneration",
+              "value": "2.5"
+            },
+            {
+              "label": "+% Aether Resistance",
+              "value": "8"
+            },
+            {
+              "label": "+% Elemental Damage",
+              "value": "24"
+            }
+          ],
+          "skill": null
+        }
+      ]
+    },
+    {
+      "id": "shepherd_s_crook",
+      "name": "Shepherd's Crook",
+      "tier": 1,
+      "requires": [
+        {
+          "affinity": 0,
+          "amount": 1
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 0,
+          "amount": 5
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Health",
+              "value": "40"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Cunning",
+              "value": "15"
+            },
+            {
+              "label": "+ Health",
+              "value": "40"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 4,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "25"
+            }
+          ],
+          "skill": {
+            "name": "Shepherd's Call",
+            "description": "Call upon your minions to join you in battle."
+          }
+        }
+      ]
+    },
+    {
+      "id": "spider",
+      "name": "Spider",
+      "tier": 1,
+      "requires": [
+        {
+          "affinity": 2,
+          "amount": 1
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 2,
+          "amount": 6
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Cunning",
+              "value": "15"
+            },
+            {
+              "label": "+ Spirit",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "20"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "20"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "20"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "20"
+            }
+          ],
+          "skill": null
+        }
+      ]
+    },
+    {
+      "id": "turtle",
+      "name": "Tortoise",
+      "tier": 1,
+      "requires": [
+        {
+          "affinity": 3,
+          "amount": 1
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 4,
+          "amount": 3
+        },
+        {
+          "affinity": 3,
+          "amount": 2
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "12"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "10"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 3,
+          "stats": [],
+          "skill": {
+            "name": "Turtle Shell",
+            "description": "When threatened, a protective barrier forms around you, negating further harm."
+          }
+        }
+      ]
+    },
+    {
+      "id": "tsunami",
+      "name": "Tsunami",
+      "tier": 1,
+      "requires": [
+        {
+          "affinity": 4,
+          "amount": 1
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 4,
+          "amount": 5
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+% Cold Damage",
+              "value": "15"
+            },
+            {
+              "label": "+% Lightning Damage",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "20"
+            },
+            {
+              "label": "+ Spirit",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Physique",
+              "value": "15"
+            },
+            {
+              "label": "+% Electrocute Damage",
+              "value": "50"
+            },
+            {
+              "label": "+% Frostburn Damage",
+              "value": "50"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+% Cold Damage",
+              "value": "24"
+            },
+            {
+              "label": "+% Lightning Damage",
+              "value": "24"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 4,
+          "stats": [],
+          "skill": {
+            "name": "Tsunami",
+            "description": "A torrent of water crashes down upon any foes unfortunate enough to be standing in front of you."
+          }
+        }
+      ]
+    },
+    {
+      "id": "viper",
+      "name": "Viper",
+      "tier": 1,
+      "requires": [
+        {
+          "affinity": 1,
+          "amount": 1
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 4,
+          "amount": 3
+        },
+        {
+          "affinity": 1,
+          "amount": 2
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Cunning",
+              "value": "15"
+            },
+            {
+              "label": "+ Spirit",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+% Vitality Resistance",
+              "value": "10"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [],
+          "skill": null
+        }
+      ]
+    },
+    {
+      "id": "vulture",
+      "name": "Vulture",
+      "tier": 1,
+      "requires": [
+        {
+          "affinity": 1,
+          "amount": 1
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 1,
+          "amount": 5
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Cunning",
+              "value": "15"
+            },
+            {
+              "label": "+ Spirit",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "15"
+            },
+            {
+              "label": "+% Bleeding Resistance",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Energy",
+              "value": "200"
+            },
+            {
+              "label": "+ Health",
+              "value": "80"
+            },
+            {
+              "label": "+ Offensive Ability",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "15"
+            },
+            {
+              "label": "+% Chaos Resistance",
+              "value": "8"
+            },
+            {
+              "label": "+% Vitality Resistance",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        }
+      ]
+    },
+    {
+      "id": "wolverine",
+      "name": "Wolverine",
+      "tier": 1,
+      "requires": [
+        {
+          "affinity": 0,
+          "amount": 1
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 0,
+          "amount": 6
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "25"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 3,
+          "stats": [],
+          "skill": null
+        }
+      ]
+    },
+    {
+      "id": "wraith",
+      "name": "Wraith",
+      "tier": 1,
+      "requires": [
+        {
+          "affinity": 4,
+          "amount": 1
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 0,
+          "amount": 3
+        },
+        {
+          "affinity": 4,
+          "amount": 3
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+% Aether Damage",
+              "value": "15"
+            },
+            {
+              "label": "+% Lightning Damage",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Spirit",
+              "value": "15"
+            },
+            {
+              "label": "+% Aether Resistance",
+              "value": "8"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "24"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+% Aether Damage",
+              "value": "24"
+            },
+            {
+              "label": "+% Lightning Damage",
+              "value": "24"
+            }
+          ],
+          "skill": null
+        }
+      ]
+    },
+    {
+      "id": "pestilence",
+      "name": "Affliction",
+      "tier": 2,
+      "requires": [
+        {
+          "affinity": 2,
+          "amount": 4
+        },
+        {
+          "affinity": 0,
+          "amount": 4
+        },
+        {
+          "affinity": 1,
+          "amount": 3
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 2,
+          "amount": 1
+        },
+        {
+          "affinity": 0,
+          "amount": 1
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+% Poison Damage",
+              "value": "40"
+            },
+            {
+              "label": "+% Vitality Decay",
+              "value": "40"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "20"
+            },
+            {
+              "label": "+ Offensive Ability",
+              "value": "20"
+            },
+            {
+              "label": "+ Spirit",
+              "value": "20"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [],
+          "skill": {
+            "name": "Fetid Pool",
+            "description": "A festering pool erupts beneath your enemies, corrupting the ground."
+          }
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+% Poison Damage",
+              "value": "50"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 4,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "40"
+            },
+            {
+              "label": "+% Vitality Decay",
+              "value": "60"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 6,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+% Poison Damage",
+              "value": "50"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 7,
+          "parent": 6,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "40"
+            },
+            {
+              "label": "+% Vitality Decay",
+              "value": "60"
+            }
+          ],
+          "skill": null
+        }
+      ]
+    },
+    {
+      "id": "caller_of_the_frost",
+      "name": "Amatok the Spirit of Winter",
+      "tier": 2,
+      "requires": [
+        {
+          "affinity": 4,
+          "amount": 6
+        },
+        {
+          "affinity": 2,
+          "amount": 4
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 4,
+          "amount": 1
+        },
+        {
+          "affinity": 2,
+          "amount": 1
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+% Cold Damage",
+              "value": "40"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "30"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+% Cold Damage",
+              "value": "50"
+            },
+            {
+              "label": "+% Frostburn Damage",
+              "value": "50"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 4,
+          "stats": [
+            {
+              "label": "+% Cold Damage",
+              "value": "50"
+            },
+            {
+              "label": "+% Frostburn Damage",
+              "value": "100"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 6,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "25"
+            },
+            {
+              "label": "+% Frostburn Damage",
+              "value": "50"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 7,
+          "parent": 6,
+          "stats": [],
+          "skill": {
+            "name": "Blizzard",
+            "description": "Shards of razor-sharp ice rain down from the sky upon your foes."
+          }
+        }
+      ]
+    },
+    {
+      "id": "assassin",
+      "name": "Assassin",
+      "tier": 2,
+      "requires": [
+        {
+          "affinity": 0,
+          "amount": 6
+        },
+        {
+          "affinity": 3,
+          "amount": 4
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 0,
+          "amount": 1
+        },
+        {
+          "affinity": 3,
+          "amount": 1
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+% Pierce Damage",
+              "value": "40"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Cunning",
+              "value": "20"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "10"
+            },
+            {
+              "label": "+ Offensive Ability",
+              "value": "18"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+% Bleeding Resistance",
+              "value": "10"
+            },
+            {
+              "label": "+% Pierce Damage",
+              "value": "50"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 4,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "25"
+            },
+            {
+              "label": "+% Poison & Acid Resistance",
+              "value": "10"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 6,
+          "parent": 4,
+          "stats": [
+            {
+              "label": "+% Pierce Damage",
+              "value": "50"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 7,
+          "parent": 6,
+          "stats": [],
+          "skill": {
+            "name": "Blades of Wrath",
+            "description": "Push the advantage by unleashing a burst of phantasmal blades that pass through enemies with ease. ^oBlades initially deal 30% reduced damage before reaching their full strength as they expand outward."
+          }
+        }
+      ]
+    },
+    {
+      "id": "autumn_boar",
+      "name": "Autumn Boar",
+      "tier": 2,
+      "requires": [
+        {
+          "affinity": 4,
+          "amount": 4
+        },
+        {
+          "affinity": 0,
+          "amount": 4
+        },
+        {
+          "affinity": 3,
+          "amount": 3
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 0,
+          "amount": 3
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Cunning",
+              "value": "20"
+            },
+            {
+              "label": "+ Physique",
+              "value": "20"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Physique",
+              "value": "15"
+            },
+            {
+              "label": "+% Pierce Resistance",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "25"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "30"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 6,
+          "parent": 5,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 7,
+          "parent": 5,
+          "stats": [],
+          "skill": {
+            "name": "Trample",
+            "description": "Unleash a wave of force from your shield that shatters the very earth and scatters your foes."
+          }
+        }
+      ]
+    },
+    {
+      "id": "behemoth",
+      "name": "Behemoth",
+      "tier": 2,
+      "requires": [
+        {
+          "affinity": 4,
+          "amount": 4
+        },
+        {
+          "affinity": 2,
+          "amount": 4
+        },
+        {
+          "affinity": 1,
+          "amount": 3
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 2,
+          "amount": 3
+        },
+        {
+          "affinity": 1,
+          "amount": 2
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Health Regeneration",
+              "value": "30"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Health",
+              "value": "300"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Health Regeneration",
+              "value": "70"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 2,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 2,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 6,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Health Regeneration",
+              "value": "50"
+            }
+          ],
+          "skill": {
+            "name": "Giant's Blood",
+            "description": "Giant's blood flows through your veins, incurring improved regeneration and healing."
+          }
+        }
+      ]
+    },
+    {
+      "id": "berserker",
+      "name": "Berserker",
+      "tier": 2,
+      "requires": [
+        {
+          "affinity": 0,
+          "amount": 5
+        },
+        {
+          "affinity": 2,
+          "amount": 5
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 2,
+          "amount": 3
+        },
+        {
+          "affinity": 1,
+          "amount": 2
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Health",
+              "value": "300"
+            },
+            {
+              "label": "+ Offensive Ability",
+              "value": "20"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+% Bleeding Damage",
+              "value": "50"
+            },
+            {
+              "label": "+% Physical Damage",
+              "value": "50"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "60"
+            },
+            {
+              "label": "+% Crit Damage",
+              "value": "5"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+% Bleeding Damage",
+              "value": "50"
+            },
+            {
+              "label": "+% Physical Damage",
+              "value": "50"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 4,
+          "stats": [
+            {
+              "label": "+% Bleeding Damage",
+              "value": "50"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 6,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Health Regeneration",
+              "value": "25"
+            },
+            {
+              "label": "+% Pierce Resistance",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        }
+      ]
+    },
+    {
+      "id": "blades_of_nadaan",
+      "name": "Blades of Nadaan",
+      "tier": 2,
+      "requires": [
+        {
+          "affinity": 0,
+          "amount": 10
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 0,
+          "amount": 3
+        },
+        {
+          "affinity": 3,
+          "amount": 2
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+% Pierce Damage",
+              "value": "40"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+% Pierce Damage",
+              "value": "50"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 6,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+% Pierce Damage",
+              "value": "50"
+            }
+          ],
+          "skill": null
+        }
+      ]
+    },
+    {
+      "id": "bysmiel_s_bond",
+      "name": "Bysmiel's Bonds",
+      "tier": 2,
+      "requires": [
+        {
+          "affinity": 2,
+          "amount": 6
+        },
+        {
+          "affinity": 1,
+          "amount": 4
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 2,
+          "amount": 3
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Physique",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+% Vitality Resistance",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 4,
+          "stats": [],
+          "skill": {
+            "name": "Bysmiel's Command",
+            "description": "Call forth an eldritch hound to snap and tear at your foes. The hound's presence in the physical realm is unstable and it will only remain at your side for a limited time. ^oThe hound scales with Pet Bonuses."
+          }
+        }
+      ]
+    },
+    {
+      "id": "chariot_of_the_dead",
+      "name": "Chariot of the Dead",
+      "tier": 2,
+      "requires": [
+        {
+          "affinity": 0,
+          "amount": 5
+        },
+        {
+          "affinity": 2,
+          "amount": 5
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 2,
+          "amount": 3
+        },
+        {
+          "affinity": 1,
+          "amount": 2
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Cunning",
+              "value": "20"
+            },
+            {
+              "label": "+ Physique",
+              "value": "20"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Cunning",
+              "value": "25"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+% Vitality Resistance",
+              "value": "16"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "25"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 6,
+          "parent": 5,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 7,
+          "parent": 6,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "70"
+            }
+          ],
+          "skill": {
+            "name": "Wayward Soul",
+            "description": "Sacrifice a wayward soul to ward yourself against the specter of death."
+          }
+        }
+      ]
+    },
+    {
+      "id": "crab",
+      "name": "Crab",
+      "tier": 2,
+      "requires": [
+        {
+          "affinity": 0,
+          "amount": 6
+        },
+        {
+          "affinity": 3,
+          "amount": 4
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 0,
+          "amount": 3
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Physique",
+              "value": "25"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+% Elemental Damage",
+              "value": "50"
+            },
+            {
+              "label": "+% Physical Damage",
+              "value": "50"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [],
+          "skill": {
+            "name": "Arcane Barrier",
+            "description": "A barrier to the forces of magic forms around you."
+          }
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "40"
+            },
+            {
+              "label": "+ Offensive Ability",
+              "value": "40"
+            },
+            {
+              "label": "+% Pierce Resistance",
+              "value": "18"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 4,
+          "stats": [
+            {
+              "label": "+% Burn Damage",
+              "value": "100"
+            },
+            {
+              "label": "+% Electrocute Damage",
+              "value": "100"
+            },
+            {
+              "label": "+% Elemental Damage",
+              "value": "60"
+            },
+            {
+              "label": "+% Frostburn Damage",
+              "value": "100"
+            }
+          ],
+          "skill": null
+        }
+      ]
+    },
+    {
+      "id": "dire_bear",
+      "name": "Dire Bear",
+      "tier": 2,
+      "requires": [
+        {
+          "affinity": 0,
+          "amount": 5
+        },
+        {
+          "affinity": 4,
+          "amount": 5
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 4,
+          "amount": 1
+        },
+        {
+          "affinity": 0,
+          "amount": 1
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+% Physical Damage",
+              "value": "40"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Cunning",
+              "value": "20"
+            },
+            {
+              "label": "+ Defensive Ability",
+              "value": "15"
+            },
+            {
+              "label": "+ Physique",
+              "value": "20"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+% Physical Damage",
+              "value": "50"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 4,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 6,
+          "parent": 4,
+          "stats": [],
+          "skill": {
+            "name": "",
+            "description": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "harvestman_s_scythe",
+      "name": "Harvestman's Scythe",
+      "tier": 2,
+      "requires": [
+        {
+          "affinity": 0,
+          "amount": 3
+        },
+        {
+          "affinity": 4,
+          "amount": 5
+        },
+        {
+          "affinity": 3,
+          "amount": 3
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 4,
+          "amount": 3
+        },
+        {
+          "affinity": 0,
+          "amount": 3
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Energy Regeneration",
+              "value": "2"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Energy",
+              "value": "200"
+            },
+            {
+              "label": "+ Health",
+              "value": "200"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 4,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 6,
+          "parent": 5,
+          "stats": [
+            {
+              "label": "+ Energy Regeneration",
+              "value": "3"
+            },
+            {
+              "label": "+ Health Regeneration",
+              "value": "50"
+            }
+          ],
+          "skill": null
+        }
+      ]
+    },
+    {
+      "id": "huntress",
+      "name": "Huntress",
+      "tier": 2,
+      "requires": [
+        {
+          "affinity": 0,
+          "amount": 4
+        },
+        {
+          "affinity": 2,
+          "amount": 4
+        },
+        {
+          "affinity": 1,
+          "amount": 3
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 2,
+          "amount": 1
+        },
+        {
+          "affinity": 0,
+          "amount": 1
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Health",
+              "value": "200"
+            },
+            {
+              "label": "+ Offensive Ability",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Cunning",
+              "value": "20"
+            },
+            {
+              "label": "+% Pierce Damage",
+              "value": "50"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "25"
+            },
+            {
+              "label": "+% Bleeding Damage",
+              "value": "60"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+% Pierce Resistance",
+              "value": "8"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+ Health Regeneration",
+              "value": "25"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 6,
+          "parent": 5,
+          "stats": [
+            {
+              "label": "+% Bleeding Damage",
+              "value": "50"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 7,
+          "parent": 5,
+          "stats": [],
+          "skill": {
+            "name": "",
+            "description": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "hydra",
+      "name": "Hydra",
+      "tier": 2,
+      "requires": [
+        {
+          "affinity": 2,
+          "amount": 5
+        },
+        {
+          "affinity": 0,
+          "amount": 3
+        },
+        {
+          "affinity": 1,
+          "amount": 3
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 2,
+          "amount": 3
+        },
+        {
+          "affinity": 1,
+          "amount": 2
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "25"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "35"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "25"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 4,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 6,
+          "parent": 2,
+          "stats": [],
+          "skill": null
+        }
+      ]
+    },
+    {
+      "id": "kraken",
+      "name": "Kraken",
+      "tier": 2,
+      "requires": [
+        {
+          "affinity": 4,
+          "amount": 5
+        },
+        {
+          "affinity": 2,
+          "amount": 5
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 4,
+          "amount": 3
+        },
+        {
+          "affinity": 1,
+          "amount": 2
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Health",
+              "value": "250"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Health",
+              "value": "250"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 1,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+% Crit Damage",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        }
+      ]
+    },
+    {
+      "id": "magi",
+      "name": "Magi",
+      "tier": 2,
+      "requires": [
+        {
+          "affinity": 2,
+          "amount": 10
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 2,
+          "amount": 3
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+% Fire Damage",
+              "value": "40"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "20"
+            },
+            {
+              "label": "+ Energy Regeneration",
+              "value": "1.5"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+ Physique",
+              "value": "15"
+            },
+            {
+              "label": "+% Burn Damage",
+              "value": "50"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+% Fire Damage",
+              "value": "40"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 6,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+% Burn Damage",
+              "value": "50"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 7,
+          "parent": 6,
+          "stats": [],
+          "skill": {
+            "name": "Fissure",
+            "description": "A fissure opens in the earth, spewing lava and brimstone upon nearby foes."
+          }
+        }
+      ]
+    },
+    {
+      "id": "manticore",
+      "name": "Manticore",
+      "tier": 2,
+      "requires": [
+        {
+          "affinity": 2,
+          "amount": 6
+        },
+        {
+          "affinity": 1,
+          "amount": 4
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 0,
+          "amount": 1
+        },
+        {
+          "affinity": 2,
+          "amount": 1
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Health",
+              "value": "250"
+            },
+            {
+              "label": "+ Offensive Ability",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+% Acid Damage",
+              "value": "50"
+            },
+            {
+              "label": "+% Poison Damage",
+              "value": "50"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "20"
+            },
+            {
+              "label": "+% Poison & Acid Resistance",
+              "value": "10"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+% Acid Damage",
+              "value": "40"
+            },
+            {
+              "label": "+% Poison Damage",
+              "value": "40"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 6,
+          "parent": 5,
+          "stats": [],
+          "skill": {
+            "name": "Acid Spray",
+            "description": "The manticore's sting pierces through your target, creating a spray of caustic acid behind them."
+          }
+        }
+      ]
+    },
+    {
+      "id": "messenger_of_war",
+      "name": "Messenger of War",
+      "tier": 2,
+      "requires": [
+        {
+          "affinity": 4,
+          "amount": 7
+        },
+        {
+          "affinity": 0,
+          "amount": 3
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 4,
+          "amount": 3
+        },
+        {
+          "affinity": 1,
+          "amount": 2
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "20"
+            },
+            {
+              "label": "+ Physique",
+              "value": "20"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "25"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 2,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 6,
+          "parent": 5,
+          "stats": [],
+          "skill": {
+            "name": "Messenger of War",
+            "description": "Carry on your message of conquest, rebuking any foe daring enough to try and stop you."
+          }
+        }
+      ]
+    },
+    {
+      "id": "oklaine_s_lantern",
+      "name": "Oklaine's Lantern",
+      "tier": 2,
+      "requires": [
+        {
+          "affinity": 2,
+          "amount": 10
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 2,
+          "amount": 3
+        },
+        {
+          "affinity": 3,
+          "amount": 2
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "20"
+            },
+            {
+              "label": "+ Offensive Ability",
+              "value": "25"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "15"
+            },
+            {
+              "label": "+% Crit Damage",
+              "value": "5"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 4,
+          "stats": [
+            {
+              "label": "+ Energy Regeneration",
+              "value": "2"
+            }
+          ],
+          "skill": null
+        }
+      ]
+    },
+    {
+      "id": "revenant",
+      "name": "Revenant",
+      "tier": 2,
+      "requires": [
+        {
+          "affinity": 1,
+          "amount": 8
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 4,
+          "amount": 1
+        },
+        {
+          "affinity": 1,
+          "amount": 1
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+% Vitality Resistance",
+              "value": "24"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+ Health",
+              "value": "250"
+            },
+            {
+              "label": "+% Vitality Damage",
+              "value": "60"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 4,
+          "stats": [
+            {
+              "label": "+% Aether Damage",
+              "value": "60"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 6,
+          "parent": 5,
+          "stats": [],
+          "skill": {
+            "name": "Raise the Dead",
+            "description": "Raise the dead to serve you. The necrotic energies required for this ritual are very unstable however, and the undead minions will only exist for a limited time. ^oThe dead scale with player damage bonuses."
+          }
+        }
+      ]
+    },
+    {
+      "id": "rhowan_s_crown",
+      "name": "Rhowan's Crown",
+      "tier": 2,
+      "requires": [
+        {
+          "affinity": 2,
+          "amount": 6
+        },
+        {
+          "affinity": 0,
+          "amount": 4
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 2,
+          "amount": 1
+        },
+        {
+          "affinity": 0,
+          "amount": 1
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+% Elemental Damage",
+              "value": "30"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "20"
+            },
+            {
+              "label": "+ Spirit",
+              "value": "20"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [],
+          "skill": {
+            "name": "Elemental Storm",
+            "description": "A crackling whirlwind of flame and ice manifests itself at your command."
+          }
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "20"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 4,
+          "stats": [
+            {
+              "label": "+% Burn Damage",
+              "value": "60"
+            },
+            {
+              "label": "+% Chaos Resistance",
+              "value": "8"
+            },
+            {
+              "label": "+% Electrocute Damage",
+              "value": "60"
+            },
+            {
+              "label": "+% Elemental Damage",
+              "value": "40"
+            },
+            {
+              "label": "+% Frostburn Damage",
+              "value": "60"
+            }
+          ],
+          "skill": null
+        }
+      ]
+    },
+    {
+      "id": "rhowan_s_scepter",
+      "name": "Rhowan's Scepter",
+      "tier": 2,
+      "requires": [
+        {
+          "affinity": 0,
+          "amount": 6
+        },
+        {
+          "affinity": 3,
+          "amount": 4
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 0,
+          "amount": 3
+        },
+        {
+          "affinity": 3,
+          "amount": 2
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "20"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+% Physical Damage",
+              "value": "50"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+% Physical Damage",
+              "value": "50"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "50"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 6,
+          "parent": 5,
+          "stats": [],
+          "skill": null
+        }
+      ]
+    },
+    {
+      "id": "scales_of_ulcama",
+      "name": "Scales of Ulcama",
+      "tier": 2,
+      "requires": [
+        {
+          "affinity": 3,
+          "amount": 8
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 3,
+          "amount": 2
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Energy",
+              "value": "300"
+            },
+            {
+              "label": "+ Health",
+              "value": "250"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Energy Regeneration",
+              "value": "2.5"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+ Health Regeneration",
+              "value": "30"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "45"
+            },
+            {
+              "label": "+ Physique",
+              "value": "20"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 6,
+          "parent": 5,
+          "stats": [],
+          "skill": {
+            "name": "Tip the Scales",
+            "description": "Tip the scales in your favor, sapping your attackers of vitality and transferring it to you."
+          }
+        }
+      ]
+    },
+    {
+      "id": "shieldmaiden",
+      "name": "Shieldmaiden",
+      "tier": 2,
+      "requires": [
+        {
+          "affinity": 4,
+          "amount": 6
+        },
+        {
+          "affinity": 3,
+          "amount": 4
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 4,
+          "amount": 3
+        },
+        {
+          "affinity": 3,
+          "amount": 2
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "20"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "50"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 2,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 6,
+          "parent": 5,
+          "stats": [],
+          "skill": null
+        }
+      ]
+    },
+    {
+      "id": "samael_s_witchblade",
+      "name": "Solael's Witchblade",
+      "tier": 2,
+      "requires": [
+        {
+          "affinity": 2,
+          "amount": 6
+        },
+        {
+          "affinity": 1,
+          "amount": 4
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 2,
+          "amount": 1
+        },
+        {
+          "affinity": 1,
+          "amount": 1
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+% Chaos Damage",
+              "value": "40"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "10"
+            },
+            {
+              "label": "+ Physique",
+              "value": "15"
+            },
+            {
+              "label": "+ Spirit",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "15"
+            },
+            {
+              "label": "+% Chaos Damage",
+              "value": "30"
+            },
+            {
+              "label": "+% Fire Damage",
+              "value": "30"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "25"
+            },
+            {
+              "label": "+% Chaos Damage",
+              "value": "50"
+            },
+            {
+              "label": "+% Fire Damage",
+              "value": "50"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 4,
+          "stats": [],
+          "skill": {
+            "name": "",
+            "description": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "solemn_watcher",
+      "name": "Solemn Watcher",
+      "tier": 2,
+      "requires": [
+        {
+          "affinity": 4,
+          "amount": 10
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 4,
+          "amount": 3
+        },
+        {
+          "affinity": 3,
+          "amount": 2
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Physique",
+              "value": "25"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+% Chaos Resistance",
+              "value": "18"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+% Pierce Resistance",
+              "value": "18"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "30"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 4,
+          "stats": [],
+          "skill": null
+        }
+      ]
+    },
+    {
+      "id": "targo_the_builder",
+      "name": "Targo the Builder",
+      "tier": 2,
+      "requires": [
+        {
+          "affinity": 4,
+          "amount": 6
+        },
+        {
+          "affinity": 3,
+          "amount": 4
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 3,
+          "amount": 1
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "20"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+% Aether Resistance",
+              "value": "8"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+% Chaos Resistance",
+              "value": "8"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 4,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "35"
+            },
+            {
+              "label": "+ Health",
+              "value": "300"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 6,
+          "parent": 4,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 7,
+          "parent": 6,
+          "stats": [],
+          "skill": {
+            "name": "Shield Wall",
+            "description": "A metaphysical barrier forms around you."
+          }
+        }
+      ]
+    },
+    {
+      "id": "tempest",
+      "name": "Tempest",
+      "tier": 2,
+      "requires": [
+        {
+          "affinity": 4,
+          "amount": 5
+        },
+        {
+          "affinity": 0,
+          "amount": 5
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 2,
+          "amount": 1
+        },
+        {
+          "affinity": 4,
+          "amount": 1
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+% Lightning Damage",
+              "value": "40"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Physique",
+              "value": "20"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+% Electrocute Damage",
+              "value": "50"
+            },
+            {
+              "label": "+% Lightning Damage",
+              "value": "50"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "25"
+            },
+            {
+              "label": "+ Offensive Ability",
+              "value": "25"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 4,
+          "stats": [
+            {
+              "label": "+% Lightning Damage",
+              "value": "250"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 6,
+          "parent": 4,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "20"
+            },
+            {
+              "label": "+% Electrocute Damage",
+              "value": "50"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 7,
+          "parent": 6,
+          "stats": [],
+          "skill": {
+            "name": "Reckless Tempest",
+            "description": "Static energy swells within you, unleashed upon nearby foes in the form of destructive bolts of lightning."
+          }
+        }
+      ]
+    },
+    {
+      "id": "ulo_keeper_of_the_waters",
+      "name": "Ulo the Keeper of the Waters",
+      "tier": 2,
+      "requires": [
+        {
+          "affinity": 4,
+          "amount": 6
+        },
+        {
+          "affinity": 3,
+          "amount": 4
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 4,
+          "amount": 3
+        },
+        {
+          "affinity": 3,
+          "amount": 2
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Energy",
+              "value": "300"
+            },
+            {
+              "label": "+ Health",
+              "value": "300"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+% Chaos Resistance",
+              "value": "20"
+            },
+            {
+              "label": "+% Poison & Acid Resistance",
+              "value": "20"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 2,
+          "stats": [],
+          "skill": {
+            "name": "Cleansing Waters",
+            "description": "Ulo's cleansing waters purge all foul magic from the area, removing beneficial auras and spells from foes while allies are cleansed of negative ailments, including damage over time effects."
+          }
+        }
+      ]
+    },
+    {
+      "id": "wendigo",
+      "name": "Wendigo",
+      "tier": 2,
+      "requires": [
+        {
+          "affinity": 4,
+          "amount": 6
+        },
+        {
+          "affinity": 1,
+          "amount": 4
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 1,
+          "amount": 2
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+% Vitality Damage",
+              "value": "40"
+            },
+            {
+              "label": "+% Vitality Decay",
+              "value": "40"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Health",
+              "value": "300"
+            },
+            {
+              "label": "+ Spirit",
+              "value": "20"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "40"
+            },
+            {
+              "label": "+% Vitality Decay",
+              "value": "40"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 4,
+          "stats": [
+            {
+              "label": "+% Vitality Damage",
+              "value": "50"
+            },
+            {
+              "label": "+% Vitality Decay",
+              "value": "50"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 6,
+          "parent": 5,
+          "stats": [],
+          "skill": {
+            "name": "",
+            "description": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "widow",
+      "name": "Widow",
+      "tier": 2,
+      "requires": [
+        {
+          "affinity": 2,
+          "amount": 6
+        },
+        {
+          "affinity": 4,
+          "amount": 4
+        }
+      ],
+      "bonus": [
+        {
+          "affinity": 4,
+          "amount": 3
+        }
+      ],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+% Aether Damage",
+              "value": "40"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "10"
+            },
+            {
+              "label": "+ Offensive Ability",
+              "value": "18"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Physique",
+              "value": "15"
+            },
+            {
+              "label": "+ Spirit",
+              "value": "15"
+            },
+            {
+              "label": "+% Aether Damage",
+              "value": "30"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+% Aether Resistance",
+              "value": "18"
+            },
+            {
+              "label": "+% Vitality Resistance",
+              "value": "8"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 4,
+          "stats": [
+            {
+              "label": "+% Aether Damage",
+              "value": "50"
+            },
+            {
+              "label": "+% Lightning Damage",
+              "value": "50"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 6,
+          "parent": 5,
+          "stats": [],
+          "skill": {
+            "name": "Arcane Bomb",
+            "description": "Mark the ground with an arcane sigil that erupts upon coming in contact with an enemy. ^oArcane Bombs take 1 second to arm."
+          }
+        }
+      ]
+    },
+    {
+      "id": "abomination",
+      "name": "Abomination",
+      "tier": 3,
+      "requires": [
+        {
+          "affinity": 1,
+          "amount": 8
+        },
+        {
+          "affinity": 2,
+          "amount": 18
+        }
+      ],
+      "bonus": [],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+% Chaos Damage",
+              "value": "80"
+            },
+            {
+              "label": "+% Poison Damage",
+              "value": "80"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+% Acid Damage",
+              "value": "80"
+            },
+            {
+              "label": "+% Vitality Damage",
+              "value": "80"
+            },
+            {
+              "label": "+% Vitality Decay",
+              "value": "80"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "40"
+            },
+            {
+              "label": "+% Poison & Acid Resistance",
+              "value": "20"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+ Health",
+              "value": "400"
+            },
+            {
+              "label": "+ Offensive Ability",
+              "value": "40"
+            },
+            {
+              "label": "+% Chaos Damage",
+              "value": "80"
+            },
+            {
+              "label": "+% Vitality Damage",
+              "value": "80"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 4,
+          "stats": [
+            {
+              "label": "+% Chaos Damage",
+              "value": "80"
+            },
+            {
+              "label": "+% Vitality Damage",
+              "value": "100"
+            },
+            {
+              "label": "+% Vitality Decay",
+              "value": "100"
+            }
+          ],
+          "skill": {
+            "name": "Abominable Might",
+            "description": "The chaotic powers of the Void flow through you, turning your weapons into conduits for your fiendish might."
+          }
+        },
+        {
+          "index": 6,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+ Health",
+              "value": "400"
+            },
+            {
+              "label": "+ Offensive Ability",
+              "value": "40"
+            },
+            {
+              "label": "+% Poison Damage",
+              "value": "80"
+            },
+            {
+              "label": "+% Vitality Decay",
+              "value": "80"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 7,
+          "parent": 6,
+          "stats": [
+            {
+              "label": "+% Acid Damage",
+              "value": "100"
+            },
+            {
+              "label": "+% Poison Damage",
+              "value": "100"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 8,
+          "parent": 7,
+          "stats": [],
+          "skill": {
+            "name": "Tainted Eruption",
+            "description": "The corruption trapped within you is unleashed in a massive explosion of vile toxins."
+          }
+        }
+      ]
+    },
+    {
+      "id": "aeon_s_hourglass",
+      "name": "Aeon's Hourglass",
+      "tier": 3,
+      "requires": [
+        {
+          "affinity": 1,
+          "amount": 8
+        },
+        {
+          "affinity": 4,
+          "amount": 18
+        }
+      ],
+      "bonus": [],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Cunning",
+              "value": "40"
+            },
+            {
+              "label": "+ Physique",
+              "value": "40"
+            },
+            {
+              "label": "+ Spirit",
+              "value": "40"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+% Aether Resistance",
+              "value": "20"
+            },
+            {
+              "label": "+% Vitality Resistance",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 4,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "70"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 6,
+          "parent": 5,
+          "stats": [],
+          "skill": {
+            "name": "Time Dilation",
+            "description": "The sands of the hourglass spin in an untamed whirlwind. The laws of time itself no longer apply to you."
+          }
+        }
+      ]
+    },
+    {
+      "id": "blind_sage",
+      "name": "Blind Sage",
+      "tier": 3,
+      "requires": [
+        {
+          "affinity": 0,
+          "amount": 10
+        },
+        {
+          "affinity": 2,
+          "amount": 18
+        }
+      ],
+      "bonus": [],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "25"
+            },
+            {
+              "label": "+ Physique",
+              "value": "30"
+            },
+            {
+              "label": "+ Spirit",
+              "value": "30"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "40"
+            },
+            {
+              "label": "+% Elemental Damage",
+              "value": "80"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+% Crit Damage",
+              "value": "12"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "45"
+            },
+            {
+              "label": "+% Cold Damage",
+              "value": "100"
+            },
+            {
+              "label": "+% Frostburn Damage",
+              "value": "250"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "45"
+            },
+            {
+              "label": "+% Electrocute Damage",
+              "value": "250"
+            },
+            {
+              "label": "+% Lightning Damage",
+              "value": "100"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 6,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "45"
+            },
+            {
+              "label": "+% Burn Damage",
+              "value": "250"
+            },
+            {
+              "label": "+% Fire Damage",
+              "value": "100"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 7,
+          "parent": 6,
+          "stats": [],
+          "skill": {
+            "name": "Elemental Seeker",
+            "description": "Conjure an eldritch creature of pure energy that seeks out and burns nearby foes with its very presence before returning to the Aether in an explosion of energy. ^oElemental Seekers scale with player damage bonuses."
+          }
+        }
+      ]
+    },
+    {
+      "id": "dying_god",
+      "name": "Dying God",
+      "tier": 3,
+      "requires": [
+        {
+          "affinity": 1,
+          "amount": 8
+        },
+        {
+          "affinity": 4,
+          "amount": 15
+        }
+      ],
+      "bonus": [],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "20"
+            },
+            {
+              "label": "+% Vitality Damage",
+              "value": "80"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "20"
+            },
+            {
+              "label": "+% Chaos Damage",
+              "value": "80"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Spirit",
+              "value": "35"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "25"
+            },
+            {
+              "label": "+ Offensive Ability",
+              "value": "45"
+            },
+            {
+              "label": "+% Chaos Resistance",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 4,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "30"
+            },
+            {
+              "label": "+% Chaos Damage",
+              "value": "100"
+            },
+            {
+              "label": "+% Vitality Damage",
+              "value": "100"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 6,
+          "parent": 5,
+          "stats": [
+            {
+              "label": "+% Crit Damage",
+              "value": "4"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 7,
+          "parent": 5,
+          "stats": [],
+          "skill": {
+            "name": "",
+            "description": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "leviathan",
+      "name": "Leviathan",
+      "tier": 3,
+      "requires": [
+        {
+          "affinity": 2,
+          "amount": 13
+        },
+        {
+          "affinity": 0,
+          "amount": 13
+        }
+      ],
+      "bonus": [],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+% Cold Damage",
+              "value": "80"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Physique",
+              "value": "35"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "60"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+% Pierce Resistance",
+              "value": "20"
+            },
+            {
+              "label": "+% Vitality Resistance",
+              "value": "20"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 4,
+          "stats": [
+            {
+              "label": "+% Cold Damage",
+              "value": "100"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 6,
+          "parent": 4,
+          "stats": [
+            {
+              "label": "+% Frostburn Damage",
+              "value": "100"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 7,
+          "parent": 4,
+          "stats": [],
+          "skill": {
+            "name": "Whirlpool",
+            "description": "The stirring depths are unleashed as a hungering whirlpool appears to devastate your foes."
+          }
+        }
+      ]
+    },
+    {
+      "id": "light_of_empyrion",
+      "name": "Light of Empyrion",
+      "tier": 3,
+      "requires": [
+        {
+          "affinity": 3,
+          "amount": 8
+        },
+        {
+          "affinity": 4,
+          "amount": 18
+        }
+      ],
+      "bonus": [],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "25"
+            },
+            {
+              "label": "+% Fire Damage",
+              "value": "80"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "25"
+            },
+            {
+              "label": "+% Physical Damage",
+              "value": "80"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+% Vitality Resistance",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+% Fire Damage",
+              "value": "100"
+            },
+            {
+              "label": "+% Physical Damage",
+              "value": "100"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 4,
+          "stats": [
+            {
+              "label": "+% Aether Resistance",
+              "value": "20"
+            },
+            {
+              "label": "+% Chaos Resistance",
+              "value": "20"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 6,
+          "parent": 5,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 7,
+          "parent": 6,
+          "stats": [],
+          "skill": {
+            "name": "Light of Empyrion",
+            "description": "The divine light of Empyrion banishes the darkness and sears your foes."
+          }
+        }
+      ]
+    },
+    {
+      "id": "mogdrogen_the_wolf",
+      "name": "Mogdrogen the Wolf",
+      "tier": 3,
+      "requires": [
+        {
+          "affinity": 0,
+          "amount": 15
+        },
+        {
+          "affinity": 2,
+          "amount": 12
+        }
+      ],
+      "bonus": [],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Health",
+              "value": "300"
+            },
+            {
+              "label": "+ Offensive Ability",
+              "value": "35"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+% Bleeding Damage",
+              "value": "80"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "50"
+            },
+            {
+              "label": "+ Health",
+              "value": "350"
+            },
+            {
+              "label": "+% Vitality Resistance",
+              "value": "20"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+% Bleeding Damage",
+              "value": "80"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 4,
+          "stats": [
+            {
+              "label": "+% Bleeding Resistance",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 6,
+          "parent": 5,
+          "stats": [
+            {
+              "label": "+% Bleeding Damage",
+              "value": "50"
+            }
+          ],
+          "skill": {
+            "name": "Howl of Mogdrogen",
+            "description": "Driven by the thrill of a fresh kill, you and your minions enter a fervent rage."
+          }
+        }
+      ]
+    },
+    {
+      "id": "menhir_s_obelisk",
+      "name": "Obelisk of Menhir",
+      "tier": 3,
+      "requires": [
+        {
+          "affinity": 3,
+          "amount": 8
+        },
+        {
+          "affinity": 4,
+          "amount": 15
+        }
+      ],
+      "bonus": [],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "30"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "40"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 1,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 4,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 6,
+          "parent": 5,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 7,
+          "parent": 6,
+          "stats": [],
+          "skill": {
+            "name": "",
+            "description": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "oleron",
+      "name": "Oleron",
+      "tier": 3,
+      "requires": [
+        {
+          "affinity": 0,
+          "amount": 20
+        },
+        {
+          "affinity": 3,
+          "amount": 7
+        }
+      ],
+      "bonus": [],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Cunning",
+              "value": "30"
+            },
+            {
+              "label": "+ Health",
+              "value": "300"
+            },
+            {
+              "label": "+ Physique",
+              "value": "30"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+% Bleeding Damage",
+              "value": "80"
+            },
+            {
+              "label": "+% Physical Damage",
+              "value": "80"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "35"
+            },
+            {
+              "label": "+% Bleeding Resistance",
+              "value": "10"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+ Health",
+              "value": "350"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 4,
+          "stats": [
+            {
+              "label": "+% Bleeding Damage",
+              "value": "100"
+            },
+            {
+              "label": "+% Physical Damage",
+              "value": "120"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 6,
+          "parent": 4,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "35"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 7,
+          "parent": 4,
+          "stats": [],
+          "skill": {
+            "name": "Blind Fury",
+            "description": "Exhilarated by the blood and gore you spill, you violently assault all nearby foes in a flurry of vicious blows."
+          }
+        }
+      ]
+    },
+    {
+      "id": "spear_of_the_heavens",
+      "name": "Spear of the Heavens",
+      "tier": 3,
+      "requires": [
+        {
+          "affinity": 4,
+          "amount": 20
+        },
+        {
+          "affinity": 1,
+          "amount": 7
+        }
+      ],
+      "bonus": [],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "20"
+            },
+            {
+              "label": "+% Lightning Damage",
+              "value": "80"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "20"
+            },
+            {
+              "label": "+% Aether Damage",
+              "value": "80"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+% Aether Resistance",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+% Crit Damage",
+              "value": "5"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 4,
+          "stats": [
+            {
+              "label": "+% Aether Damage",
+              "value": "100"
+            },
+            {
+              "label": "+% Lightning Damage",
+              "value": "100"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 6,
+          "parent": 5,
+          "stats": [],
+          "skill": {
+            "name": "Spear of the Heavens",
+            "description": "A celestial spear smites foes who dare strike you."
+          }
+        }
+      ]
+    },
+    {
+      "id": "tree_of_life",
+      "name": "Tree of Life",
+      "tier": 3,
+      "requires": [
+        {
+          "affinity": 4,
+          "amount": 20
+        },
+        {
+          "affinity": 3,
+          "amount": 7
+        }
+      ],
+      "bonus": [],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Health Regeneration",
+              "value": "60"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "value": "30"
+            },
+            {
+              "label": "+ Health Regeneration",
+              "value": "60"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 4,
+          "stats": [],
+          "skill": null
+        },
+        {
+          "index": 6,
+          "parent": 4,
+          "stats": [],
+          "skill": {
+            "name": "",
+            "description": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "ulzuin_s_torch",
+      "name": "Ulzuin's Torch",
+      "tier": 3,
+      "requires": [
+        {
+          "affinity": 1,
+          "amount": 8
+        },
+        {
+          "affinity": 2,
+          "amount": 15
+        }
+      ],
+      "bonus": [],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "20"
+            },
+            {
+              "label": "+% Fire Damage",
+              "value": "80"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+% Chaos Resistance",
+              "value": "15"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+% Crit Damage",
+              "value": "5"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+% Fire Damage",
+              "value": "100"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 4,
+          "stats": [
+            {
+              "label": "+% Burn Damage",
+              "value": "100"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 6,
+          "parent": 3,
+          "stats": [
+            {
+              "label": "+% Burn Damage",
+              "value": "100"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 7,
+          "parent": 6,
+          "stats": [],
+          "skill": {
+            "name": "Meteor Shower",
+            "description": "At your behest, the sky splits open to unleash several barrages of molten rock. ^oOnly one Meteor Shower can be cast at any one time."
+          }
+        }
+      ]
+    },
+    {
+      "id": "the_unknown_soldier",
+      "name": "Unknown Soldier",
+      "tier": 3,
+      "requires": [
+        {
+          "affinity": 0,
+          "amount": 15
+        },
+        {
+          "affinity": 3,
+          "amount": 8
+        }
+      ],
+      "bonus": [],
+      "nodes": [
+        {
+          "index": 1,
+          "parent": null,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "15"
+            },
+            {
+              "label": "+% Pierce Damage",
+              "value": "80"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 2,
+          "parent": 1,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "40"
+            },
+            {
+              "label": "+% Bleeding Damage",
+              "value": "80"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 3,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+ Health",
+              "value": "400"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 4,
+          "parent": 2,
+          "stats": [
+            {
+              "label": "+% Bleeding Damage",
+              "value": "120"
+            },
+            {
+              "label": "+% Pierce Damage",
+              "value": "120"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 5,
+          "parent": 4,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "value": "40"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 6,
+          "parent": 5,
+          "stats": [
+            {
+              "label": "+% Crit Damage",
+              "value": "12"
+            }
+          ],
+          "skill": null
+        },
+        {
+          "index": 7,
+          "parent": 6,
+          "stats": [],
+          "skill": {
+            "name": "Living Shadow",
+            "description": "A manifestation of a nameless hero rises to fight alongside you and restore your vitality with every blow. ^oLiving Shadows scale with player damage bonuses."
+          }
+        }
+      ]
+    }
+  ],
+  "crossroads": [
+    {
+      "id": "crossroads",
+      "affinity": 4
+    },
+    {
+      "id": "crossroads",
+      "affinity": 1
+    },
+    {
+      "id": "crossroads",
+      "affinity": 3
+    },
+    {
+      "id": "crossroads",
+      "affinity": 2
+    },
+    {
+      "id": "crossroads",
+      "affinity": 0
+    }
+  ]
+}
