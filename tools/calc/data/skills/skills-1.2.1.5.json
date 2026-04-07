@@ -6684,7 +6684,7 @@
           "id": "playerclass02.mortartrap3_petmod",
           "name": "\"The Big One\"",
           "description": "Loads the Mortar Trap with a devastating bomb known only as \"The Big One\", which will fire towards the beginning of the trap's barrage and then periodically loaded in subsequent shots. The resulting colossal explosion will leave your enemies shellshocked, if they survive at all.",
-          "icon": "ui/skills/icons/class02/skillicon_mortartrap3_up.tex",
+          "icon": "skillicon_mortartrap3_up.png",
           "maxRank": 12,
           "ui": {
             "row": 1,
@@ -6854,7 +6854,7 @@
           "id": "playerclass02.mortartrap2_petmod",
           "name": "Heavy Ordnance",
           "description": "Potent sorcery increases the damage output of mortar shells and infuses them with electrical damage. ^oAffects both the base Mortar and \"The Big One\".",
-          "icon": "ui/skills/icons/class02/skillicon_mortartrap2_up.tex",
+          "icon": "skillicon_mortartrap2_up.png",
           "maxRank": 12,
           "ui": {
             "row": 1,
@@ -7996,7 +7996,7 @@
           "id": "playerclass02.thermitemines2_petmod",
           "name": "Hellfire Mine",
           "description": "Half pyrotechnics, half alchemy, this lethal improvement to the Thermite Mine causes it to scorch enemies with unearthly flame that sears the very being.",
-          "icon": "ui/skills/icons/class02/skillicon_flaremine2_up.tex",
+          "icon": "skillicon_flaremine2_up.png",
           "maxRank": 12,
           "ui": {
             "row": 4,
@@ -8574,7 +8574,7 @@
           "id": "playerclass03.summon_raven4_petmodifier",
           "name": "Lightning Strike",
           "description": "The storm raven calls forth a powerful lightning bolt to electrocute nearby foes.",
-          "icon": "ui/skills/icons/class03/skillicon_ravensummon4up.tex",
+          "icon": "skillicon_ravensummon4up.png",
           "maxRank": 12,
           "ui": {
             "row": 2,
@@ -8792,7 +8792,7 @@
           "id": "playerclass03.summon_raven3_petmodifier",
           "name": "Storm Spirit",
           "description": "The raven projects its eldritch spirit into selected allies, empowering them beyond their mortal means.",
-          "icon": "ui/skills/icons/class03/skillicon_ravensummon3up.tex",
+          "icon": "skillicon_ravensummon3up.png",
           "maxRank": 12,
           "ui": {
             "row": 2,
@@ -8923,7 +8923,7 @@
           "id": "playerclass03.summon_raven2_petmodifier",
           "name": "Mend Flesh",
           "description": "The raven channels eldritch energies to mend the flesh of wounded allies.",
-          "icon": "ui/skills/icons/class03/skillicon_ravensummon2up.tex",
+          "icon": "skillicon_ravensummon2up.png",
           "maxRank": 16,
           "ui": {
             "row": 2,
@@ -9118,7 +9118,7 @@
           "id": "playerclass03.summon_hellhound4_petmodifier",
           "name": "Infernal Breath",
           "description": "The hellhound belches forth furious hellfire, incinerating your enemies.",
-          "icon": "ui/skills/icons/class03/skillicon_hellhoundsummon4up.tex",
+          "icon": "skillicon_hellhoundsummon4up.png",
           "maxRank": 12,
           "ui": {
             "row": 1,
@@ -9336,7 +9336,7 @@
           "id": "playerclass03.summon_hellhound3_petmodifier",
           "name": "Hellfire",
           "description": "An aura of hellfire surrounds the hellhound, augmenting it with power from its natural realm and searing enemies that strike its flesh. This power extends to nearby allies.",
-          "icon": "ui/skills/icons/class03/skillicon_hellhoundsummon3up.tex",
+          "icon": "skillicon_hellhoundsummon3up.png",
           "maxRank": 12,
           "ui": {
             "row": 1,
@@ -9548,7 +9548,7 @@
           "id": "playerclass03.summon_hellhound2_petmodifier",
           "name": "Ember Claw",
           "description": "Brimstone claws tear an arc of flame through enemies within the hellhound's reach.",
-          "icon": "ui/skills/icons/class03/skillicon_hellhoundsummon2up.tex",
+          "icon": "skillicon_hellhoundsummon2up.png",
           "maxRank": 12,
           "ui": {
             "row": 1,
@@ -22750,7 +22750,7 @@
           "id": "playerclass06.summon_briarthorn3_petmodifier",
           "name": "Emboldening Presence",
           "description": "The Briarthorn is an imposing presence on the battlefield which emboldens its allies to fight with greater ferocity.",
-          "icon": "ui/skills/icons/class06/skillicon_thornedhorrorsummon4up.tex",
+          "icon": "skillicon_thornedhorrorsummon4up.png",
           "maxRank": 12,
           "ui": {
             "row": 2,
@@ -22908,7 +22908,7 @@
           "id": "playerclass06.summon_briarthorn2_petmodifier",
           "name": "Ground Slam",
           "description": "The Briarthorn slams its thorned claws into the ground, releasing a cascade of spines to impale nearby foes.",
-          "icon": "ui/skills/icons/class06/skillicon_thornedhorrorsummon3up.tex",
+          "icon": "skillicon_thornedhorrorsummon3up.png",
           "maxRank": 12,
           "ui": {
             "row": 2,
@@ -23517,7 +23517,7 @@
           "id": "playerclass06.totem2_petmodifier",
           "name": "Blood Pact",
           "description": "Seal a pact with the wendigo spirit inhabiting the totem. So long as you stand within its aura, your taste for blood will be insatiable.",
-          "icon": "ui/skills/icons/class06/skillicon_totem2up.tex",
+          "icon": "skillicon_totem2up.png",
           "maxRank": 12,
           "ui": {
             "row": 9,
@@ -23992,7 +23992,7 @@
           "id": "playerclass06.squall3",
           "name": "Maelstrom",
           "description": "Unleash the ultimate wrath of the sky, instilling the Wind Devil with static energy that strikes down nearby foes with bolts of lightning.",
-          "icon": "ui/skills/icons/class06/skillicon_stormcloud2up.tex",
+          "icon": "skillicon_stormcloud2up.png",
           "maxRank": 12,
           "ui": {
             "row": 4,
@@ -24135,7 +24135,7 @@
           "id": "playerclass06.squall2",
           "name": "Raging Tempest",
           "description": "The swirling vortex grows with tumultuous power. Freezing winds buffet enemies with a numbing cold that increases their vulnerability to further elemental exposure.",
-          "icon": "ui/skills/icons/class06/skillicon_stormcloud3up.tex",
+          "icon": "skillicon_stormcloud3up.png",
           "maxRank": 12,
           "ui": {
             "row": 4,
