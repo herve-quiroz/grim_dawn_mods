@@ -46,6 +46,20 @@ export function totalDevotionSpent(state: DevotionState): number {
   return state.allocatedNodes.size + state.crossroads.size;
 }
 
+/**
+ * Check if a proposed state would break affinity requirements for any
+ * constellation that still has allocated nodes.
+ */
+export function wouldBreakAffinities(proposed: DevotionState, data: DevotionsData): boolean {
+  const aff = computeAffinities(proposed, data);
+  for (const c of data.constellations) {
+    const hasNodes = c.nodes.some(n => proposed.allocatedNodes.has(nodeKey(c.id, n.index)));
+    if (!hasNodes) continue;
+    if (!c.requires.every(r => aff[r.affinity] >= r.amount)) return true;
+  }
+  return false;
+}
+
 /** Check if a constellation's affinity requirements are met. */
 export function isConstellationUnlockable(
   constellation: Constellation,
@@ -123,6 +137,9 @@ export function applyNodeDelta(
     }
   }
 
+  // Reject if removal would break affinity requirements for other constellations
+  if (wouldBreakAffinities(next, data)) return { state, refunds: [] };
+
   return { state: next, refunds };
 }
 
@@ -145,12 +162,14 @@ export function toggleConstellationAll(
   };
 
   if (complete) {
-    // Clear all
+    // Clear all (reject if it would break affinity requirements elsewhere)
     for (const node of constellation.nodes) {
       next.allocatedNodes.delete(nodeKey(constellationId, node.index));
     }
+    if (wouldBreakAffinities(next, data)) return state;
   } else {
-    // Fill all
+    // Fill all (only if constellation is unlockable)
+    if (!isConstellationUnlockable(constellation, state, data)) return state;
     for (const node of constellation.nodes) {
       next.allocatedNodes.add(nodeKey(constellationId, node.index));
     }

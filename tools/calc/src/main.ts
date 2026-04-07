@@ -7,7 +7,7 @@ import { renderMasteryPanel } from './render.js';
 import type { DevotionsData, DevotionState } from './devotion-types.js';
 import { emptyDevotionState } from './devotion-types.js';
 import { encodeDevotionState, decodeDevotionState } from './state.js';
-import { totalDevotionSpent, applyNodeDelta, toggleConstellationAll } from './devotion-rules.js';
+import { totalDevotionSpent, applyNodeDelta, toggleConstellationAll, wouldBreakAffinities } from './devotion-rules.js';
 import { renderDevotionPanel, renderAffinityBar } from './devotion-render.js';
 
 declare const bootstrap: {
@@ -160,8 +160,12 @@ async function boot(): Promise<void> {
         },
         onCrossroadsToggle: (xrId: string) => {
           const next = { ...devState, crossroads: new Set(devState.crossroads) };
-          if (next.crossroads.has(xrId)) next.crossroads.delete(xrId);
-          else next.crossroads.add(xrId);
+          if (next.crossroads.has(xrId)) {
+            next.crossroads.delete(xrId);
+            if (wouldBreakAffinities(next, devotionData)) return;
+          } else {
+            next.crossroads.add(xrId);
+          }
           setDevState(next);
         },
         onToggleAll: (cId: string) => {

@@ -1,6 +1,7 @@
 import type { Constellation, DevotionsData, DevotionState, DevotionNode } from './devotion-types.js';
 import { nodeKey } from './devotion-types.js';
 import { computeAffinities, isConstellationUnlockable, isNodeAllocatable, totalDevotionSpent } from './devotion-rules.js';
+import { formatColorCodes } from './render.js';
 
 declare const bootstrap: {
   Popover: {
@@ -308,7 +309,29 @@ function renderNode(
   if (node.skill) {
     tooltipParts.push(`<div class="mt-1"><strong>${node.skill.name}</strong></div>`);
     if (node.skill.description) {
-      tooltipParts.push(`<div class="small text-muted">${node.skill.description}</div>`);
+      tooltipParts.push(`<div class="small text-muted mb-1">${formatColorCodes(node.skill.description)}</div>`);
+    }
+    const allStats = node.skill.stats;
+    const petStats = node.skill.petStats ?? [];
+    if (allStats.length > 0 || petStats.length > 0) {
+      tooltipParts.push('<div class="text-info small"><strong>Level 1</strong></div>');
+      if (allStats.length > 0) {
+        tooltipParts.push(allStats.map(s => `${s.label}: ${s.level1}`).join('<br>'));
+      }
+      if (petStats.length > 0) {
+        tooltipParts.push('<div class="small" style="color:#aaa;"><em>Summon:</em></div>');
+        tooltipParts.push(petStats.map(s => `${s.label}: ${s.level1}`).join('<br>'));
+      }
+      if (node.skill.maxLevel > 1) {
+        tooltipParts.push(`<div class="text-warning small mt-1"><strong>Level ${node.skill.maxLevel}</strong></div>`);
+        if (allStats.length > 0) {
+          tooltipParts.push(allStats.map(s => `${s.label}: ${s.levelMax}`).join('<br>'));
+        }
+        if (petStats.length > 0) {
+          tooltipParts.push('<div class="small" style="color:#aaa;"><em>Summon:</em></div>');
+          tooltipParts.push(petStats.map(s => `${s.label}: ${s.levelMax}`).join('<br>'));
+        }
+      }
     }
   }
 

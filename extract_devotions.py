@@ -221,6 +221,145 @@ def extract_node_stats(dbr_data: dict[str, str]) -> list[dict]:
     return stats
 
 
+# Field mappings shared between node stats and skill stats.
+_STAT_FIELDS: dict[str, str] = {}
+_STAT_FIELDS.update({
+    "characterStrength": "+ Physique",
+    "characterDexterity": "+ Cunning",
+    "characterIntelligence": "+ Spirit",
+    "characterConstitution": "+ Constitution",
+    "characterLife": "+ Health",
+    "characterMana": "+ Energy",
+    "characterLifeRegen": "+ Health Regeneration",
+    "characterManaRegen": "+ Energy Regeneration",
+    "characterOffensiveAbility": "+ Offensive Ability",
+    "characterDefensiveAbility": "+ Defensive Ability",
+    "characterAttackSpeed": "+% Attack Speed",
+    "characterSpellCastSpeed": "+% Casting Speed",
+    "characterRunSpeed": "+% Movement Speed",
+    "characterTotalSpeed": "+% Total Speed",
+    "offensivePhysicalModifier": "+% Physical Damage",
+    "offensiveFireModifier": "+% Fire Damage",
+    "offensiveColdModifier": "+% Cold Damage",
+    "offensiveLightningModifier": "+% Lightning Damage",
+    "offensiveAetherModifier": "+% Aether Damage",
+    "offensiveChaosModifier": "+% Chaos Damage",
+    "offensivePierceModifier": "+% Pierce Damage",
+    "offensiveElementalModifier": "+% Elemental Damage",
+    "offensiveLifeModifier": "+% Vitality Damage",
+    "offensivePoisonModifier": "+% Acid Damage",
+    "offensiveSlowBleedingModifier": "+% Bleeding Damage",
+    "offensiveSlowFireModifier": "+% Burn Damage",
+    "offensiveSlowColdModifier": "+% Frostburn Damage",
+    "offensiveSlowLightningModifier": "+% Electrocute Damage",
+    "offensiveSlowPoisonModifier": "+% Poison Damage",
+    "offensiveSlowLifeModifier": "+% Vitality Decay",
+    "defensiveFire": "+% Fire Resistance",
+    "defensiveCold": "+% Cold Resistance",
+    "defensiveLightning": "+% Lightning Resistance",
+    "defensivePoison": "+% Poison & Acid Resistance",
+    "defensiveAether": "+% Aether Resistance",
+    "defensiveChaos": "+% Chaos Resistance",
+    "defensivePierce": "+% Pierce Resistance",
+    "defensiveElemental": "+% Elemental Resistance",
+    "defensiveBleeding": "+% Bleeding Resistance",
+    "defensiveLife": "+% Vitality Resistance",
+    "characterArmor": "+ Armor",
+    "characterArmorModifier": "+% Armor",
+    "offensiveCritDamageModifier": "+% Crit Damage",
+    "offensivePhysicalMin": "Physical Damage Min",
+    "offensivePhysicalMax": "Physical Damage Max",
+    "offensiveFireMin": "Fire Damage Min",
+    "offensiveFireMax": "Fire Damage Max",
+    "offensiveColdMin": "Cold Damage Min",
+    "offensiveColdMax": "Cold Damage Max",
+    "offensiveLightningMin": "Lightning Damage Min",
+    "offensiveLightningMax": "Lightning Damage Max",
+    "offensiveAetherMin": "Aether Damage Min",
+    "offensiveAetherMax": "Aether Damage Max",
+    "offensiveChaosMin": "Chaos Damage Min",
+    "offensiveChaosMax": "Chaos Damage Max",
+    "offensivePierceMin": "Pierce Damage Min",
+    "offensivePierceMax": "Pierce Damage Max",
+    "offensiveLifeMin": "Vitality Damage Min",
+    "offensiveLifeMax": "Vitality Damage Max",
+    "offensivePoisonMin": "Acid Damage Min",
+    "offensivePoisonMax": "Acid Damage Max",
+    "offensiveLifeLeechMin": "Life Leech %",
+    "weaponDamagePct": "Weapon Damage %",
+    "skillCooldownTime": "Cooldown",
+    "skillManaCost": "Energy Cost",
+    "petLimit": "Summon Limit",
+    "spawnObjectsTimeToLive": "Duration",
+})
+
+
+def extract_proc_skill_stats(dbr_data: dict[str, str]) -> list[dict]:
+    """Extract stats from a proc skill DBR at level 1 and max level.
+
+    Returns a list of {"label": str, "level1": str, "levelMax": str}.
+    """
+    def fmt(v: float) -> str:
+        if abs(v - round(v)) < 1e-9:
+            return str(int(round(v)))
+        return str(round(v, 4))
+
+    stats: list[dict] = []
+    for key, label in _STAT_FIELDS.items():
+        raw = dbr_data.get(key, "")
+        if not raw or raw == "0":
+            continue
+        vals = _parse_values(raw)
+        if not vals or all(v == 0 for v in vals):
+            continue
+        level1 = fmt(vals[0])
+        level_max = fmt(vals[-1])
+        stats.append({"label": label, "level1": level1, "levelMax": level_max})
+
+    stats.sort(key=lambda s: s["label"])
+    return stats
+
+
+def _extract_skill_info(
+    arz_dir: Path, skill_dbr_path: Path, tags: dict[str, str]
+) -> dict | None:
+    """Extract proc skill info including name, description, max level, and stats."""
+    if not skill_dbr_path.exists():
+        return None
+    skill_data = read_dbr(skill_dbr_path)
+    skill_display_tag = skill_data.get("skillDisplayName", "")
+    if not skill_display_tag:
+        return None
+    skill_desc_tag = skill_data.get("skillBaseDescription", "")
+    # Determine max level from experience levels array
+    xp_raw = skill_data.get("skillExperienceLevels", "")
+    max_level = len(_parse_values(xp_raw)) if xp_raw else 1
+    result = {
+        "name": resolve_text(skill_display_tag, tags),
+        "description": resolve_text(skill_desc_tag, tags) if skill_desc_tag else "",
+        "maxLevel": max_level,
+        "stats": extract_proc_skill_stats(skill_data),
+        "petStats": [],
+    }
+
+    # For summon skills, follow spawnObjects -> pet DBR -> attackSkillName
+    spawn_raw = skill_data.get("spawnObjects", "")
+    if spawn_raw:
+        spawn_paths = [p.strip() for p in spawn_raw.split(";") if p.strip()]
+        if spawn_paths:
+            pet_path = arz_dir / spawn_paths[0]
+            if pet_path.exists():
+                pet_data = read_dbr(pet_path)
+                attack_ref = pet_data.get("attackSkillName", "")
+                if attack_ref:
+                    attack_path = arz_dir / attack_ref
+                    if attack_path.exists():
+                        attack_data = read_dbr(attack_path)
+                        result["petStats"] = extract_proc_skill_stats(attack_data)
+
+    return result
+
+
 def extract_constellation(
     arz_dir: Path, constellation_path: Path, tags: dict[str, str]
 ) -> dict | None:
@@ -299,32 +438,14 @@ def extract_constellation(
             node_stats = extract_node_stats(skill_data)
 
         # Check for companion proc skill (_skill.dbr)
-        # The skill record path for proc nodes ends in _skill.dbr
         skill_info = None
         if "_skill" in skill_record_path:
-            # This IS a proc skill node; extract its display info
-            if skill_dbr_path.exists():
-                skill_data = read_dbr(skill_dbr_path)
-                skill_display_tag = skill_data.get("skillDisplayName", "")
-                skill_desc_tag = skill_data.get("skillBaseDescription", "")
-                skill_info = {
-                    "name": resolve_text(skill_display_tag, tags) if skill_display_tag else "",
-                    "description": resolve_text(skill_desc_tag, tags) if skill_desc_tag else "",
-                }
+            skill_info = _extract_skill_info(arz_dir, skill_dbr_path, tags)
         else:
-            # Check if there is a sibling _skill.dbr file
             base_name = Path(skill_record_path).stem
             skill_variant = Path(skill_record_path).parent / f"{base_name}_skill.dbr"
             skill_variant_path = arz_dir / str(skill_variant)
-            if skill_variant_path.exists():
-                proc_data = read_dbr(skill_variant_path)
-                skill_display_tag = proc_data.get("skillDisplayName", "")
-                skill_desc_tag = proc_data.get("skillBaseDescription", "")
-                if skill_display_tag:
-                    skill_info = {
-                        "name": resolve_text(skill_display_tag, tags),
-                        "description": resolve_text(skill_desc_tag, tags) if skill_desc_tag else "",
-                    }
+            skill_info = _extract_skill_info(arz_dir, skill_variant_path, tags)
 
         parent = links.get(idx)
         nodes.append({
@@ -375,9 +496,10 @@ def main() -> None:
                 continue
             is_xroads = result.pop("_is_crossroads")
             if is_xroads:
-                # Crossroads: single affinity bonus
+                # Crossroads: single affinity bonus, unique ID per affinity
                 affinity_idx = result["bonus"][0]["affinity"] if result["bonus"] else 0
-                crossroads.append({"id": result["id"], "affinity": affinity_idx})
+                aff_name = ["ascendant", "chaos", "eldritch", "order", "primordial"][affinity_idx]
+                crossroads.append({"id": f"crossroads_{aff_name}", "affinity": affinity_idx})
             else:
                 constellations.append(result)
 

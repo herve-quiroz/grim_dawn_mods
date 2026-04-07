@@ -3,9 +3,18 @@ export interface DevotionStat {
   value: string;
 }
 
+export interface DevotionSkillStat {
+  label: string;
+  level1: string;
+  levelMax: string;
+}
+
 export interface DevotionSkill {
   name: string;
   description: string;
+  maxLevel: number;
+  stats: DevotionSkillStat[];
+  petStats: DevotionSkillStat[];
 }
 
 export interface DevotionNode {

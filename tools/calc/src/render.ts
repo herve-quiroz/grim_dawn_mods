@@ -234,7 +234,7 @@ function tierBarPercent(
 }
 
 /** Convert GD color codes (^o = gold, ^w = white) to HTML spans. */
-function formatColorCodes(text: string): string {
+export function formatColorCodes(text: string): string {
   let result = '';
   let inGold = false;
   for (let i = 0; i < text.length; i++) {
