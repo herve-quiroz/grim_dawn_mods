@@ -1,5 +1,7 @@
 import { bytesToBase64Url, base64UrlToBytes } from './base64url.js';
 import type { BuildState, SkillsData } from './types.js';
+import type { DevotionsData, DevotionState } from './devotion-types.js';
+import { emptyDevotionState, nodeKey } from './devotion-types.js';
 
 const HEADER_BYTES = 9;
 
@@ -117,4 +119,60 @@ export function decodeState(encoded: string, data: SkillsData): BuildState {
     masteryBar: [barA, barB],
     allocations,
   };
+}
+
+const DEFAULT_DEVOTION_CAP = 55;
+const DEVOTION_HEADER = 3;
+
+export function encodeDevotionState(state: DevotionState, data: DevotionsData): string {
+  const cap = state.devotionCap;
+  const capU16 = cap === DEFAULT_DEVOTION_CAP ? 0xffff : cap;
+  let xrBits = 0;
+  for (let i = 0; i < data.crossroads.length; i++) {
+    if (state.crossroads.has(data.crossroads[i].id)) {
+      xrBits |= (1 << i);
+    }
+  }
+  const bytes = new Uint8Array(DEVOTION_HEADER + data.constellations.length);
+  bytes[0] = (capU16 >> 8) & 0xff;
+  bytes[1] = capU16 & 0xff;
+  bytes[2] = xrBits;
+  for (let ci = 0; ci < data.constellations.length; ci++) {
+    const c = data.constellations[ci];
+    let bits = 0;
+    for (let ni = 0; ni < c.nodes.length; ni++) {
+      if (state.allocatedNodes.has(nodeKey(c.id, c.nodes[ni].index))) {
+        bits |= (1 << ni);
+      }
+    }
+    bytes[DEVOTION_HEADER + ci] = bits;
+  }
+  return bytesToBase64Url(bytes);
+}
+
+export function decodeDevotionState(encoded: string, data: DevotionsData): DevotionState {
+  if (!encoded) return emptyDevotionState();
+  const bytes = base64UrlToBytes(encoded);
+  if (bytes.length < DEVOTION_HEADER) return emptyDevotionState();
+  const capRaw = (bytes[0] << 8) | bytes[1];
+  const devotionCap = capRaw === 0xffff ? DEFAULT_DEVOTION_CAP : capRaw;
+  const xrBits = bytes[2];
+  const crossroads = new Set<string>();
+  for (let i = 0; i < data.crossroads.length; i++) {
+    if (xrBits & (1 << i)) {
+      crossroads.add(data.crossroads[i].id);
+    }
+  }
+  const allocatedNodes = new Set<string>();
+  for (let ci = 0; ci < data.constellations.length; ci++) {
+    if (DEVOTION_HEADER + ci >= bytes.length) break;
+    const bits = bytes[DEVOTION_HEADER + ci];
+    const c = data.constellations[ci];
+    for (let ni = 0; ni < c.nodes.length; ni++) {
+      if (bits & (1 << ni)) {
+        allocatedNodes.add(nodeKey(c.id, c.nodes[ni].index));
+      }
+    }
+  }
+  return { allocatedNodes, crossroads, devotionCap };
 }
