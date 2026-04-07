@@ -1,4 +1,5 @@
 import type { SkillsData } from './types.js';
+import type { DevotionsData } from './devotion-types.js';
 
 export interface SearchEntry {
   skillId: string;
@@ -19,6 +20,24 @@ export function buildSearchIndex(data: SkillsData): SearchIndex {
     }
   }
   return out;
+}
+
+export function buildDevotionSearchIndex(data: DevotionsData): SearchEntry[] {
+  const entries: SearchEntry[] = [];
+  for (const c of data.constellations) {
+    const parts = [c.name];
+    for (const node of c.nodes) {
+      for (const stat of node.stats) {
+        parts.push(stat.label);
+      }
+      if (node.skill) {
+        parts.push(node.skill.name);
+        if (node.skill.description) parts.push(node.skill.description);
+      }
+    }
+    entries.push({ skillId: `devotion:${c.id}`, text: parts.join(' ').toLowerCase() });
+  }
+  return entries;
 }
 
 /**

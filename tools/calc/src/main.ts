@@ -2,7 +2,7 @@ import type { BuildState, SkillsData, VersionsData } from './types.js';
 import { emptyBuildState } from './types.js';
 import { encodeState, decodeState } from './state.js';
 import { computeBudget, totalAllocated, applyDelta, findMastery } from './rules.js';
-import { buildSearchIndex, matchQuery } from './search.js';
+import { buildSearchIndex, buildDevotionSearchIndex, matchQuery } from './search.js';
 import { renderMasteryPanel } from './render.js';
 import type { DevotionsData, DevotionState } from './devotion-types.js';
 import { emptyDevotionState } from './devotion-types.js';
@@ -31,6 +31,7 @@ interface AppRefs {
   devotionPanel: HTMLElement;
   devotionBudget: HTMLElement;
   affinityBar: HTMLElement;
+  devotionCap: HTMLInputElement;
 }
 
 async function boot(): Promise<void> {
@@ -80,6 +81,7 @@ async function boot(): Promise<void> {
 
   const refs = collectRefs();
   const searchIndex = buildSearchIndex(data);
+  const devSearchIndex = devotionData ? buildDevotionSearchIndex(devotionData) : [];
 
   refs.versionLabel.textContent = `GD ${data.gdVersion}`;
 
@@ -169,7 +171,10 @@ async function boot(): Promise<void> {
       renderDevotionPanel(refs.devotionPanel, devState, devotionData, devCb);
     }
 
-    applySearchHighlight(refs, searchIndex);
+    // Sync devotion cap input
+    refs.devotionCap.value = devState.devotionCap === 55 ? '' : String(devState.devotionCap);
+
+    applySearchHighlight(refs, searchIndex, devSearchIndex);
   };
   refs.level.addEventListener('input', () => {
     const v = refs.level.value.trim();
@@ -183,7 +188,11 @@ async function boot(): Promise<void> {
     setState({ ...state, questRewards: refs.questRewards.checked });
   });
   refs.search.addEventListener('input', () => {
-    applySearchHighlight(refs, searchIndex);
+    applySearchHighlight(refs, searchIndex, devSearchIndex);
+  });
+  refs.devotionCap.addEventListener('input', () => {
+    const v = refs.devotionCap.value.trim();
+    setDevState({ ...devState, devotionCap: v === '' ? 55 : parseInt(v, 10) });
   });
   refs.reset.addEventListener('click', () => {
     devState = emptyDevotionState();
@@ -230,6 +239,7 @@ function collectRefs(): AppRefs {
     devotionPanel: byId('devotion-panel'),
     devotionBudget: byId('devotion-budget'),
     affinityBar: byId('affinity-bar'),
+    devotionCap: byId<HTMLInputElement>('devotion-cap'),
   };
 }
 
@@ -334,7 +344,7 @@ function handleShare(refs: AppRefs): void {
     });
 }
 
-function applySearchHighlight(refs: AppRefs, index: ReturnType<typeof buildSearchIndex>): void {
+function applySearchHighlight(refs: AppRefs, index: ReturnType<typeof buildSearchIndex>, devIndex: ReturnType<typeof buildDevotionSearchIndex>): void {
   const q = refs.search.value;
   const matches = matchQuery(q, index);
   const active = q.trim() !== '';
@@ -349,7 +359,22 @@ function applySearchHighlight(refs: AppRefs, index: ReturnType<typeof buildSearc
     cell.classList.toggle('search-miss', !isMatch);
     cell.classList.toggle('search-hit', isMatch);
   });
-  refs.searchCount.textContent = active ? `${matches.size} matches` : '';
+
+  const devMatches = matchQuery(q, devIndex);
+  const devRows = document.querySelectorAll<HTMLElement>('.devotion-constellation-row');
+  devRows.forEach(row => {
+    const id = row.dataset.constellationId;
+    if (!active || !id) {
+      row.classList.remove('search-miss', 'search-hit');
+      return;
+    }
+    const isMatch = devMatches.has(`devotion:${id}`);
+    row.classList.toggle('search-miss', !isMatch);
+    row.classList.toggle('search-hit', isMatch);
+  });
+
+  const totalMatches = matches.size + devMatches.size;
+  refs.searchCount.textContent = active ? `${totalMatches} matches` : '';
 }
 
 function showRefundToast(refs: AppRefs, refunds: { skillId: string; refunded: number }[], data: SkillsData): void {
