@@ -210,11 +210,34 @@ def _pixel_to_grid(ui_positions: dict[str, dict]) -> dict[str, dict]:
 
 
 def _get_display_data(arz_dir: Path, skill_path: str) -> dict[str, str]:
-    """Read display fields from a skill DBR, following buffSkillName if needed."""
+    """Read display fields from a skill DBR, following references if needed.
+
+    Pet modifier skills store display data in a referenced petSkillName DBR
+    (which may itself reference a buffSkillName).  Buff launcher skills store
+    display data in a referenced buffSkillName DBR.  This function follows
+    both kinds of indirection.
+    """
     dbr_path = arz_dir / skill_path
     if not dbr_path.exists():
         return {}
     data = read_dbr(dbr_path)
+
+    # Pet modifier skills: follow petSkillName to the actual pet skill DBR.
+    pet_ref = data.get("petSkillName", "")
+    if pet_ref and not data.get("skillDisplayName"):
+        pet_path = arz_dir / pet_ref
+        if pet_path.exists():
+            pet_data = read_dbr(pet_path)
+            merged = dict(data)
+            merged.update(pet_data)
+            # The pet skill may itself be a buff launcher; follow one more hop.
+            buff_ref = pet_data.get("buffSkillName", "")
+            if buff_ref and not pet_data.get("skillDisplayName"):
+                buff_path = arz_dir / buff_ref
+                if buff_path.exists():
+                    buff_data = read_dbr(buff_path)
+                    merged.update(buff_data)
+            return merged
 
     # If the skill is a buff launcher, follow to the buff skill.
     buff_ref = data.get("buffSkillName", "")
