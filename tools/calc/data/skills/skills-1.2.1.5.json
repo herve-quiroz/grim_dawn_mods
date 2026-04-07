@@ -3070,6 +3070,33 @@
           "exclusive": false,
           "stats": [
             {
+              "label": "% Chance to be Used",
+              "values": [
+                12,
+                15,
+                18,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                25,
+                26,
+                26,
+                27,
+                27,
+                27,
+                28,
+                28,
+                28,
+                29,
+                29,
+                29,
+                30
+              ]
+            },
+            {
               "label": "% Weapon Damage",
               "values": [
                 125,
@@ -3212,6 +3239,33 @@
           "parentMinRank": 0,
           "exclusive": false,
           "stats": [
+            {
+              "label": "% Chance to be Used",
+              "values": [
+                12,
+                15,
+                18,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                25,
+                26,
+                26,
+                27,
+                27,
+                27,
+                28,
+                28,
+                28,
+                29,
+                29,
+                29,
+                30
+              ]
+            },
             {
               "label": "% Weapon Damage",
               "values": [
@@ -6681,176 +6735,6 @@
           ]
         },
         {
-          "id": "playerclass02.mortartrap3_petmod",
-          "name": "\"The Big One\"",
-          "description": "Loads the Mortar Trap with a devastating bomb known only as \"The Big One\", which will fire towards the beginning of the trap's barrage and then periodically loaded in subsequent shots. The resulting colossal explosion will leave your enemies shellshocked, if they survive at all.",
-          "icon": "skillicon_mortartrap3_up.png",
-          "maxRank": 12,
-          "ui": {
-            "row": 1,
-            "col": 9
-          },
-          "prereqBar": 50,
-          "parent": "playerclass02.mortartrap1",
-          "parentMinRank": 1,
-          "exclusive": false,
-          "stats": [
-            {
-              "label": "Burn Damage",
-              "values": [
-                70,
-                92,
-                114,
-                136,
-                158,
-                180,
-                202,
-                224,
-                246,
-                268,
-                290,
-                312,
-                336,
-                360,
-                384,
-                408,
-                432,
-                458,
-                484,
-                515,
-                546,
-                592
-              ]
-            },
-            {
-              "label": "Burn Damage Duration",
-              "values": [
-                5
-              ]
-            },
-            {
-              "label": "Fire Damage",
-              "values": [
-                205,
-                230,
-                256,
-                282,
-                308,
-                334,
-                360,
-                386,
-                412,
-                438,
-                464,
-                490,
-                520,
-                550,
-                580,
-                610,
-                640,
-                672,
-                704,
-                738,
-                772,
-                814
-              ]
-            },
-            {
-              "label": "Meter Radius",
-              "values": [
-                1.5
-              ]
-            },
-            {
-              "label": "Physical Damage Max",
-              "values": [
-                290,
-                321,
-                352,
-                383,
-                414,
-                445,
-                476,
-                507,
-                538,
-                569,
-                600,
-                631,
-                668,
-                705,
-                742,
-                779,
-                816,
-                855,
-                894,
-                935,
-                976,
-                1019
-              ]
-            },
-            {
-              "label": "Physical Damage Min",
-              "values": [
-                240,
-                263,
-                287,
-                311,
-                335,
-                359,
-                383,
-                407,
-                431,
-                455,
-                479,
-                503,
-                532,
-                561,
-                590,
-                619,
-                648,
-                679,
-                710,
-                745,
-                780,
-                820
-              ]
-            },
-            {
-              "label": "Reduced Total Speed",
-              "values": [
-                8,
-                10,
-                14,
-                18,
-                22,
-                26,
-                30,
-                34,
-                38,
-                42,
-                46,
-                50,
-                51,
-                52,
-                53,
-                54,
-                55,
-                56,
-                57,
-                58,
-                59,
-                60
-              ]
-            },
-            {
-              "label": "Reduced Total Speed Duration",
-              "values": [
-                5
-              ]
-            }
-          ]
-        },
-        {
           "id": "playerclass02.mortartrap2_petmod",
           "name": "Heavy Ordnance",
           "description": "Potent sorcery increases the damage output of mortar shells and infuses them with electrical damage. ^oAffects both the base Mortar and \"The Big One\".",
@@ -7004,6 +6888,176 @@
               "label": "Stun Duration",
               "values": [
                 1
+              ]
+            }
+          ]
+        },
+        {
+          "id": "playerclass02.mortartrap3_petmod",
+          "name": "\"The Big One\"",
+          "description": "Loads the Mortar Trap with a devastating bomb known only as \"The Big One\", which will fire towards the beginning of the trap's barrage and then periodically loaded in subsequent shots. The resulting colossal explosion will leave your enemies shellshocked, if they survive at all.",
+          "icon": "skillicon_mortartrap3_up.png",
+          "maxRank": 12,
+          "ui": {
+            "row": 1,
+            "col": 9
+          },
+          "prereqBar": 50,
+          "parent": null,
+          "parentMinRank": 0,
+          "exclusive": false,
+          "stats": [
+            {
+              "label": "Burn Damage",
+              "values": [
+                70,
+                92,
+                114,
+                136,
+                158,
+                180,
+                202,
+                224,
+                246,
+                268,
+                290,
+                312,
+                336,
+                360,
+                384,
+                408,
+                432,
+                458,
+                484,
+                515,
+                546,
+                592
+              ]
+            },
+            {
+              "label": "Burn Damage Duration",
+              "values": [
+                5
+              ]
+            },
+            {
+              "label": "Fire Damage",
+              "values": [
+                205,
+                230,
+                256,
+                282,
+                308,
+                334,
+                360,
+                386,
+                412,
+                438,
+                464,
+                490,
+                520,
+                550,
+                580,
+                610,
+                640,
+                672,
+                704,
+                738,
+                772,
+                814
+              ]
+            },
+            {
+              "label": "Meter Radius",
+              "values": [
+                1.5
+              ]
+            },
+            {
+              "label": "Physical Damage Max",
+              "values": [
+                290,
+                321,
+                352,
+                383,
+                414,
+                445,
+                476,
+                507,
+                538,
+                569,
+                600,
+                631,
+                668,
+                705,
+                742,
+                779,
+                816,
+                855,
+                894,
+                935,
+                976,
+                1019
+              ]
+            },
+            {
+              "label": "Physical Damage Min",
+              "values": [
+                240,
+                263,
+                287,
+                311,
+                335,
+                359,
+                383,
+                407,
+                431,
+                455,
+                479,
+                503,
+                532,
+                561,
+                590,
+                619,
+                648,
+                679,
+                710,
+                745,
+                780,
+                820
+              ]
+            },
+            {
+              "label": "Reduced Total Speed",
+              "values": [
+                8,
+                10,
+                14,
+                18,
+                22,
+                26,
+                30,
+                34,
+                38,
+                42,
+                46,
+                50,
+                51,
+                52,
+                53,
+                54,
+                55,
+                56,
+                57,
+                58,
+                59,
+                60
+              ]
+            },
+            {
+              "label": "Reduced Total Speed Duration",
+              "values": [
+                5
               ]
             }
           ]
@@ -8571,6 +8625,278 @@
           ]
         },
         {
+          "id": "playerclass03.summon_raven2_petmodifier",
+          "name": "Mend Flesh",
+          "description": "The raven channels eldritch energies to mend the flesh of wounded allies.",
+          "icon": "skillicon_ravensummon2up.png",
+          "maxRank": 16,
+          "ui": {
+            "row": 2,
+            "col": 2
+          },
+          "prereqBar": 5,
+          "parent": null,
+          "parentMinRank": 0,
+          "exclusive": false,
+          "stats": [
+            {
+              "label": "% Health Cost",
+              "values": [
+                4,
+                5,
+                6,
+                7,
+                8,
+                8,
+                9,
+                10,
+                10,
+                11,
+                12,
+                12,
+                13,
+                14,
+                14,
+                15,
+                16,
+                16,
+                17,
+                18,
+                18,
+                19,
+                20,
+                20,
+                21,
+                22
+              ]
+            },
+            {
+              "label": "Duration",
+              "values": [
+                3,
+                3,
+                3,
+                4,
+                4,
+                4,
+                4,
+                4,
+                5,
+                5,
+                5,
+                5,
+                5,
+                6,
+                6,
+                6,
+                6,
+                6,
+                7,
+                7,
+                7,
+                7,
+                7,
+                8,
+                8,
+                8
+              ]
+            },
+            {
+              "label": "Energy Cost",
+              "values": [
+                28,
+                32,
+                36,
+                39,
+                42,
+                46,
+                49,
+                53,
+                57,
+                61,
+                64,
+                69,
+                72,
+                77,
+                81,
+                85,
+                87,
+                89,
+                91,
+                93,
+                95,
+                97,
+                99,
+                101,
+                103,
+                105
+              ]
+            },
+            {
+              "label": "Meter Radius",
+              "values": [
+                3,
+                3.1,
+                3.2,
+                3.3,
+                3.4,
+                3.5,
+                3.6,
+                3.7,
+                3.8,
+                3.9,
+                4,
+                4.1,
+                4.2,
+                4.3,
+                4.4,
+                4.5,
+                4.6,
+                4.7,
+                4.8,
+                4.9,
+                5,
+                5.1,
+                5.2,
+                5.3,
+                5.4,
+                5.5
+              ]
+            }
+          ]
+        },
+        {
+          "id": "playerclass03.summon_raven3_petmodifier",
+          "name": "Storm Spirit",
+          "description": "The raven projects its eldritch spirit into selected allies, empowering them beyond their mortal means.",
+          "icon": "skillicon_ravensummon3up.png",
+          "maxRank": 12,
+          "ui": {
+            "row": 2,
+            "col": 4
+          },
+          "prereqBar": 15,
+          "parent": null,
+          "parentMinRank": 0,
+          "exclusive": false,
+          "stats": [
+            {
+              "label": "+% Elemental Damage",
+              "values": [
+                8,
+                18,
+                28,
+                38,
+                48,
+                58,
+                68,
+                78,
+                88,
+                98,
+                109,
+                120,
+                133,
+                146,
+                159,
+                172,
+                185,
+                198,
+                211,
+                224,
+                237,
+                250
+              ]
+            },
+            {
+              "label": "+% Elemental Resistance",
+              "values": [
+                3,
+                6,
+                9,
+                11,
+                13,
+                16,
+                18,
+                20,
+                23,
+                25,
+                27,
+                30,
+                31,
+                32,
+                33,
+                34,
+                35,
+                36,
+                37,
+                38,
+                39,
+                40
+              ]
+            },
+            {
+              "label": "Elemental Damage",
+              "values": [
+                3,
+                5,
+                7,
+                9,
+                11,
+                13,
+                15,
+                17,
+                19,
+                21,
+                23,
+                25,
+                28,
+                31,
+                34,
+                37,
+                40,
+                44,
+                48,
+                53,
+                58,
+                66
+              ]
+            },
+            {
+              "label": "Lightning Retaliation",
+              "values": [
+                18,
+                35,
+                52,
+                69,
+                86,
+                103,
+                120,
+                138,
+                156,
+                174,
+                192,
+                210,
+                232,
+                254,
+                276,
+                298,
+                320,
+                344,
+                368,
+                397,
+                426,
+                460
+              ]
+            },
+            {
+              "label": "Meter Radius",
+              "values": [
+                20
+              ]
+            }
+          ]
+        },
+        {
           "id": "playerclass03.summon_raven4_petmodifier",
           "name": "Lightning Strike",
           "description": "The storm raven calls forth a powerful lightning bolt to electrocute nearby foes.",
@@ -8581,8 +8907,8 @@
             "col": 6
           },
           "prereqBar": 25,
-          "parent": "playerclass03.summon_raven1",
-          "parentMinRank": 1,
+          "parent": null,
+          "parentMinRank": 0,
           "exclusive": false,
           "stats": [
             {
@@ -8789,278 +9115,6 @@
           ]
         },
         {
-          "id": "playerclass03.summon_raven3_petmodifier",
-          "name": "Storm Spirit",
-          "description": "The raven projects its eldritch spirit into selected allies, empowering them beyond their mortal means.",
-          "icon": "skillicon_ravensummon3up.png",
-          "maxRank": 12,
-          "ui": {
-            "row": 2,
-            "col": 4
-          },
-          "prereqBar": 15,
-          "parent": "playerclass03.summon_raven1",
-          "parentMinRank": 1,
-          "exclusive": false,
-          "stats": [
-            {
-              "label": "+% Elemental Damage",
-              "values": [
-                8,
-                18,
-                28,
-                38,
-                48,
-                58,
-                68,
-                78,
-                88,
-                98,
-                109,
-                120,
-                133,
-                146,
-                159,
-                172,
-                185,
-                198,
-                211,
-                224,
-                237,
-                250
-              ]
-            },
-            {
-              "label": "+% Elemental Resistance",
-              "values": [
-                3,
-                6,
-                9,
-                11,
-                13,
-                16,
-                18,
-                20,
-                23,
-                25,
-                27,
-                30,
-                31,
-                32,
-                33,
-                34,
-                35,
-                36,
-                37,
-                38,
-                39,
-                40
-              ]
-            },
-            {
-              "label": "Elemental Damage",
-              "values": [
-                3,
-                5,
-                7,
-                9,
-                11,
-                13,
-                15,
-                17,
-                19,
-                21,
-                23,
-                25,
-                28,
-                31,
-                34,
-                37,
-                40,
-                44,
-                48,
-                53,
-                58,
-                66
-              ]
-            },
-            {
-              "label": "Lightning Retaliation",
-              "values": [
-                18,
-                35,
-                52,
-                69,
-                86,
-                103,
-                120,
-                138,
-                156,
-                174,
-                192,
-                210,
-                232,
-                254,
-                276,
-                298,
-                320,
-                344,
-                368,
-                397,
-                426,
-                460
-              ]
-            },
-            {
-              "label": "Meter Radius",
-              "values": [
-                20
-              ]
-            }
-          ]
-        },
-        {
-          "id": "playerclass03.summon_raven2_petmodifier",
-          "name": "Mend Flesh",
-          "description": "The raven channels eldritch energies to mend the flesh of wounded allies.",
-          "icon": "skillicon_ravensummon2up.png",
-          "maxRank": 16,
-          "ui": {
-            "row": 2,
-            "col": 2
-          },
-          "prereqBar": 5,
-          "parent": "playerclass03.summon_raven1",
-          "parentMinRank": 1,
-          "exclusive": false,
-          "stats": [
-            {
-              "label": "% Health Cost",
-              "values": [
-                4,
-                5,
-                6,
-                7,
-                8,
-                8,
-                9,
-                10,
-                10,
-                11,
-                12,
-                12,
-                13,
-                14,
-                14,
-                15,
-                16,
-                16,
-                17,
-                18,
-                18,
-                19,
-                20,
-                20,
-                21,
-                22
-              ]
-            },
-            {
-              "label": "Duration",
-              "values": [
-                3,
-                3,
-                3,
-                4,
-                4,
-                4,
-                4,
-                4,
-                5,
-                5,
-                5,
-                5,
-                5,
-                6,
-                6,
-                6,
-                6,
-                6,
-                7,
-                7,
-                7,
-                7,
-                7,
-                8,
-                8,
-                8
-              ]
-            },
-            {
-              "label": "Energy Cost",
-              "values": [
-                28,
-                32,
-                36,
-                39,
-                42,
-                46,
-                49,
-                53,
-                57,
-                61,
-                64,
-                69,
-                72,
-                77,
-                81,
-                85,
-                87,
-                89,
-                91,
-                93,
-                95,
-                97,
-                99,
-                101,
-                103,
-                105
-              ]
-            },
-            {
-              "label": "Meter Radius",
-              "values": [
-                3,
-                3.1,
-                3.2,
-                3.3,
-                3.4,
-                3.5,
-                3.6,
-                3.7,
-                3.8,
-                3.9,
-                4,
-                4.1,
-                4.2,
-                4.3,
-                4.4,
-                4.5,
-                4.6,
-                4.7,
-                4.8,
-                4.9,
-                5,
-                5.1,
-                5.2,
-                5.3,
-                5.4,
-                5.5
-              ]
-            }
-          ]
-        },
-        {
           "id": "playerclass03.summon_hellhound1",
           "name": "Summon Hellhound",
           "description": "Calls forth a hellhound from the eldritch realms to savage the Occultist's enemies. This vicious beast will battle alongside you until its life is extinguished in a blazing inferno. ^oOnly one hellhound can be summoned at any one time. The hellhound scales with Pet Bonuses.",
@@ -9115,6 +9169,430 @@
           ]
         },
         {
+          "id": "playerclass03.summon_hellhound2_petmodifier",
+          "name": "Ember Claw",
+          "description": "Brimstone claws tear an arc of flame through enemies within the hellhound's reach.",
+          "icon": "skillicon_hellhoundsummon2up.png",
+          "maxRank": 12,
+          "ui": {
+            "row": 1,
+            "col": 5
+          },
+          "prereqBar": 20,
+          "parent": null,
+          "parentMinRank": 0,
+          "exclusive": false,
+          "stats": [
+            {
+              "label": "% Weapon Damage",
+              "values": [
+                80,
+                88,
+                95,
+                102,
+                109,
+                116,
+                123,
+                130,
+                137,
+                143,
+                149,
+                155,
+                158,
+                161,
+                164,
+                167,
+                170,
+                173,
+                176,
+                179,
+                182,
+                190
+              ]
+            },
+            {
+              "label": "Chaos Damage",
+              "values": [
+                24,
+                50,
+                77,
+                105,
+                132,
+                162,
+                190,
+                217,
+                245,
+                278,
+                306,
+                340,
+                374,
+                408,
+                442,
+                479,
+                513,
+                550,
+                586,
+                624,
+                660,
+                701
+              ]
+            },
+            {
+              "label": "Energy Cost",
+              "values": [
+                20,
+                22,
+                24,
+                26,
+                28,
+                30,
+                32,
+                34,
+                36,
+                38,
+                40,
+                42,
+                44,
+                46,
+                48,
+                50,
+                52,
+                54,
+                56,
+                58,
+                60,
+                62
+              ]
+            },
+            {
+              "label": "Fire Damage Max",
+              "values": [
+                44,
+                66,
+                91,
+                113,
+                136,
+                160,
+                184,
+                208,
+                231,
+                255,
+                278,
+                302,
+                327,
+                353,
+                378,
+                403,
+                428,
+                454,
+                480,
+                505,
+                532,
+                557
+              ]
+            },
+            {
+              "label": "Fire Damage Min",
+              "values": [
+                36,
+                57,
+                79,
+                99,
+                120,
+                142,
+                163,
+                185,
+                206,
+                228,
+                249,
+                271,
+                294,
+                316,
+                339,
+                362,
+                385,
+                409,
+                432,
+                455,
+                479,
+                502
+              ]
+            },
+            {
+              "label": "Projectiles",
+              "values": [
+                1
+              ]
+            },
+            {
+              "label": "Target Maximum",
+              "values": [
+                5,
+                5,
+                5,
+                5,
+                6,
+                6,
+                6,
+                6,
+                7,
+                7,
+                7,
+                7,
+                8,
+                8,
+                8,
+                9,
+                9,
+                9,
+                10,
+                10,
+                10,
+                11
+              ]
+            },
+            {
+              "label": "Taunt Duration",
+              "values": [
+                40,
+                50,
+                55,
+                60,
+                65,
+                70,
+                75,
+                80,
+                85,
+                90,
+                95,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100
+              ]
+            }
+          ]
+        },
+        {
+          "id": "playerclass03.summon_hellhound3_petmodifier",
+          "name": "Hellfire",
+          "description": "An aura of hellfire surrounds the hellhound, augmenting it with power from its natural realm and searing enemies that strike its flesh. This power extends to nearby allies.",
+          "icon": "skillicon_hellhoundsummon3up.png",
+          "maxRank": 12,
+          "ui": {
+            "row": 1,
+            "col": 7
+          },
+          "prereqBar": 32,
+          "parent": null,
+          "parentMinRank": 0,
+          "exclusive": false,
+          "stats": [
+            {
+              "label": "+ Defensive Ability",
+              "values": [
+                7,
+                16,
+                24,
+                32,
+                40,
+                48,
+                56,
+                64,
+                72,
+                80,
+                88,
+                96,
+                104,
+                112,
+                120,
+                128,
+                136,
+                144,
+                152,
+                160,
+                168,
+                186
+              ]
+            },
+            {
+              "label": "+% Burn Damage",
+              "values": [
+                8,
+                18,
+                28,
+                38,
+                48,
+                58,
+                68,
+                78,
+                88,
+                98,
+                109,
+                120,
+                133,
+                146,
+                159,
+                172,
+                185,
+                198,
+                211,
+                224,
+                237,
+                250
+              ]
+            },
+            {
+              "label": "+% Chaos Damage",
+              "values": [
+                8,
+                18,
+                28,
+                38,
+                48,
+                58,
+                68,
+                78,
+                88,
+                98,
+                109,
+                120,
+                133,
+                146,
+                159,
+                172,
+                185,
+                198,
+                211,
+                224,
+                237,
+                250
+              ]
+            },
+            {
+              "label": "+% Fire Damage",
+              "values": [
+                8,
+                18,
+                28,
+                38,
+                48,
+                58,
+                68,
+                78,
+                88,
+                98,
+                109,
+                120,
+                133,
+                146,
+                159,
+                172,
+                185,
+                198,
+                211,
+                224,
+                237,
+                250
+              ]
+            },
+            {
+              "label": "Chaos Damage",
+              "values": [
+                3,
+                5,
+                7,
+                9,
+                11,
+                13,
+                15,
+                17,
+                19,
+                21,
+                23,
+                25,
+                28,
+                31,
+                34,
+                37,
+                40,
+                44,
+                48,
+                53,
+                58,
+                66
+              ]
+            },
+            {
+              "label": "Fire Damage",
+              "values": [
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                16,
+                18,
+                20,
+                22,
+                24,
+                27,
+                30,
+                34,
+                38,
+                45
+              ]
+            },
+            {
+              "label": "Fire Retaliation",
+              "values": [
+                18,
+                35,
+                52,
+                69,
+                86,
+                103,
+                120,
+                138,
+                156,
+                174,
+                192,
+                210,
+                232,
+                254,
+                276,
+                298,
+                320,
+                344,
+                368,
+                397,
+                426,
+                460
+              ]
+            },
+            {
+              "label": "Meter Radius",
+              "values": [
+                15
+              ]
+            }
+          ]
+        },
+        {
           "id": "playerclass03.summon_hellhound4_petmodifier",
           "name": "Infernal Breath",
           "description": "The hellhound belches forth furious hellfire, incinerating your enemies.",
@@ -9125,8 +9603,8 @@
             "col": 9
           },
           "prereqBar": 50,
-          "parent": "playerclass03.summon_hellhound1",
-          "parentMinRank": 1,
+          "parent": null,
+          "parentMinRank": 0,
           "exclusive": false,
           "stats": [
             {
@@ -9328,430 +9806,6 @@
               "label": "Total Damage Reduction Duration",
               "values": [
                 3
-              ]
-            }
-          ]
-        },
-        {
-          "id": "playerclass03.summon_hellhound3_petmodifier",
-          "name": "Hellfire",
-          "description": "An aura of hellfire surrounds the hellhound, augmenting it with power from its natural realm and searing enemies that strike its flesh. This power extends to nearby allies.",
-          "icon": "skillicon_hellhoundsummon3up.png",
-          "maxRank": 12,
-          "ui": {
-            "row": 1,
-            "col": 7
-          },
-          "prereqBar": 32,
-          "parent": "playerclass03.summon_hellhound1",
-          "parentMinRank": 1,
-          "exclusive": false,
-          "stats": [
-            {
-              "label": "+ Defensive Ability",
-              "values": [
-                7,
-                16,
-                24,
-                32,
-                40,
-                48,
-                56,
-                64,
-                72,
-                80,
-                88,
-                96,
-                104,
-                112,
-                120,
-                128,
-                136,
-                144,
-                152,
-                160,
-                168,
-                186
-              ]
-            },
-            {
-              "label": "+% Burn Damage",
-              "values": [
-                8,
-                18,
-                28,
-                38,
-                48,
-                58,
-                68,
-                78,
-                88,
-                98,
-                109,
-                120,
-                133,
-                146,
-                159,
-                172,
-                185,
-                198,
-                211,
-                224,
-                237,
-                250
-              ]
-            },
-            {
-              "label": "+% Chaos Damage",
-              "values": [
-                8,
-                18,
-                28,
-                38,
-                48,
-                58,
-                68,
-                78,
-                88,
-                98,
-                109,
-                120,
-                133,
-                146,
-                159,
-                172,
-                185,
-                198,
-                211,
-                224,
-                237,
-                250
-              ]
-            },
-            {
-              "label": "+% Fire Damage",
-              "values": [
-                8,
-                18,
-                28,
-                38,
-                48,
-                58,
-                68,
-                78,
-                88,
-                98,
-                109,
-                120,
-                133,
-                146,
-                159,
-                172,
-                185,
-                198,
-                211,
-                224,
-                237,
-                250
-              ]
-            },
-            {
-              "label": "Chaos Damage",
-              "values": [
-                3,
-                5,
-                7,
-                9,
-                11,
-                13,
-                15,
-                17,
-                19,
-                21,
-                23,
-                25,
-                28,
-                31,
-                34,
-                37,
-                40,
-                44,
-                48,
-                53,
-                58,
-                66
-              ]
-            },
-            {
-              "label": "Fire Damage",
-              "values": [
-                3,
-                4,
-                5,
-                6,
-                7,
-                8,
-                9,
-                10,
-                11,
-                12,
-                13,
-                14,
-                16,
-                18,
-                20,
-                22,
-                24,
-                27,
-                30,
-                34,
-                38,
-                45
-              ]
-            },
-            {
-              "label": "Fire Retaliation",
-              "values": [
-                18,
-                35,
-                52,
-                69,
-                86,
-                103,
-                120,
-                138,
-                156,
-                174,
-                192,
-                210,
-                232,
-                254,
-                276,
-                298,
-                320,
-                344,
-                368,
-                397,
-                426,
-                460
-              ]
-            },
-            {
-              "label": "Meter Radius",
-              "values": [
-                15
-              ]
-            }
-          ]
-        },
-        {
-          "id": "playerclass03.summon_hellhound2_petmodifier",
-          "name": "Ember Claw",
-          "description": "Brimstone claws tear an arc of flame through enemies within the hellhound's reach.",
-          "icon": "skillicon_hellhoundsummon2up.png",
-          "maxRank": 12,
-          "ui": {
-            "row": 1,
-            "col": 5
-          },
-          "prereqBar": 20,
-          "parent": "playerclass03.summon_hellhound1",
-          "parentMinRank": 1,
-          "exclusive": false,
-          "stats": [
-            {
-              "label": "% Weapon Damage",
-              "values": [
-                80,
-                88,
-                95,
-                102,
-                109,
-                116,
-                123,
-                130,
-                137,
-                143,
-                149,
-                155,
-                158,
-                161,
-                164,
-                167,
-                170,
-                173,
-                176,
-                179,
-                182,
-                190
-              ]
-            },
-            {
-              "label": "Chaos Damage",
-              "values": [
-                24,
-                50,
-                77,
-                105,
-                132,
-                162,
-                190,
-                217,
-                245,
-                278,
-                306,
-                340,
-                374,
-                408,
-                442,
-                479,
-                513,
-                550,
-                586,
-                624,
-                660,
-                701
-              ]
-            },
-            {
-              "label": "Energy Cost",
-              "values": [
-                20,
-                22,
-                24,
-                26,
-                28,
-                30,
-                32,
-                34,
-                36,
-                38,
-                40,
-                42,
-                44,
-                46,
-                48,
-                50,
-                52,
-                54,
-                56,
-                58,
-                60,
-                62
-              ]
-            },
-            {
-              "label": "Fire Damage Max",
-              "values": [
-                44,
-                66,
-                91,
-                113,
-                136,
-                160,
-                184,
-                208,
-                231,
-                255,
-                278,
-                302,
-                327,
-                353,
-                378,
-                403,
-                428,
-                454,
-                480,
-                505,
-                532,
-                557
-              ]
-            },
-            {
-              "label": "Fire Damage Min",
-              "values": [
-                36,
-                57,
-                79,
-                99,
-                120,
-                142,
-                163,
-                185,
-                206,
-                228,
-                249,
-                271,
-                294,
-                316,
-                339,
-                362,
-                385,
-                409,
-                432,
-                455,
-                479,
-                502
-              ]
-            },
-            {
-              "label": "Projectiles",
-              "values": [
-                1
-              ]
-            },
-            {
-              "label": "Target Maximum",
-              "values": [
-                5,
-                5,
-                5,
-                5,
-                6,
-                6,
-                6,
-                6,
-                7,
-                7,
-                7,
-                7,
-                8,
-                8,
-                8,
-                9,
-                9,
-                9,
-                10,
-                10,
-                10,
-                11
-              ]
-            },
-            {
-              "label": "Taunt Duration",
-              "values": [
-                40,
-                50,
-                55,
-                60,
-                65,
-                70,
-                75,
-                80,
-                85,
-                90,
-                95,
-                100,
-                100,
-                100,
-                100,
-                100,
-                100,
-                100,
-                100,
-                100,
-                100,
-                100
               ]
             }
           ]
@@ -15723,6 +15777,29 @@
           "exclusive": false,
           "stats": [
             {
+              "label": "% Chance to be Used",
+              "values": [
+                12,
+                15,
+                17,
+                19,
+                20,
+                21,
+                21,
+                22,
+                22,
+                22,
+                23,
+                23,
+                23,
+                24,
+                24,
+                24,
+                24,
+                25
+              ]
+            },
+            {
               "label": "% Weapon Damage",
               "values": [
                 125,
@@ -15994,6 +16071,29 @@
           "exclusive": false,
           "stats": [
             {
+              "label": "% Chance to be Used",
+              "values": [
+                12,
+                15,
+                17,
+                19,
+                20,
+                21,
+                21,
+                22,
+                22,
+                22,
+                23,
+                23,
+                23,
+                24,
+                24,
+                24,
+                24,
+                25
+              ]
+            },
+            {
               "label": "% Weapon Damage",
               "values": [
                 80,
@@ -16235,6 +16335,29 @@
           "parentMinRank": 0,
           "exclusive": false,
           "stats": [
+            {
+              "label": "% Chance to be Used",
+              "values": [
+                12,
+                15,
+                17,
+                19,
+                20,
+                21,
+                21,
+                22,
+                22,
+                22,
+                23,
+                23,
+                23,
+                24,
+                24,
+                24,
+                24,
+                25
+              ]
+            },
             {
               "label": "% Weapon Damage",
               "values": [
@@ -16483,6 +16606,29 @@
           "parentMinRank": 0,
           "exclusive": false,
           "stats": [
+            {
+              "label": "% Chance to be Used",
+              "values": [
+                12,
+                15,
+                17,
+                19,
+                20,
+                21,
+                21,
+                22,
+                22,
+                22,
+                23,
+                23,
+                23,
+                24,
+                24,
+                24,
+                24,
+                25
+              ]
+            },
             {
               "label": "% Current Life",
               "values": [
@@ -22747,164 +22893,6 @@
           ]
         },
         {
-          "id": "playerclass06.summon_briarthorn3_petmodifier",
-          "name": "Emboldening Presence",
-          "description": "The Briarthorn is an imposing presence on the battlefield which emboldens its allies to fight with greater ferocity.",
-          "icon": "skillicon_thornedhorrorsummon4up.png",
-          "maxRank": 12,
-          "ui": {
-            "row": 2,
-            "col": 8
-          },
-          "prereqBar": 40,
-          "parent": "playerclass06.summon_briarthorn1",
-          "parentMinRank": 1,
-          "exclusive": false,
-          "stats": [
-            {
-              "label": "+ Offensive Ability",
-              "values": [
-                7,
-                16,
-                24,
-                32,
-                40,
-                48,
-                56,
-                64,
-                72,
-                80,
-                88,
-                96,
-                104,
-                112,
-                120,
-                128,
-                136,
-                144,
-                152,
-                160,
-                168,
-                186
-              ]
-            },
-            {
-              "label": "+% Bleeding Resistance",
-              "values": [
-                3,
-                6,
-                9,
-                12,
-                15,
-                18,
-                21,
-                23,
-                25,
-                27,
-                29,
-                32,
-                33,
-                34,
-                35,
-                36,
-                37,
-                38,
-                39,
-                40,
-                41,
-                42
-              ]
-            },
-            {
-              "label": "+% Physical Resistance",
-              "values": [
-                1,
-                1,
-                2,
-                3,
-                3,
-                4,
-                5,
-                5,
-                6,
-                7,
-                7,
-                8,
-                8,
-                8,
-                9,
-                9,
-                9,
-                10,
-                10,
-                10,
-                11,
-                12
-              ]
-            },
-            {
-              "label": "+% Retaliation Damage",
-              "values": [
-                12,
-                23,
-                34,
-                45,
-                56,
-                67,
-                78,
-                89,
-                100,
-                111,
-                122,
-                133,
-                147,
-                161,
-                175,
-                189,
-                203,
-                217,
-                231,
-                245,
-                259,
-                275
-              ]
-            },
-            {
-              "label": "+% Total Damage",
-              "values": [
-                10,
-                19,
-                28,
-                37,
-                46,
-                55,
-                64,
-                73,
-                82,
-                91,
-                100,
-                110,
-                121,
-                132,
-                143,
-                154,
-                165,
-                176,
-                187,
-                198,
-                209,
-                220
-              ]
-            },
-            {
-              "label": "Meter Radius",
-              "values": [
-                15
-              ]
-            }
-          ]
-        },
-        {
           "id": "playerclass06.summon_briarthorn2_petmodifier",
           "name": "Ground Slam",
           "description": "The Briarthorn slams its thorned claws into the ground, releasing a cascade of spines to impale nearby foes.",
@@ -22915,8 +22903,8 @@
             "col": 5
           },
           "prereqBar": 20,
-          "parent": "playerclass06.summon_briarthorn1",
-          "parentMinRank": 1,
+          "parent": null,
+          "parentMinRank": 0,
           "exclusive": false,
           "stats": [
             {
@@ -23112,6 +23100,164 @@
                 100,
                 100,
                 100
+              ]
+            }
+          ]
+        },
+        {
+          "id": "playerclass06.summon_briarthorn3_petmodifier",
+          "name": "Emboldening Presence",
+          "description": "The Briarthorn is an imposing presence on the battlefield which emboldens its allies to fight with greater ferocity.",
+          "icon": "skillicon_thornedhorrorsummon4up.png",
+          "maxRank": 12,
+          "ui": {
+            "row": 2,
+            "col": 8
+          },
+          "prereqBar": 40,
+          "parent": null,
+          "parentMinRank": 0,
+          "exclusive": false,
+          "stats": [
+            {
+              "label": "+ Offensive Ability",
+              "values": [
+                7,
+                16,
+                24,
+                32,
+                40,
+                48,
+                56,
+                64,
+                72,
+                80,
+                88,
+                96,
+                104,
+                112,
+                120,
+                128,
+                136,
+                144,
+                152,
+                160,
+                168,
+                186
+              ]
+            },
+            {
+              "label": "+% Bleeding Resistance",
+              "values": [
+                3,
+                6,
+                9,
+                12,
+                15,
+                18,
+                21,
+                23,
+                25,
+                27,
+                29,
+                32,
+                33,
+                34,
+                35,
+                36,
+                37,
+                38,
+                39,
+                40,
+                41,
+                42
+              ]
+            },
+            {
+              "label": "+% Physical Resistance",
+              "values": [
+                1,
+                1,
+                2,
+                3,
+                3,
+                4,
+                5,
+                5,
+                6,
+                7,
+                7,
+                8,
+                8,
+                8,
+                9,
+                9,
+                9,
+                10,
+                10,
+                10,
+                11,
+                12
+              ]
+            },
+            {
+              "label": "+% Retaliation Damage",
+              "values": [
+                12,
+                23,
+                34,
+                45,
+                56,
+                67,
+                78,
+                89,
+                100,
+                111,
+                122,
+                133,
+                147,
+                161,
+                175,
+                189,
+                203,
+                217,
+                231,
+                245,
+                259,
+                275
+              ]
+            },
+            {
+              "label": "+% Total Damage",
+              "values": [
+                10,
+                19,
+                28,
+                37,
+                46,
+                55,
+                64,
+                73,
+                82,
+                91,
+                100,
+                110,
+                121,
+                132,
+                143,
+                154,
+                165,
+                176,
+                187,
+                198,
+                209,
+                220
+              ]
+            },
+            {
+              "label": "Meter Radius",
+              "values": [
+                15
               ]
             }
           ]
@@ -23524,8 +23670,8 @@
             "col": 8
           },
           "prereqBar": 40,
-          "parent": "playerclass06.totem1",
-          "parentMinRank": 1,
+          "parent": null,
+          "parentMinRank": 0,
           "exclusive": false,
           "stats": [
             {
@@ -23989,6 +24135,110 @@
           ]
         },
         {
+          "id": "playerclass06.squall2",
+          "name": "Raging Tempest",
+          "description": "The swirling vortex grows with tumultuous power. Freezing winds buffet enemies with a numbing cold that increases their vulnerability to further elemental exposure.",
+          "icon": "skillicon_stormcloud3up.png",
+          "maxRank": 12,
+          "ui": {
+            "row": 4,
+            "col": 5
+          },
+          "prereqBar": 20,
+          "parent": "playerclass06.squall1",
+          "parentMinRank": 1,
+          "exclusive": false,
+          "stats": [
+            {
+              "label": "+% Elemental Resistance",
+              "values": [
+                -3,
+                -6,
+                -9,
+                -12,
+                -15,
+                -18,
+                -20,
+                -22,
+                -24,
+                -26,
+                -28,
+                -30,
+                -31,
+                -32,
+                -33,
+                -34,
+                -35,
+                -36,
+                -37,
+                -38,
+                -39,
+                -40
+              ]
+            },
+            {
+              "label": "Cold Damage",
+              "values": [
+                20,
+                35,
+                50,
+                65,
+                80,
+                95,
+                110,
+                125,
+                140,
+                155,
+                170,
+                185,
+                204,
+                223,
+                242,
+                261,
+                280,
+                301,
+                322,
+                347,
+                372,
+                404
+              ]
+            },
+            {
+              "label": "Reduced Total Speed",
+              "values": [
+                5,
+                9,
+                12,
+                14,
+                16,
+                18,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26,
+                27,
+                28,
+                29,
+                30,
+                31,
+                32,
+                33,
+                34,
+                35
+              ]
+            },
+            {
+              "label": "Reduced Total Speed Duration",
+              "values": [
+                1
+              ]
+            }
+          ]
+        },
+        {
           "id": "playerclass06.squall3",
           "name": "Maelstrom",
           "description": "Unleash the ultimate wrath of the sky, instilling the Wind Devil with static energy that strikes down nearby foes with bolts of lightning.",
@@ -23999,8 +24249,8 @@
             "col": 8
           },
           "prereqBar": 40,
-          "parent": "playerclass06.squall1",
-          "parentMinRank": 1,
+          "parent": null,
+          "parentMinRank": 0,
           "exclusive": false,
           "stats": [
             {
@@ -24127,110 +24377,6 @@
                 5,
                 5,
                 5
-              ]
-            }
-          ]
-        },
-        {
-          "id": "playerclass06.squall2",
-          "name": "Raging Tempest",
-          "description": "The swirling vortex grows with tumultuous power. Freezing winds buffet enemies with a numbing cold that increases their vulnerability to further elemental exposure.",
-          "icon": "skillicon_stormcloud3up.png",
-          "maxRank": 12,
-          "ui": {
-            "row": 4,
-            "col": 5
-          },
-          "prereqBar": 20,
-          "parent": "playerclass06.squall1",
-          "parentMinRank": 1,
-          "exclusive": false,
-          "stats": [
-            {
-              "label": "+% Elemental Resistance",
-              "values": [
-                -3,
-                -6,
-                -9,
-                -12,
-                -15,
-                -18,
-                -20,
-                -22,
-                -24,
-                -26,
-                -28,
-                -30,
-                -31,
-                -32,
-                -33,
-                -34,
-                -35,
-                -36,
-                -37,
-                -38,
-                -39,
-                -40
-              ]
-            },
-            {
-              "label": "Cold Damage",
-              "values": [
-                20,
-                35,
-                50,
-                65,
-                80,
-                95,
-                110,
-                125,
-                140,
-                155,
-                170,
-                185,
-                204,
-                223,
-                242,
-                261,
-                280,
-                301,
-                322,
-                347,
-                372,
-                404
-              ]
-            },
-            {
-              "label": "Reduced Total Speed",
-              "values": [
-                5,
-                9,
-                12,
-                14,
-                16,
-                18,
-                20,
-                21,
-                22,
-                23,
-                24,
-                25,
-                26,
-                27,
-                28,
-                29,
-                30,
-                31,
-                32,
-                33,
-                34,
-                35
-              ]
-            },
-            {
-              "label": "Reduced Total Speed Duration",
-              "values": [
-                1
               ]
             }
           ]
@@ -24457,6 +24603,31 @@
           "exclusive": false,
           "stats": [
             {
+              "label": "% Chance to be Used",
+              "values": [
+                12,
+                15,
+                17,
+                19,
+                22,
+                23,
+                24,
+                25,
+                25,
+                26,
+                27,
+                27,
+                27,
+                28,
+                28,
+                28,
+                29,
+                29,
+                29,
+                30
+              ]
+            },
+            {
               "label": "% Weapon Damage",
               "values": [
                 130,
@@ -24560,6 +24731,12 @@
           "parentMinRank": 0,
           "exclusive": false,
           "stats": [
+            {
+              "label": "% Chance to be Used",
+              "values": [
+                100
+              ]
+            },
             {
               "label": "% Weapon Damage",
               "values": [
@@ -26925,6 +27102,293 @@
           ]
         },
         {
+          "id": "playerclass07.passive03",
+          "name": "Artifact Handling",
+          "description": "Careful handling of the dangerous relics and artifacts replicated from the Vault of the Luminari storage is central to all Inquisitor training. In inexperienced hands, even the best of intentions could spell doom for the wielder, and those around them. ^o[Affects Rune of Hagarrad and Rune of Kalastor and requires one to unlock]",
+          "icon": "skillicon_artifacthandling1up.png",
+          "maxRank": 10,
+          "ui": {
+            "row": 1,
+            "col": 8
+          },
+          "prereqBar": 40,
+          "parent": "playerclass07.icerune",
+          "parentMinRank": 1,
+          "exclusive": false,
+          "stats": [
+            {
+              "label": "+% Crit Damage",
+              "values": [
+                2,
+                4,
+                6,
+                8,
+                10,
+                12,
+                14,
+                16,
+                18,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26,
+                27,
+                28,
+                29,
+                30
+              ]
+            },
+            {
+              "label": "+% Damage",
+              "values": [
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                12,
+                13,
+                14,
+                14,
+                15,
+                16,
+                16,
+                17,
+                18,
+                20
+              ]
+            }
+          ]
+        },
+        {
+          "id": "playerclass07.icerune2_petmodifier",
+          "name": "Biting Cold",
+          "description": "The chilling energy released from the Rune of Hagarrad dulls the wits of the afflicted and makes them easy prey for follow-up attacks.",
+          "icon": "skillicon_runeofhagarrad2up.png",
+          "maxRank": 12,
+          "ui": {
+            "row": 4,
+            "col": 4
+          },
+          "prereqBar": 15,
+          "parent": "playerclass07.icerune",
+          "parentMinRank": 1,
+          "exclusive": false,
+          "stats": [
+            {
+              "label": "+% Cold Damage",
+              "values": [
+                10,
+                18,
+                26,
+                34,
+                42,
+                50,
+                58,
+                66,
+                74,
+                82,
+                90,
+                98,
+                106,
+                114,
+                122,
+                130,
+                138,
+                146,
+                154,
+                162,
+                170,
+                178
+              ]
+            },
+            {
+              "label": "+% Pierce Damage",
+              "values": [
+                10,
+                18,
+                26,
+                34,
+                42,
+                50,
+                58,
+                66,
+                74,
+                82,
+                90,
+                98,
+                106,
+                114,
+                122,
+                130,
+                138,
+                146,
+                154,
+                162,
+                170,
+                178
+              ]
+            },
+            {
+              "label": "Reduced Attack Speed",
+              "values": [
+                10,
+                13,
+                16,
+                18,
+                20,
+                22,
+                24,
+                26,
+                28,
+                30,
+                31,
+                32,
+                33,
+                34,
+                35,
+                36,
+                37,
+                38,
+                39,
+                40,
+                41,
+                45
+              ]
+            },
+            {
+              "label": "Reduced Attack Speed Duration",
+              "values": [
+                5
+              ]
+            },
+            {
+              "label": "Reduced Defensive Ability",
+              "values": [
+                30,
+                50,
+                70,
+                90,
+                110,
+                130,
+                150,
+                170,
+                190,
+                210,
+                230,
+                250,
+                260,
+                270,
+                280,
+                290,
+                300,
+                310,
+                320,
+                330,
+                340,
+                350
+              ]
+            },
+            {
+              "label": "Reduced Defensive Ability Duration",
+              "values": [
+                5
+              ]
+            }
+          ]
+        },
+        {
+          "id": "playerclass07.icerune3_petmodifier",
+          "name": "Chillsurge",
+          "description": "Unleash the full potential of the Rune of Hagarrad, chilling weaker foes to the bone.",
+          "icon": "skillicon_runeofhagarrad3up.png",
+          "maxRank": 12,
+          "ui": {
+            "row": 4,
+            "col": 7
+          },
+          "prereqBar": 32,
+          "parent": "playerclass07.icerune",
+          "parentMinRank": 1,
+          "exclusive": false,
+          "stats": [
+            {
+              "label": "Freeze Chance",
+              "values": [
+                25,
+                29,
+                32,
+                34,
+                36,
+                37,
+                38,
+                39,
+                40,
+                41,
+                42,
+                43,
+                43,
+                44,
+                44,
+                45,
+                45,
+                46,
+                47,
+                48,
+                49,
+                50
+              ]
+            },
+            {
+              "label": "Freeze Duration",
+              "values": [
+                2
+              ]
+            },
+            {
+              "label": "Frostburn Damage",
+              "values": [
+                34,
+                52,
+                70,
+                88,
+                106,
+                124,
+                142,
+                160,
+                178,
+                196,
+                214,
+                232,
+                251,
+                270,
+                289,
+                308,
+                327,
+                347,
+                367,
+                391,
+                415,
+                446
+              ]
+            },
+            {
+              "label": "Frostburn Damage Duration",
+              "values": [
+                3
+              ]
+            }
+          ]
+        },
+        {
           "id": "playerclass07.lightningnet1",
           "name": "Storm Box of Elgoloth",
           "description": "Open the runed Storm Box of Elgoloth, surrounding the target foe with a psychic energy that electrifies the very air around them, shocking the target and all unfortunate enough to stand too close.",
@@ -27879,6 +28343,31 @@
           "exclusive": false,
           "stats": [
             {
+              "label": "% Chance to be Used",
+              "values": [
+                10,
+                13,
+                15,
+                17,
+                19,
+                20,
+                20,
+                21,
+                21,
+                22,
+                22,
+                22,
+                23,
+                23,
+                23,
+                24,
+                24,
+                24,
+                24,
+                25
+              ]
+            },
+            {
               "label": "% Weapon Damage",
               "values": [
                 105,
@@ -27976,6 +28465,31 @@
           "parentMinRank": 0,
           "exclusive": false,
           "stats": [
+            {
+              "label": "% Chance to be Used",
+              "values": [
+                10,
+                13,
+                15,
+                17,
+                19,
+                20,
+                20,
+                21,
+                21,
+                22,
+                22,
+                22,
+                23,
+                23,
+                23,
+                24,
+                24,
+                24,
+                24,
+                25
+              ]
+            },
             {
               "label": "% Weapon Damage",
               "values": [
@@ -28111,6 +28625,31 @@
           "parentMinRank": 0,
           "exclusive": false,
           "stats": [
+            {
+              "label": "% Chance to be Used",
+              "values": [
+                10,
+                13,
+                15,
+                17,
+                19,
+                20,
+                20,
+                21,
+                21,
+                22,
+                22,
+                22,
+                23,
+                23,
+                23,
+                24,
+                24,
+                24,
+                24,
+                25
+              ]
+            },
             {
               "label": "% Weapon Damage",
               "values": [
@@ -28295,6 +28834,177 @@
           ]
         },
         {
+          "id": "playerclass07.passive03",
+          "name": "Artifact Handling",
+          "description": "Careful handling of the dangerous relics and artifacts replicated from the Vault of the Luminari storage is central to all Inquisitor training. In inexperienced hands, even the best of intentions could spell doom for the wielder, and those around them. ^o[Affects Rune of Hagarrad and Rune of Kalastor and requires one to unlock]",
+          "icon": "skillicon_artifacthandling1up.png",
+          "maxRank": 10,
+          "ui": {
+            "row": 1,
+            "col": 8
+          },
+          "prereqBar": 40,
+          "parent": "playerclass07.concussiverune1",
+          "parentMinRank": 1,
+          "exclusive": false,
+          "stats": [
+            {
+              "label": "+% Crit Damage",
+              "values": [
+                2,
+                4,
+                6,
+                8,
+                10,
+                12,
+                14,
+                16,
+                18,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26,
+                27,
+                28,
+                29,
+                30
+              ]
+            },
+            {
+              "label": "+% Damage",
+              "values": [
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                12,
+                13,
+                14,
+                14,
+                15,
+                16,
+                16,
+                17,
+                18,
+                20
+              ]
+            }
+          ]
+        },
+        {
+          "id": "playerclass07.concussiverune2_petmodifier",
+          "name": "Ignition",
+          "description": "The Rune of Kalastor becomes increasingly unstable, triggering an immediate additional detonation at point of contact that dazes nearby enemies.",
+          "icon": "skillicon_runeofkalastor2up.png",
+          "maxRank": 10,
+          "ui": {
+            "row": 1,
+            "col": 6
+          },
+          "prereqBar": 25,
+          "parent": null,
+          "parentMinRank": 0,
+          "exclusive": false,
+          "stats": [
+            {
+              "label": "Burn Damage",
+              "values": [
+                40,
+                63,
+                86,
+                109,
+                132,
+                155,
+                178,
+                201,
+                224,
+                247,
+                271,
+                295,
+                319,
+                343,
+                367,
+                392,
+                417,
+                446,
+                475,
+                512
+              ]
+            },
+            {
+              "label": "Burn Damage Duration",
+              "values": [
+                2
+              ]
+            },
+            {
+              "label": "Fire Damage",
+              "values": [
+                50,
+                72,
+                94,
+                116,
+                138,
+                160,
+                180,
+                200,
+                220,
+                240,
+                261,
+                282,
+                303,
+                324,
+                345,
+                367,
+                389,
+                416,
+                444,
+                488
+              ]
+            },
+            {
+              "label": "Meter Radius",
+              "values": [
+                4
+              ]
+            },
+            {
+              "label": "Stun Duration",
+              "values": [
+                0.5,
+                0.8,
+                1,
+                1.2,
+                1.4,
+                1.6,
+                1.7,
+                1.8,
+                1.9,
+                2,
+                2.1,
+                2.2,
+                2.3,
+                2.4,
+                2.5,
+                2.6,
+                2.7,
+                2.8,
+                2.9,
+                3
+              ]
+            }
+          ]
+        },
+        {
           "id": "playerclass07.arcaneseal1",
           "name": "Inquisitor Seal",
           "description": "Inscribe a protective seal upon the ground that shields allies and rebukes foes that cross its border. The seal is not permanent however and will fade over time. ^oInquisitor Seal scales with player bonuses.",
@@ -28367,6 +29077,158 @@
               "label": "Skill Recharge",
               "values": [
                 -4
+              ]
+            }
+          ]
+        },
+        {
+          "id": "playerclass07.arcaneseal2_petmodifier",
+          "name": "Arcane Empowerment",
+          "description": "Allies standing within the seal are empowered with arcane energies, infusing their weapons and spells with renewed strength.",
+          "icon": "skillicon_inquisitorseal2up.png",
+          "maxRank": 12,
+          "ui": {
+            "row": 3,
+            "col": 8
+          },
+          "prereqBar": 40,
+          "parent": "playerclass07.arcaneseal1",
+          "parentMinRank": 1,
+          "exclusive": false,
+          "stats": [
+            {
+              "label": "+% Crit Damage",
+              "values": [
+                2,
+                4,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25
+              ]
+            },
+            {
+              "label": "+% Total Damage",
+              "values": [
+                8,
+                15,
+                22,
+                29,
+                36,
+                43,
+                50,
+                57,
+                64,
+                71,
+                78,
+                85,
+                94,
+                103,
+                112,
+                121,
+                130,
+                139,
+                148,
+                157,
+                166,
+                175
+              ]
+            },
+            {
+              "label": "Elemental Damage",
+              "values": [
+                2,
+                4,
+                5,
+                7,
+                8,
+                10,
+                11,
+                13,
+                14,
+                16,
+                17,
+                19,
+                21,
+                23,
+                25,
+                27,
+                29,
+                32,
+                35,
+                39,
+                43,
+                50
+              ]
+            },
+            {
+              "label": "Fire Retaliation",
+              "values": [
+                60,
+                75,
+                90,
+                105,
+                120,
+                135,
+                150,
+                165,
+                180,
+                195,
+                210,
+                225,
+                243,
+                261,
+                279,
+                297,
+                315,
+                336,
+                357,
+                388,
+                419,
+                470
+              ]
+            },
+            {
+              "label": "Pierce Damage",
+              "values": [
+                2,
+                3,
+                5,
+                6,
+                8,
+                9,
+                11,
+                12,
+                14,
+                15,
+                17,
+                18,
+                20,
+                21,
+                23,
+                24,
+                26,
+                28,
+                30,
+                33,
+                36,
+                40
               ]
             }
           ]
@@ -30069,6 +30931,158 @@
           ]
         },
         {
+          "id": "playerclass08.summon_skeleton3_petmodifier",
+          "name": "Will of the Crypt",
+          "description": "Infuse your skeletal minions with necrotic energies, strengthening their bones against physical blows.",
+          "icon": "skillicon_raiseskeletons3up.png",
+          "maxRank": 12,
+          "ui": {
+            "row": 4,
+            "col": 5
+          },
+          "prereqBar": 20,
+          "parent": null,
+          "parentMinRank": 0,
+          "exclusive": false,
+          "stats": [
+            {
+              "label": "+ Health",
+              "values": [
+                10,
+                17,
+                22,
+                26,
+                29,
+                32,
+                35,
+                38,
+                41,
+                44,
+                47,
+                50,
+                53,
+                56,
+                59,
+                62,
+                65,
+                68,
+                71,
+                74,
+                77,
+                80
+              ]
+            },
+            {
+              "label": "+% Armor",
+              "values": [
+                10,
+                18,
+                26,
+                34,
+                42,
+                50,
+                58,
+                66,
+                74,
+                82,
+                90,
+                98,
+                108,
+                118,
+                128,
+                138,
+                148,
+                158,
+                168,
+                178,
+                188,
+                198
+              ]
+            },
+            {
+              "label": "+% Elemental Damage",
+              "values": [
+                10,
+                22,
+                34,
+                46,
+                58,
+                70,
+                82,
+                94,
+                106,
+                118,
+                130,
+                142,
+                154,
+                166,
+                178,
+                190,
+                202,
+                214,
+                226,
+                238,
+                250,
+                262
+              ]
+            },
+            {
+              "label": "+% Life Damage",
+              "values": [
+                8,
+                18,
+                28,
+                38,
+                48,
+                58,
+                68,
+                78,
+                88,
+                98,
+                108,
+                118,
+                128,
+                138,
+                148,
+                158,
+                168,
+                178,
+                188,
+                198,
+                208,
+                218
+              ]
+            },
+            {
+              "label": "Life Damage",
+              "values": [
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                17,
+                19,
+                21,
+                23,
+                25,
+                28,
+                31,
+                35,
+                39,
+                46
+              ]
+            }
+          ]
+        },
+        {
           "id": "playerclass08.weaponpool01",
           "name": "Reaping Strike",
           "description": "By infusing their weapons with deadly necrotic energies, Necromancers can inflict physical wounds that cut deeper than just the flesh. ^oCan activate with all default weapon attacks.",
@@ -30083,6 +31097,31 @@
           "parentMinRank": 0,
           "exclusive": false,
           "stats": [
+            {
+              "label": "% Chance to be Used",
+              "values": [
+                12,
+                15,
+                18,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                25,
+                25,
+                26,
+                26,
+                27,
+                27,
+                28,
+                28,
+                29,
+                29,
+                30
+              ]
+            },
             {
               "label": "% Weapon Damage",
               "values": [
@@ -30243,6 +31282,33 @@
           "parentMinRank": 0,
           "exclusive": false,
           "stats": [
+            {
+              "label": "% Chance to be Used",
+              "values": [
+                12,
+                15,
+                18,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                25,
+                26,
+                26,
+                27,
+                27,
+                27,
+                28,
+                28,
+                28,
+                29,
+                29,
+                29,
+                30
+              ]
+            },
             {
               "label": "% Weapon Damage",
               "values": [
@@ -30471,6 +31537,367 @@
               "label": "Skill Recharge",
               "values": [
                 -13
+              ]
+            }
+          ]
+        },
+        {
+          "id": "playerclass08.summon_blightbeast2_petmodifier",
+          "name": "Rotting Fumes",
+          "description": "The stench emanating from the blight fiend becomes impossible to withstand, with the very air around the creature inducing vomiting and blurring vision.",
+          "icon": "skillicon_blightbeast2up.png",
+          "maxRank": 12,
+          "ui": {
+            "row": 3,
+            "col": 6
+          },
+          "prereqBar": 25,
+          "parent": null,
+          "parentMinRank": 0,
+          "exclusive": false,
+          "stats": [
+            {
+              "label": "Meter Radius",
+              "values": [
+                3.5,
+                3.7,
+                3.9,
+                4.1,
+                4.3,
+                4.4,
+                4.5,
+                4.6,
+                4.7,
+                4.8,
+                4.9,
+                5,
+                5.1,
+                5.2,
+                5.3,
+                5.4,
+                5.5,
+                5.6,
+                5.7,
+                5.8,
+                5.9,
+                6
+              ]
+            },
+            {
+              "label": "Poison Damage",
+              "values": [
+                24,
+                39,
+                55,
+                70,
+                86,
+                101,
+                116,
+                132,
+                147,
+                163,
+                178,
+                193,
+                210,
+                226,
+                242,
+                258,
+                274,
+                291,
+                308,
+                329,
+                350,
+                374
+              ]
+            },
+            {
+              "label": "Poison Damage Duration",
+              "values": [
+                2
+              ]
+            },
+            {
+              "label": "Reduced Defensive Ability",
+              "values": [
+                25,
+                42,
+                59,
+                76,
+                93,
+                110,
+                127,
+                144,
+                161,
+                178,
+                195,
+                212,
+                224,
+                236,
+                248,
+                260,
+                272,
+                284,
+                296,
+                308,
+                320,
+                335
+              ]
+            },
+            {
+              "label": "Reduced Defensive Ability Duration",
+              "values": [
+                2
+              ]
+            },
+            {
+              "label": "Taunt Duration",
+              "values": [
+                20,
+                22,
+                23,
+                24,
+                25,
+                26,
+                27,
+                28,
+                29,
+                30,
+                31,
+                32,
+                33,
+                34,
+                35,
+                36,
+                37,
+                38,
+                39,
+                40,
+                41,
+                42
+              ]
+            }
+          ]
+        },
+        {
+          "id": "playerclass08.summon_blightbeast3_petmodifier",
+          "name": "Blight Burst",
+          "description": "Toxic gases build up within the rotting bulk of the blight fiend, which it can then release upon unsuspecting foes in a toxic eruption of decay.",
+          "icon": "skillicon_blightbeast3up.png",
+          "maxRank": 12,
+          "ui": {
+            "row": 3,
+            "col": 8
+          },
+          "prereqBar": 40,
+          "parent": null,
+          "parentMinRank": 0,
+          "exclusive": false,
+          "stats": [
+            {
+              "label": "% Weapon Damage",
+              "values": [
+                33,
+                38,
+                42,
+                46,
+                49,
+                52,
+                55,
+                58,
+                61,
+                64,
+                67,
+                70,
+                72,
+                74,
+                76,
+                78,
+                80,
+                82,
+                84,
+                86,
+                88,
+                90
+              ]
+            },
+            {
+              "label": "Confusion Duration",
+              "values": [
+                2
+              ]
+            },
+            {
+              "label": "Energy Cost",
+              "values": [
+                25,
+                28,
+                31,
+                34,
+                37,
+                40,
+                43,
+                46,
+                49,
+                51,
+                53,
+                55,
+                58,
+                61,
+                64,
+                67,
+                70,
+                73,
+                76,
+                79,
+                82,
+                85
+              ]
+            },
+            {
+              "label": "Life Damage",
+              "values": [
+                60,
+                78,
+                96,
+                114,
+                131,
+                149,
+                167,
+                185,
+                203,
+                220,
+                238,
+                256,
+                275,
+                294,
+                314,
+                333,
+                352,
+                373,
+                393,
+                419,
+                446,
+                479
+              ]
+            },
+            {
+              "label": "Meter Radius",
+              "values": [
+                10
+              ]
+            },
+            {
+              "label": "Poison Damage",
+              "values": [
+                30,
+                38,
+                45,
+                53,
+                60,
+                68,
+                76,
+                83,
+                91,
+                98,
+                106,
+                114,
+                122,
+                130,
+                138,
+                147,
+                155,
+                164,
+                173,
+                186,
+                198,
+                219
+              ]
+            },
+            {
+              "label": "Poison Damage Duration",
+              "values": [
+                5
+              ]
+            },
+            {
+              "label": "Poison Damage Max",
+              "values": [
+                130,
+                161,
+                193,
+                225,
+                257,
+                289,
+                321,
+                353,
+                384,
+                416,
+                448,
+                480,
+                514,
+                547,
+                580,
+                613,
+                647,
+                681,
+                716,
+                756,
+                797,
+                844
+              ]
+            },
+            {
+              "label": "Poison Damage Min",
+              "values": [
+                112,
+                138,
+                164,
+                190,
+                216,
+                242,
+                267,
+                293,
+                319,
+                345,
+                371,
+                397,
+                424,
+                452,
+                479,
+                506,
+                533,
+                562,
+                591,
+                625,
+                659,
+                701
+              ]
+            },
+            {
+              "label": "Taunt Duration",
+              "values": [
+                40,
+                50,
+                55,
+                60,
+                65,
+                70,
+                75,
+                80,
+                85,
+                90,
+                95,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100
               ]
             }
           ]
@@ -35110,6 +36537,158 @@
           "stats": []
         },
         {
+          "id": "playerclass09.summon_celestialguardian2_petmodifier",
+          "name": "Celestial Presence",
+          "description": "The guardian's very presence sears the souls of your heretical foes.",
+          "icon": "skillicon_conjurecelestialguardian2up.png",
+          "maxRank": 12,
+          "ui": {
+            "row": 7,
+            "col": 9
+          },
+          "prereqBar": 50,
+          "parent": null,
+          "parentMinRank": 0,
+          "exclusive": false,
+          "stats": [
+            {
+              "label": "+% Bleeding Resistance",
+              "values": [
+                -3,
+                -5,
+                -7,
+                -9,
+                -11,
+                -13,
+                -15,
+                -17,
+                -19,
+                -21,
+                -23,
+                -25,
+                -26,
+                -27,
+                -28,
+                -29,
+                -30,
+                -31,
+                -32,
+                -33,
+                -34,
+                -35
+              ]
+            },
+            {
+              "label": "+% Elemental Resistance",
+              "values": [
+                -3,
+                -5,
+                -7,
+                -9,
+                -11,
+                -13,
+                -15,
+                -17,
+                -19,
+                -21,
+                -23,
+                -25,
+                -26,
+                -27,
+                -28,
+                -29,
+                -30,
+                -31,
+                -32,
+                -33,
+                -34,
+                -35
+              ]
+            },
+            {
+              "label": "+% Physical Resistance",
+              "values": [
+                -3,
+                -5,
+                -7,
+                -9,
+                -11,
+                -13,
+                -15,
+                -17,
+                -19,
+                -21,
+                -23,
+                -25,
+                -26,
+                -27,
+                -28,
+                -29,
+                -30,
+                -31,
+                -32,
+                -33,
+                -34,
+                -35
+              ]
+            },
+            {
+              "label": "Fire Damage",
+              "values": [
+                14,
+                24,
+                34,
+                44,
+                54,
+                64,
+                74,
+                84,
+                94,
+                104,
+                114,
+                124,
+                135,
+                146,
+                157,
+                168,
+                179,
+                191,
+                203,
+                219,
+                235,
+                258
+              ]
+            },
+            {
+              "label": "Meter Radius",
+              "values": [
+                3.5,
+                3.5,
+                3.6,
+                3.6,
+                3.7,
+                3.7,
+                3.8,
+                3.8,
+                3.9,
+                3.9,
+                4,
+                4,
+                4.1,
+                4.1,
+                4.2,
+                4.2,
+                4.3,
+                4.3,
+                4.4,
+                4.4,
+                4.5,
+                4.5
+              ]
+            }
+          ]
+        },
+        {
           "id": "playerclass09.viremight1",
           "name": "Vire's Might",
           "description": "First recorded in Arkovian texts when Agavold the Stalwart of the Temple of Vire selflessly charged through an entire legion of enemy forces, scattering their ranks and exposing them to an onslaught of arrows, all without taking a scratch. Vire's Might has since become a prime display of an Oathkeeper's strength, both physical and spiritual, in the face of seemingly impossible odds. ^oWhen used with a shield, the shield's damage is added.",
@@ -35593,6 +37172,31 @@
           "exclusive": false,
           "stats": [
             {
+              "label": "% Chance to be Used",
+              "values": [
+                12,
+                15,
+                17,
+                19,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26,
+                27,
+                27,
+                27,
+                28,
+                28,
+                28,
+                29,
+                29,
+                29,
+                30
+              ]
+            },
+            {
               "label": "% Weapon Damage",
               "values": [
                 125,
@@ -35702,6 +37306,31 @@
           "parentMinRank": 0,
           "exclusive": false,
           "stats": [
+            {
+              "label": "% Chance to be Used",
+              "values": [
+                12,
+                15,
+                17,
+                19,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26,
+                27,
+                27,
+                27,
+                28,
+                28,
+                28,
+                29,
+                29,
+                29,
+                30
+              ]
+            },
             {
               "label": "% Weapon Damage",
               "values": [

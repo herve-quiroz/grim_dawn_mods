@@ -15,7 +15,11 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).parent
 GAME_ROOT = Path("/mnt/c/Program Files (x86)/Steam/steamapps/common/Grim Dawn")
-DATABASE_ARZ = GAME_ROOT / "database" / "database.arz"
+DATABASE_ARZS = [
+    GAME_ROOT / "database" / "database.arz",
+    GAME_ROOT / "gdx1" / "database" / "GDX1.arz",
+    GAME_ROOT / "gdx2" / "database" / "GDX2.arz",
+]
 TEXT_ARCS = [
     GAME_ROOT / "resources" / "Text_EN.arc",
     GAME_ROOT / "gdx1" / "resources" / "Text_EN.arc",
@@ -61,10 +65,13 @@ def extract_arz_to(tmp: Path) -> Path:
         print(f"Reusing existing ARZ at {out}", file=sys.stderr)
         return out
     out.mkdir(exist_ok=True)
-    subprocess.run(
-        ["python3", str(REPO_ROOT / "extract_arz.py"), str(DATABASE_ARZ), str(out)],
-        check=True,
-    )
+    for arz in DATABASE_ARZS:
+        if not arz.exists():
+            continue
+        subprocess.run(
+            ["python3", str(REPO_ROOT / "extract_arz.py"), str(arz), str(out)],
+            check=True,
+        )
     return out
 
 
@@ -576,6 +583,7 @@ def extract_skill_stats(dbr_data: dict[str, str]) -> list[dict]:
 
     # ---- Skill meta ----
     skill_meta = {
+        "skillChanceWeight": "% Chance to be Used",
         "skillManaCost": "Energy Cost",
         "skillCooldownTime": "Skill Recharge",
         "skillActiveDuration": "Duration",
