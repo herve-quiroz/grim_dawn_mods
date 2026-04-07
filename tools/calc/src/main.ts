@@ -4,6 +4,11 @@ import { encodeState, decodeState } from './state.js';
 import { computeBudget, totalAllocated, applyDelta, findMastery } from './rules.js';
 import { buildSearchIndex, matchQuery } from './search.js';
 import { renderMasteryPanel } from './render.js';
+import type { DevotionsData, DevotionState } from './devotion-types.js';
+import { emptyDevotionState } from './devotion-types.js';
+import { encodeDevotionState, decodeDevotionState } from './state.js';
+import { totalDevotionSpent, applyNodeDelta, toggleConstellationAll } from './devotion-rules.js';
+import { renderDevotionPanel, renderAffinityBar } from './devotion-render.js';
 
 declare const bootstrap: {
   Modal: new (el: Element) => { show(): void; hide(): void };
@@ -23,6 +28,9 @@ interface AppRefs {
   panelB: HTMLElement;
   overBanner: HTMLElement;
   toastContainer: HTMLElement;
+  devotionPanel: HTMLElement;
+  devotionBudget: HTMLElement;
+  affinityBar: HTMLElement;
 }
 
 async function boot(): Promise<void> {
@@ -30,10 +38,11 @@ async function boot(): Promise<void> {
   const versions: VersionsData = await versionsRes.json();
 
   const hash = window.location.hash.slice(1);
+  const [masteryHash, devotionHash] = hash.split('|');
   let versionId = versions.latest;
-  if (hash) {
+  if (masteryHash) {
     try {
-      const firstByte = decodeFirstByte(hash);
+      const firstByte = decodeFirstByte(masteryHash);
       if (firstByte >= 0 && firstByte < versions.versions.length) {
         versionId = firstByte;
       }
@@ -44,16 +53,29 @@ async function boot(): Promise<void> {
   const skillsRes = await fetch(`data/skills/skills-${versionName}.json`);
   const data: SkillsData = await skillsRes.json();
 
+  let devotionData: DevotionsData | null = null;
+  try {
+    const devRes = await fetch(`data/devotions/devotions-${versionName}.json`);
+    if (devRes.ok) devotionData = await devRes.json();
+  } catch { /* devotion data optional */ }
+
   let state: BuildState;
-  if (hash) {
+  if (masteryHash) {
     try {
-      state = decodeState(hash, data);
+      state = decodeState(masteryHash, data);
     } catch (e) {
       console.warn('decode failed, starting fresh', e);
       state = emptyBuildState(versionId);
     }
   } else {
     state = emptyBuildState(versionId);
+  }
+
+  let devState: DevotionState = emptyDevotionState();
+  if (devotionData && devotionHash) {
+    try {
+      devState = decodeDevotionState(devotionHash, devotionData);
+    } catch { devState = emptyDevotionState(); }
   }
 
   const refs = collectRefs();
@@ -63,17 +85,31 @@ async function boot(): Promise<void> {
 
   const setState = (next: BuildState, pushHistory = true) => {
     state = next;
-    syncUrl(state, data, pushHistory);
+    syncUrl(state, devState, data, devotionData, pushHistory);
+    render();
+  };
+
+  const setDevState = (next: DevotionState) => {
+    devState = next;
+    syncUrl(state, devState, data, devotionData, false);
     render();
   };
 
   window.addEventListener('popstate', () => {
     const h = window.location.hash.slice(1);
+    const [mHash, dHash] = h.split('|');
     try {
-      state = h ? decodeState(h, data) : emptyBuildState(versionId);
+      state = mHash ? decodeState(mHash, data) : emptyBuildState(versionId);
     } catch (e) {
       console.warn('popstate decode failed', e);
       state = emptyBuildState(versionId);
+    }
+    if (devotionData && dHash) {
+      try {
+        devState = decodeDevotionState(dHash, devotionData);
+      } catch { devState = emptyDevotionState(); }
+    } else {
+      devState = emptyDevotionState();
     }
     render();
   });
@@ -107,6 +143,32 @@ async function boot(): Promise<void> {
     renderMasteryPanel(refs.panelA, 0, mA, state, over, cb, versionName, data);
     renderMasteryPanel(refs.panelB, 1, mB, state, over, cb, versionName, data);
 
+    // Devotion panel
+    if (devotionData) {
+      const devBudget = devState.devotionCap - totalDevotionSpent(devState);
+      refs.devotionBudget.textContent = `Devotion: ${devBudget}`;
+      refs.devotionBudget.classList.toggle('over', devBudget < 0);
+
+      renderAffinityBar(refs.affinityBar, devState, devotionData);
+
+      const devCb = {
+        onNodeDelta: (cId: string, nIdx: number, delta: 1 | -1) => {
+          const r = applyNodeDelta(devState, cId, nIdx, delta, devotionData);
+          setDevState(r.state);
+        },
+        onCrossroadsToggle: (xrId: string) => {
+          const next = { ...devState, crossroads: new Set(devState.crossroads) };
+          if (next.crossroads.has(xrId)) next.crossroads.delete(xrId);
+          else next.crossroads.add(xrId);
+          setDevState(next);
+        },
+        onToggleAll: (cId: string) => {
+          setDevState(toggleConstellationAll(devState, cId, devotionData));
+        },
+      };
+      renderDevotionPanel(refs.devotionPanel, devState, devotionData, devCb);
+    }
+
     applySearchHighlight(refs, searchIndex);
   };
   refs.level.addEventListener('input', () => {
@@ -124,6 +186,7 @@ async function boot(): Promise<void> {
     applySearchHighlight(refs, searchIndex);
   });
   refs.reset.addEventListener('click', () => {
+    devState = emptyDevotionState();
     setState({
       ...state,
       masteries: [null, null],
@@ -164,6 +227,9 @@ function collectRefs(): AppRefs {
     panelB: byId('panel-b'),
     overBanner: byId('over-banner'),
     toastContainer: byId('toast-container'),
+    devotionPanel: byId('devotion-panel'),
+    devotionBudget: byId('devotion-budget'),
+    affinityBar: byId('affinity-bar'),
   };
 }
 
@@ -233,8 +299,17 @@ function confirmDialog(message: string): Promise<boolean> {
   });
 }
 
-function syncUrl(state: BuildState, data: SkillsData, pushHistory: boolean): void {
-  const encoded = encodeState(state, data);
+function syncUrl(
+  state: BuildState,
+  devState: DevotionState,
+  data: SkillsData,
+  devotionData: DevotionsData | null,
+  pushHistory: boolean,
+): void {
+  let encoded = encodeState(state, data);
+  if (devotionData && totalDevotionSpent(devState) > 0) {
+    encoded += '|' + encodeDevotionState(devState, devotionData);
+  }
   const newUrl = window.location.pathname + window.location.search + '#' + encoded;
   if (pushHistory) window.history.pushState(null, '', newUrl);
   else window.history.replaceState(null, '', newUrl);
