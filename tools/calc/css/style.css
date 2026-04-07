@@ -131,3 +131,193 @@ body, .popover { padding-bottom: 60px; font-family: 'Linux Biolinum', sans-serif
   outline: 2px solid #dc3545;
   outline-offset: 1px;
 }
+
+/* === Devotion constellation styles === */
+
+.devotion-tier-header {
+  font-size: 14px;
+  font-weight: 600;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 8px 0 4px 0;
+  border-bottom: 1px solid #333;
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+
+.devotion-crossroads-row,
+.devotion-constellation-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 12px;
+  background: rgba(255,255,255,0.02);
+  border-radius: 6px;
+  margin-bottom: 4px;
+  min-height: 48px;
+}
+
+.devotion-constellation-name {
+  width: 150px;
+  flex-shrink: 0;
+  font-weight: 600;
+  color: #e0e0e0;
+  font-size: 13px;
+}
+
+.devotion-constellation-name.locked {
+  color: #666;
+}
+
+.devotion-check {
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  border: 1.5px solid #555;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  font-size: 12px;
+  color: transparent;
+}
+
+.devotion-check.completed {
+  border-color: #ffc107;
+  color: #ffc107;
+  background: rgba(255,193,7,0.1);
+}
+
+.devotion-crossroads-toggles {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.devotion-crossroads-toggle {
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1.5px solid #444;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 600;
+  color: #666;
+  background: transparent;
+}
+
+.devotion-affinity-info {
+  width: 160px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.devotion-affinity-line {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+}
+
+.devotion-affinity-label {
+  color: #777;
+  font-size: 10px;
+  width: 52px;
+  flex-shrink: 0;
+}
+
+.devotion-affinity-chip {
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-weight: 700;
+  font-size: 11px;
+  min-width: 20px;
+  text-align: center;
+}
+
+.devotion-chip-none {
+  color: #555;
+  font-style: italic;
+  font-size: 10px;
+}
+
+.devotion-node-graph {
+  display: flex;
+  align-items: center;
+}
+
+.devotion-subtree {
+  display: flex;
+  align-items: center;
+}
+
+.devotion-node {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid #555;
+  background: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  color: #666;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.devotion-node.allocated {
+  border-color: #ffc107;
+  background: rgba(255,193,7,0.2);
+  color: #ffc107;
+}
+
+.devotion-node.skill-node {
+  border-style: dashed;
+}
+
+.devotion-node.skill-node.allocated {
+  border-style: solid;
+}
+
+.devotion-link-h {
+  width: 12px;
+  height: 2px;
+  background: #444;
+  flex-shrink: 0;
+}
+
+.devotion-link-h.active {
+  background: #ffc107;
+}
+
+.devotion-branch {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.devotion-branch-arm {
+  display: flex;
+  align-items: center;
+}
+
+/* Devotion search highlighting */
+.devotion-constellation-row.search-miss {
+  opacity: 0.25;
+}
+
+.devotion-constellation-row.search-hit .devotion-constellation-name {
+  color: #dc3545;
+}
+
+/* Bottom bar affinity section */
+#affinity-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+}
