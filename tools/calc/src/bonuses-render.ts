@@ -1,6 +1,6 @@
 import type { BonusCategory } from './bonuses.js';
 
-let expanded = false;
+let expanded = true;
 
 export function renderBonusesPanel(
   container: HTMLElement,
