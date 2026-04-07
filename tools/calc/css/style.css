@@ -321,3 +321,11 @@ body, .popover { padding-bottom: 60px; font-family: 'Linux Biolinum', sans-serif
   gap: 6px;
   font-size: 13px;
 }
+
+.devotion-affinity-filter-chip {
+  font-weight: 700;
+  padding: 1px 7px;
+  border-radius: 4px;
+  border: 1.5px solid transparent;
+  transition: background 0.1s, border-color 0.1s;
+}

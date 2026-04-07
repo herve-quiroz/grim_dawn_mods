@@ -85,6 +85,8 @@ async function boot(): Promise<void> {
 
   refs.versionLabel.textContent = `GD ${data.gdVersion}`;
 
+  let affinityFilter = new Set<number>();
+
   const setState = (next: BuildState, pushHistory = true) => {
     state = next;
     syncUrl(state, devState, data, devotionData, pushHistory);
@@ -151,7 +153,11 @@ async function boot(): Promise<void> {
       refs.devotionBudget.textContent = `Devotion: ${devBudget}`;
       refs.devotionBudget.classList.toggle('over', devBudget < 0);
 
-      renderAffinityBar(refs.affinityBar, devState, devotionData);
+      renderAffinityBar(refs.affinityBar, devState, devotionData, affinityFilter, (aff: number) => {
+        if (affinityFilter.has(aff)) affinityFilter.delete(aff);
+        else affinityFilter.add(aff);
+        render();
+      });
 
       const devCb = {
         onNodeDelta: (cId: string, nIdx: number, delta: 1 | -1) => {
@@ -172,7 +178,7 @@ async function boot(): Promise<void> {
           setDevState(toggleConstellationAll(devState, cId, devotionData));
         },
       };
-      renderDevotionPanel(refs.devotionPanel, devState, devotionData, devCb);
+      renderDevotionPanel(refs.devotionPanel, devState, devotionData, devCb, affinityFilter);
     }
 
     // Sync devotion cap input

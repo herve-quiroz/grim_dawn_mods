@@ -33,11 +33,22 @@ export function renderDevotionPanel(
   state: DevotionState,
   data: DevotionsData,
   cb: DevotionCallbacks,
+  affinityFilter?: Set<number>,
 ): void {
   document.querySelectorAll('.popover').forEach(el => el.remove());
   container.innerHTML = '';
 
   const over = totalDevotionSpent(state) > state.devotionCap;
+  const filtering = affinityFilter !== undefined && affinityFilter.size > 0;
+
+  function matchesFilter(c: Constellation): boolean {
+    if (!filtering) return true;
+    // Constellation must provide a bonus for ALL selected affinities
+    for (const aff of affinityFilter!) {
+      if (!c.bonus.some(b => b.affinity === aff)) return false;
+    }
+    return true;
+  }
 
   // Group constellations by tier
   const byTier = new Map<number, Constellation[]>();
@@ -47,7 +58,7 @@ export function renderDevotionPanel(
     byTier.set(c.tier, list);
   }
 
-  // Crossroads section
+  // Crossroads section (always shown)
   container.appendChild(renderTierHeader('Crossroads'));
   container.appendChild(renderCrossroadsRow(data, state, cb));
 
@@ -55,8 +66,10 @@ export function renderDevotionPanel(
   for (const tier of [1, 2, 3]) {
     const constellations = byTier.get(tier) ?? [];
     if (constellations.length === 0) continue;
+    const visible = filtering ? constellations.filter(matchesFilter) : constellations;
+    if (visible.length === 0) continue;
     container.appendChild(renderTierHeader(`Tier ${tier}`));
-    for (const c of constellations) {
+    for (const c of visible) {
       container.appendChild(renderConstellationRow(c, state, data, over, cb));
     }
   }
@@ -363,6 +376,8 @@ export function renderAffinityBar(
   container: HTMLElement,
   state: DevotionState,
   data: DevotionsData,
+  affinityFilter: Set<number>,
+  onToggleFilter: (affinity: number) => void,
 ): void {
   container.innerHTML = '';
   const aff = computeAffinities(state, data);
@@ -373,11 +388,17 @@ export function renderAffinityBar(
   container.appendChild(label);
 
   for (let i = 0; i < aff.length; i++) {
-    const span = document.createElement('span');
-    span.style.color = AFFINITY_COLORS[i];
-    span.style.fontWeight = '700';
-    span.textContent = String(aff[i]);
-    span.title = data.affinities[i];
-    container.appendChild(span);
+    const chip = document.createElement('span');
+    chip.className = 'devotion-affinity-filter-chip';
+    chip.style.color = AFFINITY_COLORS[i];
+    chip.style.cursor = 'pointer';
+    chip.textContent = String(aff[i]);
+    chip.title = `${data.affinities[i]} — click to filter constellations`;
+    if (affinityFilter.has(i)) {
+      chip.style.background = AFFINITY_BG[i];
+      chip.style.borderColor = AFFINITY_COLORS[i];
+    }
+    chip.addEventListener('click', () => onToggleFilter(i));
+    container.appendChild(chip);
   }
 }
